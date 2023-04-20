@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema({
       answer:{
         type:String,
         required:true,
+      },
+      query:{
+        type:String,
+        required:true
       }
     
     },

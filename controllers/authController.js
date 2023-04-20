@@ -166,3 +166,16 @@ export const bookController=(req,res)=>{
         res.status(400).send({ message: "error" });
       }
 }
+
+//query 
+export const queryController = ( req,res) =>{
+   
+        const {query}=req.body
+        //validations
+        if(!query){
+            return res.status(404).send({
+                success:false,
+                message:'Invalid entries'
+            })
+        }
+    }

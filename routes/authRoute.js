@@ -1,5 +1,5 @@
 import express from "express";
-import {registerController,bookController,loginController,testController, forgotPasswordController,} from '../controllers/authController.js'
+import {registerController,bookController,queryController,loginController,testController, forgotPasswordController,} from '../controllers/authController.js'
 import {requireSignIn,isAdmin} from "../middlewares/authMiddleware.js";
 //route object
 const router = express.Router()
@@ -8,6 +8,7 @@ const router = express.Router()
 router.post('/register',registerController);
 //LOGIN _POST
 router.post('/login',loginController);
+router.post('/query',queryController);
 router.post('/issuebook',bookController);
 //Forgot Password -post
 router.post('/forgot-password',forgotPasswordController)
