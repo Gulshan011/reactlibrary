@@ -1,0 +1,84 @@
+.widgets ,.chart,.featured{
+    display:flex;
+    padding: 20px;
+    gap:20px;
+    
+}
+.widget{
+    margin-right: 20px;
+    display:flex;
+    flex:1;
+    padding:10px;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+  0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    height: 150px;
+   justify-content: space-between;
+    align-items:center;
+
+    
+}
+.widget .left .right{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+    .title{
+        font-weight: bold;
+        font-size:30px;
+        color:black;
+    }
+    .total{
+        font-weight: bold;
+        font-size:20px;
+        color:black;
+    }
+    .links{
+        font-weight: bold;
+        font-size:15px;
+        color:rgb(46, 24, 247);
+        text-decoration: underline;
+    }
+    .icon{
+    font-size:14px;
+    padding:5px;
+    border-radius:5px;
+   box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+   align-self:flex-end;
+    
+   
+    }
+  
+    .percentage .negative{
+        color:red;
+       
+    }
+    .percentage.positive {
+        color: green;
+        margin-top: -30%;
+    }
+
+    .listContainer{
+        box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+        0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+        padding:20px;
+        margin:20px;
+    }
+    .listContainer .listTitle{
+        font: weight 100px;
+        color:grey;
+        margin-bottom:15px;
+    }
+.charts{
+    display:flex;
+    padding: 20px;
+    gap:20px;
+}
+.AdminContainer{
+    flex:8;
+}
+.chart{
+    flex-direction:column;
+}
