@@ -1,6 +1,7 @@
 import userModel from "../models/userModel.js";
 import { comparePassword, hashpassword } from '../helpers/authHelper.js';
 import JWT from "jsonwebtoken"
+import { title } from "process";
 export  const registerController = async (req, res) => {
     //register
     try {
@@ -160,3 +161,8 @@ export const testController = (req,res) =>{
         res.send({ error });
       }
     };
+export const bookController=(req,res)=>{
+    if (!title) {
+        res.status(400).send({ message: "error" });
+      }
+}

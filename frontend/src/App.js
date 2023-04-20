@@ -20,14 +20,14 @@ import AboutRoute from "./components/routes/AboutRoute";
 import MyTasks from "./components/Admin/MyTasks";
 import Calender from './components/Calender'
 import IssueBook from "./user/IssueBook/IssueBook";
-
-
+import Modal from "./user/IssueBook/Modal";
+import Contact from "./components/Contact";
 const App = () => {
   const location = useLocation();
 
   return (
     <div>
-    {location.pathname === '/dashboard/user'||location.pathname === '/dashboard/admin'||location.pathname === '/issuebook'||location.pathname === '/IssueBookForm'? (
+    {location.pathname === '/dashboard/user'||location.pathname === '/dashboard/admin'||location.pathname ==='/issuebook'||location.pathname === '/IssueBookForm'||location.pathname === '/calender'||location.pathname === '/Contact'? (
       <div></div>
     ) : (
       <Navbar />
@@ -50,9 +50,9 @@ const App = () => {
         <Route path="/calender" element={<Calender/>}></Route>
         <Route path="/myTasks" element={<MyTasks/>}></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/modal" element={<Modal/>}></Route>
         <Route path="/issuebook" element={<IssueBook />}></Route>
-        <Route path="/issuebookform" element={<IssueBookForm/>}></Route>
-       
+        <Route path="/contact" element={<Contact/>}></Route>
         
       </Routes>
       <Routes>

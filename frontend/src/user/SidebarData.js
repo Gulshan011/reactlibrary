@@ -53,7 +53,7 @@ export const SidebarData = [
   },
   {
     title: 'Ask for help',
-    path: '/Query',
+    path: '/Contact',
     icon: <IoIcons.IoMdHelpCircle />
   },
   {

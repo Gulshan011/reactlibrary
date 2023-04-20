@@ -43,3 +43,20 @@ const userSchema = new mongoose.Schema({
 {timestamps:true},
 )
 export default mongoose.model("users",userSchema);
+const BookSchema=new mongoose.Schema({
+  title: {
+      type: String,
+      
+    },
+   author: {
+      type: String,
+      required: true,
+    },
+   publisher: {
+      type: String,
+      required: true,
+    },
+    
+  
+  })
+   mongoose.model("books",BookSchema);

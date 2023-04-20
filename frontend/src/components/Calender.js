@@ -4,9 +4,12 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import '../../src/App.css'
+import Sidebar from '../user/Sidebar'
 function Calendar() {
   return (
     <div className="calender">
+    <Sidebar/>
+    <br/>
       <Fullcalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView={"dayGridMonth"}
