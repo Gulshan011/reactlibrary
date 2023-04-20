@@ -1,10 +1,16 @@
 import React from 'react'
-import Header from '../IssueBook/Header';
+import Card from './Card'
+import Main from './Main'
+import Sidebar from '../Sidebar'
 const IssueBook = () => {
   return (
-    <div>
-    <h1>heyy</h1>
-    <Header/>
+    <div className='background'>
+    <Sidebar/>
+    <Card/>
+    <Main/>
+  
+
+    
     </div>
   )
 }
