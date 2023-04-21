@@ -6,37 +6,37 @@ const userSchema = new mongoose.Schema({
       },
       lname: {
         type: String,
-        //required: true,
+        required: true,
       },
       regnumber: {
         type: String,
-        //required: true,
+        required: true,
       },
       role: {
         type: String,
-        //required: true,
+        required: true,
       },
       dept: {
         type: String,
-        //required: true,
+        required: true,
       },
       email: {
         type: String,
-        //required: true,
-        //unique: true,
+        required: true,
+        unique: true,
       },
     
       password: {
         type: String,
-        //required: true,
+        required: true,
       },
       gender:{
         type:String,
-        //required:true,
+        required:true,
       },
       answer:{
         type:String,
-        //required:true,
+        required:true,
       },
       query:{
         type:String,
@@ -54,11 +54,11 @@ export default mongoose.model("users",userSchema);
 //     },
 //    author: {
 //       type: String,
-//       //required: true,
+//       required: true,
 //     },
 //    publisher: {
 //       type: String,
-//       //required: true,
+//       required: true,
 //     },
     
   

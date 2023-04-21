@@ -213,7 +213,7 @@ export const bookController=(req,res)=>{
     }
 
     // Update the user's query field with the new query data
-    await userModel.findByIdAndUpdate({ _id: user._id }, { query });
+    await userModel.findByIdAndUpdate({ _id: user._id }, {fname:fname},{ query });
 
     // Send a success response
     res.status(200).send({
