@@ -2,6 +2,7 @@ import userModel from "../models/userModel.js";
 import { comparePassword, hashpassword } from '../helpers/authHelper.js';
 import JWT from "jsonwebtoken"
 import { title } from "process";
+
 export  const registerController = async (req, res) => {
     //register
     try {
@@ -104,6 +105,7 @@ export const loginController = async( req,res) =>{
                     role: user.role,
                     gender:user.gender,
                     answer:user.answer,
+                    query:user.query,
                 },token,
             });
     }catch(error){
@@ -162,20 +164,150 @@ export const testController = (req,res) =>{
       }
     };
 export const bookController=(req,res)=>{
-    if (!title) {
-        res.status(400).send({ message: "error" });
-      }
-}
+  if (!title) {
+    return res.status(404).send({
+      success: false,
+      message: 'Invalid entries'
+    });
+  } else {
+    return res.status(200).send({
+      success: true,
+      message: 'Issued'
+    });
+  }
+};
 
 //query 
-export const queryController = ( req,res) =>{
-   
-        const {query}=req.body
-        //validations
-        if(!query){
-            return res.status(404).send({
-                success:false,
-                message:'Invalid entries'
-            })
-        }
+
+ export const queryControllers =  async (req, res) => {
+ try {
+  const { query ,fname } = req.body;
+     
+  const user =  userModel.findOne({fname : fname});
+
+  await userModel.findByIdAndUpdate({ _id: user._id, query: query });
+  res.status(200).send({
+    success: true,
+    message: "Query Reset Successfully",
+  });
+ } 
+ catch (error) {
+  console.log(`error in forgot password${error}`);
+  res.status(500).send({
+    success: false,
+    message: "Something went wrongg",
+    error,
+  });
+ }
+ }
+ export const queryController = async (req, res) => {
+  try {
+    const { query, fname } = req.body;
+
+    // Find the user by fname
+    const user = await userModel.findOne({ fname });
+
+    // If user does not exist, throw an error
+    if (!user) {
+      throw new Error('User not found');
     }
+
+    // Update the user's query field with the new query data
+    await userModel.findByIdAndUpdate({ _id: user._id }, { query });
+
+    // Send a success response
+    res.status(200).send({
+      success: true,
+      message: 'Query reset successfully',
+      user,
+    });
+  } catch (error) {
+    // Log the error and send an error response
+    console.log(`Error resetting query: ${error}`);
+    res.status(500).send({
+      success: false,
+      message: 'Something went wrong',
+      error,
+    });
+  }
+};
+
+
+ 
+//  userModel.findOne({fname: fname}, function (err,res){
+//   if (err){
+//     return res.status(500).send(err)
+//   }
+
+//   if (!doc){
+//     console.log(req.body + " not found!")
+//     var newdoc = new userModel(req.body);
+//     newdoc.save(function(err){
+//         if(err) return res.status(500).send(err)
+//         console.log(newdoc , " created as ");
+//         return res.status(200).send({_status : true , data: newdoc})
+//     })
+
+//     return res.status(200).send('blal')
+// } else {
+//     console.log(req.body.fulltext + " found!")
+//     for (var id in req.body ){
+//         doc[id]= req.body[id];
+//     }
+//     doc.save( function(err){
+//         if(err) return res.status(500).send(err)
+//         return res.status(200).send({_id: doc._id, alias: doc.alias})
+//     })
+
+  
+//  }
+  
+        // // validations
+        // console.log(user);
+        // if (!query) {
+        //   return res.status(404).send({
+        //     success: false,
+        //     message: 'Invalid entries',
+        
+        //   });
+        // } else {
+          
+         
+        //   return res.status(200).send({
+        //     success: true,
+        //     message: 'Query received',
+        //     data : user
+        //   });
+        // }
+
+
+        // export const queryController = async (req, res) => {
+        //   try {
+        //     const { query, fname } = req.body;
+        //     const user = await userModel.findOne({ fname: fname });
+            
+        //     if (!user) {
+        //       throw new Error("User not found");
+        //     }
+        
+        //     const newUser = await userModel.create({ _id: user._id, query: query });
+            
+        //     if (!newUser) {
+        //       throw new Error("Error creating user");
+        //     }
+        
+        //     res.status(200).send({
+        //       success: true,
+        //       message: "Query Reset Successfully",
+        //       user: newUser,
+        //     });
+        //   } catch (error) {
+        //     console.log(`error in query reset ${error}`);
+        //     res.status(500).send({
+        //       success: false,
+        //       message: "Something went wrong",
+        //       error,
+        //     });
+        //   }
+        // };
+        

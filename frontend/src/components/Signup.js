@@ -20,7 +20,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/auth/register`,
+        `http://localhost:8081/api/v1/auth/register`,
         { fname, lname, email, password, regnumber, role, dept ,gender,answer}
       );
       if (res && res.data.success) {

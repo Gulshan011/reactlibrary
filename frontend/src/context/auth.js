@@ -32,7 +32,7 @@ const useAuth = () => {
     const [auth, setAuth] = useContext(AuthContext);
     const fname = auth.user?.fname; // access fname property
   
-    return { auth, setAuth, fname }; // return auth, setAuth, and fname
+    return { auth, setAuth, fname}; // return auth, setAuth, and fname
   };
   
   export { useContext,AuthContext,useAuth, AuthProvider };
