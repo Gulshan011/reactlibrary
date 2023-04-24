@@ -20,8 +20,8 @@ export const Contact = () => {
     console.log("query",query);
     try {
       const res = await axios.post(
-        `http://localhost:8081/api/v1/auth/query`, {
-      query
+        `http://localhost:8081/api/v1/auth/query`, 
+     {fname: auth.user && auth.user.fname, email:auth.user && auth.user.email,query
       });
       if (res && res.data.success) {
         toast.success(`Query Recieved dear , ${auth.user && auth.user.fname}!!`);
@@ -82,14 +82,14 @@ export const Contact = () => {
             </div>
 
             <div className="contact_form">
-              <div className="container">
-                <div className="row">
+              <div className="container overflow-hidden">
+                <div className="row gx-5">
                   <div className="col-lg-10 offset-lg-1">
                     <div className="contact_form_container py-5">
-                      <div className="contact_form_title">Get in Touch </div>
+                      <div className="contact_form_title"><b>Get in Touch </b></div>
                      
-                      <div className="form-group">
-                        <div className="contact_form_name d-flex justify-content-between align-items-between">
+                      <div className="form-group ">
+                        <div className="contact_form_name d-flex justify-content-between align-items-between col-md-6 mb-4">
                           <input
                             type="text"
                             id="contact_form_name"
@@ -99,9 +99,9 @@ export const Contact = () => {
                             placeholder="Yourname"
                             required="true"
                           />
-                        </div>
-                      </div>
-                      <div className="form-group">
+                        
+                       
+                    
                         <input
                           type="text"
                           id="contact_form_email"
@@ -111,9 +111,7 @@ export const Contact = () => {
                           placeholder="Youremail"
                           required="true"
                         />
-                      </div>
-                      <div className="form-group">
-                        <input
+                         <input
                           type="text"
                           id="contact_form_id"
                           className="contact_form_name input_field"
@@ -122,6 +120,7 @@ export const Contact = () => {
                           placeholder="Your Reg.Id"
                           required="true"
                         />
+                        </div>
                       </div>
 
                       <div className="form-group">

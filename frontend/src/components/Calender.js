@@ -9,9 +9,12 @@ function Calendar() {
   return (
     <div className="calender">
     <Sidebar/>
+  
     <br/>
       <Fullcalendar
+       
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        
         initialView={"dayGridMonth"}
         headerToolbar={{
           start: "today prev,next", // will normally be on the left. if RTL, will be on the right

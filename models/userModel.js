@@ -38,10 +38,7 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
       },
-      query:{
-        type:String,
-       
-      }
+    
     
     },
 {timestamps:true},
