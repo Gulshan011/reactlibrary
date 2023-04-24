@@ -2,7 +2,7 @@ import userModel from "../models/userModel.js";
 import { comparePassword, hashpassword } from '../helpers/authHelper.js';
 import JWT from "jsonwebtoken"
 import { title } from "process";
-
+import bookModel from "../models/bookModel.js";
 export  const registerController = async (req, res) => {
     //register
     try {
@@ -163,19 +163,19 @@ export const testController = (req,res) =>{
         res.send({ error });
       }
     };
-export const bookController=(req,res)=>{
-  if (!title) {
-    return res.status(404).send({
-      success: false,
-      message: 'Invalid entries'
-    });
-  } else {
-    return res.status(200).send({
-      success: true,
-      message: 'Issued'
-    });
-  }
-};
+// export const bookController=(req,res)=>{
+//   if (!title) {
+//     return res.status(404).send({
+//       success: false,
+//       message: 'Invalid entries'
+//     });
+//   } else {
+//     return res.status(200).send({
+//       success: true,
+//       message: 'Issued'
+//     });
+//   }
+// };
 
 //query 
 
@@ -310,4 +310,112 @@ export const bookController=(req,res)=>{
         //     });
         //   }
         // };
-        
+
+
+
+
+  // --------------------------------------------------------------------------------------***********************************************************************************************
+      //   export  const bookController = async (req, res) => {
+      //     //register
+      //     try {
+      //         const{fname,bookname,authors,publisher,publishedDate,issuedDate} = req.body;
+      //         //validations
+      //         if(!fname){
+      //             return res.send({message :"FName is required"});
+      //         }
+      //         if(!bookname){
+      //             return res.send({message :"bOOKNAME is required"});
+      //         }
+      //         if(!authors){
+      //             return res.send({message :'authors is required'});
+      //         }
+      //         if(!publisher){
+      //             return res.send({message :'publisher is required'});
+      //         }
+      //         // if(!publishedDate){
+      //         //     return res.send({message :' pd required'});
+      //         // }
+      //         if(!issuedDate){
+      //             return res.send({message :"issuedDate is required"});
+      //         }
+  
+      //        //check existing user
+      //        const  issuedbook = await bookModel.findOne({bookname})
+      //        //existing user
+      //        if(issuedbook){
+      //         return res.status(200).send({
+      //             success:false,
+      //             message:'Already issued;out of stock'
+      //         })
+      //        }
+          
+      //     } catch (error) {
+      //         console.log(error)
+      //         res.status(500).send({
+      //             success:false,
+      //             message:"Error in Registeration",
+      //             error
+      //         })
+      //     }
+      // };
+
+      export const bookController = async (req, res) => {
+        try {
+            const { fname, bookname, authors, publisher, publishedDate, issuedDate,email } = req.body;
+    
+            // Validations
+
+           if(!fname){
+            return res.send({ message: "Fname is required" });
+           } 
+           if(!email){
+            return res.send({ message: "Book name is required" });
+           }
+            if (!bookname) {
+                return res.send({ message: "Book name is required" });
+            }
+            if (!authors) {
+                return res.send({ message: "Authors is required" });
+            }
+            if (!publisher) {
+                return res.send({ message: "Publisher is required" });
+            }
+            if (!issuedDate) {
+                return res.send({ message: "Issued date is required" });
+            }
+    
+            // Check if book is already issued
+            const issuedBook = await bookModel.findOne({ bookname });
+            if (issuedBook) {
+                return res.status(200).send({
+                    success: false,
+                    message: "Book is already issued; out of stock",
+                    
+                });
+            }
+    
+            // Create the book in the database
+            const newBook = await bookModel.create({
+                fname,
+                bookname,
+                authors,
+                publisher,
+                publishedDate,
+                issuedDate,
+            });
+    
+            res.status(200).send({
+                success: true,
+                message: "Book issued successfully",
+                data: newBook,
+            });
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({
+                success: false,
+                message: "Error in book issuance",
+                error,
+            });
+        }
+    };
+    

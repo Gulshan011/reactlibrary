@@ -2,18 +2,19 @@ import axios from 'axios';
 import React, { useState } from "react";
 import * as IoIcons from 'react-icons/io';
 import { toast } from "react-toastify";
-
+import {useContext,AuthContext}from "../../context/auth.js";
 const Modal=({show,item,onClose})=>{
     const [message, setMessage] = useState("");
+    const{auth,setAuth}=useContext(AuthContext);
     const issueBook=async()=>{
        try{
-     const res=await axios.post(`http://localhost:8081/api/v1/auth/issuebook`, { bookname: item.volumeInfo.title ,authors:item.volumeInfo.authors,publisher:item.volumeInfo.publisher,publisheddate:item.volumeInfo.publishedDate});
+     const res=await axios.post(`http://localhost:8081/api/v1/auth/issuebook`, {fname: auth.user && auth.user.fname, email:auth.user && auth.user.fname,bookname:item.volumeInfo.title ,authors:item.volumeInfo.authors,publisher:item.volumeInfo.publisher,publisheddate:item.volumeInfo.publishedDate,issuedDate:new Date().toJSON()});
      if (res && res.data.success) {
         toast.success("Issued book");
         
 
       } else {
-        toast.error("ERROR");
+        toast.error("not available");
       }
     }catch(error){
         console.log(error);
