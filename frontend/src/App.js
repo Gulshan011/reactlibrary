@@ -22,12 +22,13 @@ import Calender from './components/Calender'
 import IssueBook from "./user/IssueBook/IssueBook";
 import Modal from "./user/IssueBook/Modal";
 import Contact from "./components/Contact";
+import History from "./user/History";
 const App = () => {
   const location = useLocation();
 
   return (
     <div>
-    {location.pathname === '/dashboard/user'||location.pathname === '/dashboard/admin'||location.pathname ==='/issuebook'||location.pathname === '/IssueBookForm'||location.pathname === '/calender'||location.pathname === '/Contact'? (
+    {location.pathname === '/dashboard/user'||location.pathname === '/dashboard/admin'||location.pathname ==='/issuebook'||location.pathname ==='/history'||location.pathname === '/IssueBookForm'||location.pathname === '/calender'||location.pathname === '/Contact'? (
       <div></div>
     ) : (
       <Navbar />
@@ -53,7 +54,7 @@ const App = () => {
         <Route path="/modal" element={<Modal/>}></Route>
         <Route path="/issuebook" element={<IssueBook />}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
-        
+        <Route path="/history" element={<History/>}></Route>
       </Routes>
       <Routes>
       <Route path="/dashboard" element={<AdminRoute/>}>
