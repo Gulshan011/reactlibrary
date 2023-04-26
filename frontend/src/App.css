@@ -334,3 +334,18 @@ h1 {
 .contact_form_button button:hover {
   background-color: #0069d9;
 }
+.table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+tbody:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.tablecontainer{
+  width:800px;
+  margin-left: 30px;
+}
