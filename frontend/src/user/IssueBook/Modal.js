@@ -140,7 +140,7 @@ const Modal = ({ show, item, onClose }) => {
     try {
       const res = await axios.post(`http://localhost:8081/api/v1/auth/issuebook`, {
         fname: auth.user && auth.user.fname,
-        email: auth.user && auth.user.fname,
+        email: auth.user && auth.user.email,
         bookname: item.volumeInfo.title,
         authors: item.volumeInfo.authors,
         publisher: item.volumeInfo.publisher,
@@ -158,7 +158,7 @@ const Modal = ({ show, item, onClose }) => {
         // retrieve the existing qrValues from the localStorage or initialize an empty array
         const existingQrValues = JSON.parse(localStorage.getItem('qrValues')) || [];
         // add the new qrValue to the array
-        existingQrValues.push(res.data);
+        existingQrValues.push(JSON.stringify(res.data));
         // store the updated array in the localStorage
         localStorage.setItem('qrValues', JSON.stringify(existingQrValues));
         toast.success("Issued book");
