@@ -41,7 +41,7 @@ const History = () => {
     const storedQrValues = JSON.parse(localStorage.getItem('qrValues')) || [];
     const newValues = storedQrValues.map(item => JSON.parse(item))
     console.log(newValues,"newValues...")
-    setQrValue(storedQrValues);
+    setQrValue(newValues);
   }, []);
 
   return (
@@ -63,9 +63,12 @@ const History = () => {
             {qrValues.map((qrValue, index) => (
               <tr key={index}>
                 <td>
-                  <QRCode value={qrValue} />
+                  <QRCode value={JSON.stringify(qrValue)} />
                 </td>
-                <td>{}</td>
+                <td>
+                {qrValue.fname}
+                {qrValue.bookname}
+                </td>
               </tr>
             ))}
             </tbody>
