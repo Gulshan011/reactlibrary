@@ -152,7 +152,11 @@ const Modal = ({ show, item, onClose }) => {
         // // setQrValue(JSON.stringify(res.data));
         // setQrValue(JSON.stringify(res.data)); // set the qrValue state to the response data
         //   localStorage.setItem('qrValue', JSON.stringify(res.data)); // store the qrValue in the localStorage
-
+         console.log(res,"res");
+         const stringifiedData = JSON.stringify(res.data);
+         console.log(stringifiedData,"stringifiedData...");
+         const parsedData = JSON.parse(stringifiedData);
+         console.log(parsedData,"parsedData...")
         setQrValue(JSON.stringify(res.data)); // set the qrValue state to the response data
   
         // retrieve the existing qrValues from the localStorage or initialize an empty array

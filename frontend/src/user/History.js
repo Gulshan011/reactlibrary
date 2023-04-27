@@ -35,9 +35,12 @@ import{useContext,AuthContext}from "../context/auth.js";
 const History = () => {
   const [qrValues, setQrValue] = useState([]);
   const{auth,setAuth}=useContext(AuthContext);
+  console.log(qrValues);
 
   useEffect(() => {
     const storedQrValues = JSON.parse(localStorage.getItem('qrValues')) || [];
+    const newValues = storedQrValues.map(item => JSON.parse(item))
+    console.log(newValues,"newValues...")
     setQrValue(storedQrValues);
   }, []);
 
@@ -62,7 +65,7 @@ const History = () => {
                 <td>
                   <QRCode value={qrValue} />
                 </td>
-                <td>{"Keep on reading and issuing" }</td>
+                <td>{}</td>
               </tr>
             ))}
             </tbody>
