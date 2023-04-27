@@ -1,5 +1,5 @@
 import React from 'react'
-import './featured.css'
+
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import {CircularProgressbar}from "react-circular-progressbar";

@@ -62,7 +62,7 @@ body {
 }
 
 .form-group input {
-  width: 100%;
+ 
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
@@ -81,6 +81,7 @@ body {
   padding: 8px 16px; /* decrease the padding */
   font-size: 14px;
   cursor: pointer;
+  width:100%;
 
 }
 
@@ -330,10 +331,17 @@ h1 {
   font-size: 16px;
   cursor: pointer;
 }
-
+textarea {
+  resize: vertical;
+  width: 300%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 .contact_form_button button:hover {
   background-color: #0069d9;
 }
+
+
 .table {
   font-family: arial, sans-serif;
   border-collapse: collapse;

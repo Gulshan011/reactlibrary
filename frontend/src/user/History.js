@@ -62,7 +62,7 @@ const History = () => {
                 <td>
                   <QRCode value={qrValue} />
                 </td>
-                <td>{(auth.user && auth.user.fname )}</td>
+                <td>{"Keep on reading and issuing" }</td>
               </tr>
             ))}
             </tbody>
