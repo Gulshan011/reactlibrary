@@ -1,9 +1,9 @@
 import React from 'react'
-import Widgets from './widgets/Widgets'
-import Featured from './Featuredchart/Featured'
+import Widgets from '../user/Widgets/Widgets'
+import Featured from '../user/FeaturedCharts/FeaturedChart'
 import Chart from './Chart/Chart'
 import List from './table/Table'
-import './widgets/widgets.css'
+
 const UserContainer = () => {
   return (
    

@@ -194,7 +194,8 @@ const Modal = ({ show, item, onClose }) => {
              <br></br>
               {qrValue && (
                 <div className="qr-code">
-                  <QRCode value={qrValue} />
+                  <QRCode value={qrValue}
+                   />
                 </div>
               )}
             </div>

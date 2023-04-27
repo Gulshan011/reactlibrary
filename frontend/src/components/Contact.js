@@ -89,7 +89,8 @@ export const Contact = () => {
                       <div className="contact_form_title"><b>Get in Touch </b></div>
                      
                       <div className="form-group ">
-                        <div className="contact_form_name d-flex justify-content-between align-items-between col-md-6 mb-4">
+                      
+                        <div className="contact_form_name d-flex justify-content-between align-items-between col-md-6 mb-2">
                           <input
                             type="text"
                             id="contact_form_name"
