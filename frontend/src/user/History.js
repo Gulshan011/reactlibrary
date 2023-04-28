@@ -45,12 +45,13 @@ const History = () => {
   }, []);
 
   return (
-    <div>
+    <div className='history-container'>
     <Sidebar/>
     <br></br>
       {qrValues.length > 0 ? (
         <div className='tablecontainer'>
-        <Table striped bordered hover variant="dark">
+        <div class="table-responsive">
+        <Table striped bordered hover variant="dark" >
         <thead>
           <tr>
             
@@ -66,8 +67,7 @@ const History = () => {
                   <QRCode value={JSON.stringify(qrValue)} />
                 </td>
                 <td>
-                {qrValue.fname}
-                {qrValue.bookname}
+              
                 </td>
               </tr>
             ))}
@@ -78,11 +78,12 @@ const History = () => {
        
          
         </Table>
-        </div>
+        </div></div>
       ) : (
         <p>No QR codes available</p>
       )}
     </div>
+   
   );
 };
 
