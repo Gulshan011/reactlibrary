@@ -2,13 +2,13 @@ import React from "react";
 import imagepic from "../images/girl.jpg";
 import imagenew from "../images/boy.jpg";
 import{useContext,AuthContext}from "../context/auth.js";
-
+import {useNavigate } from "react-router-dom";
 
 
 const About = () => {
 
   const{auth,setAuth}=useContext(AuthContext);
-
+  const navigate = useNavigate();
 
   return (
     <>
@@ -27,7 +27,21 @@ const About = () => {
                   <p className="profile-rating mt-3 mb-5">
                     RANKINGS<span>2/5</span>
                   </p>
-
+                  </div>
+                  <div className="form-group form-button">
+                 <input
+                    type="button"
+                    
+                    className="profile-edit-btn"
+                    name="btnAddMore"
+                    value="Edit Profile"
+                    onClick={() => {
+                      navigate("/edit");
+                    }}
+                  ></input>
+               </div></div>
+              
+               </div>
                   <ul className="nav nav-tabs" role="tablist">
                     <li className="nav-item">
                       <a
@@ -48,34 +62,15 @@ const About = () => {
                         href="#profile"
                         role="tab"
                       >
-                       Records
+                      Description
                       </a>
                     </li>
                   </ul>
-                </div>
-              </div>
-              <div className="col-md-2">
-              <form action="/edit">
-                <input
-                  type="submit"
-                  
-                  className="profile-edit-btn"
-                  name="btnAddMore"
-                  value="Edit Profile"
-                ></input>
-                </form>
-              </div>
-
-              <div className="row">
-                <div className="col-md-4">
-                  <div className="profile-genres">
-                    <h1>Genres</h1>
-                    <h2>Genres</h2>
-                    <h2>Genres</h2>
-                    <h2>Genres</h2>
-
-                  </div>
-                </div>
+              
+           
+             
+          
+            
 
                 <div className="col-md-8 pl-5 about-info">
                   <div className="tab-content profile-tab" id="myTabContent">
@@ -149,7 +144,6 @@ const About = () => {
                       </div>
                     </div>
                 
-
                 <div
                   className="tab-pane fade "
                   id="profile"
@@ -209,11 +203,12 @@ const About = () => {
                       <p>xxxx</p>
                     </div>
                   </div>
+                  
                   </div>
                   </div>
                 </div>
-              </div>
-            </div>
+          
+          
           </form>
         </div>
       </div>

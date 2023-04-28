@@ -3,12 +3,25 @@ Styles */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 }
 
+.parent-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #c4c1c1;
 
+}
+.history-container {
+  
+  background-color: #c4c1c1;
+
+}
 body {
   font-family: Arial, sans-serif;
-  background: #f1f1f1;
+  background-color: #c4c1c1;
 }
 
 /* Sign Up Form Styles */
@@ -115,7 +128,7 @@ body {
   display: flex; /* enables flexbox layout */
   justify-content: center; /* centers the content horizontally */
   align-items: center; /* centers the content vertically */
-  background-color: #f1f1f1; /* sets the background color of the home page */
+  background-color: #c4c1c1;/* sets the background color of the home page */
 }
 
 .home-div {
@@ -142,7 +155,7 @@ h1 {
   background-color: rgb(230, 230, 230);
   padding: 20px;
   text-align: center;
-  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(70, 61, 61),
   0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
@@ -245,7 +258,7 @@ h1 {
   padding: 40px;
   background-color: rgb(230, 230, 230);
   border-radius: 10px;
-  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(32, 31, 31),
   0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 .parent-container {
@@ -309,7 +322,9 @@ h1 {
 
 
 }
-
+.tablecontainer{
+  pageLength: 10;
+}
 
 .form-group textarea:focus {
   border-color: #007bff;
@@ -356,4 +371,20 @@ tbody:nth-child(even) {
 .tablecontainer{
   width:800px;
   margin-left: 30px;
+}
+.edit-container{
+ margin: 10%;
+ box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(26, 23, 23),
+ 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+ border-radius: 10px;
+ padding: 40px;
+}
+.title-box{
+  box-shadow: inset 0 -3em 3em rgba(54, 33, 248, 0.1), 0 0 0 2px rgb(17, 16, 16),
+ 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+ border-radius: 10px;
+ padding: 20px;
+ text-align:center;
+ justify-content: center;
+ width: 100px;
 }

@@ -35,19 +35,23 @@ import{useContext,AuthContext}from "../context/auth.js";
 const History = () => {
   const [qrValues, setQrValue] = useState([]);
   const{auth,setAuth}=useContext(AuthContext);
+  console.log(qrValues);
 
   useEffect(() => {
     const storedQrValues = JSON.parse(localStorage.getItem('qrValues')) || [];
-    setQrValue(storedQrValues);
+    const newValues = storedQrValues.map(item => JSON.parse(item))
+    console.log(newValues,"newValues...")
+    setQrValue(newValues);
   }, []);
 
   return (
-    <div>
+    <div className='history-container'>
     <Sidebar/>
     <br></br>
       {qrValues.length > 0 ? (
         <div className='tablecontainer'>
-        <Table striped bordered hover variant="dark">
+        <div class="table-responsive">
+        <Table striped bordered hover variant="dark" >
         <thead>
           <tr>
             
@@ -60,9 +64,11 @@ const History = () => {
             {qrValues.map((qrValue, index) => (
               <tr key={index}>
                 <td>
-                  <QRCode value={qrValue} />
+                  <QRCode value={JSON.stringify(qrValue)} />
                 </td>
-                <td>{"Keep on reading and issuing" }</td>
+                <td>
+              
+                </td>
               </tr>
             ))}
             </tbody>
@@ -72,11 +78,12 @@ const History = () => {
        
          
         </Table>
-        </div>
+        </div></div>
       ) : (
         <p>No QR codes available</p>
       )}
     </div>
+   
   );
 };
 

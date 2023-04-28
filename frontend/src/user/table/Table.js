@@ -12,7 +12,7 @@ const List= () => {
   const rows = [
     {
       id: 1143155,
-     Bookname: "XYZ",
+     Bookname: "",
       img: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
       Issuedby: "John Smith",
       date: "1 March",

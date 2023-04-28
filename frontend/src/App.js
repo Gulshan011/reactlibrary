@@ -23,6 +23,7 @@ import IssueBook from "./user/IssueBook/IssueBook";
 import Modal from "./user/IssueBook/Modal";
 import Contact from "./components/Contact";
 import History from "./user/History";
+import EditProfile from "./components/EditProfile";
 const App = () => {
   const location = useLocation();
 
@@ -55,6 +56,7 @@ const App = () => {
         <Route path="/issuebook" element={<IssueBook />}></Route>
         <Route path="/contact" element={<Contact/>}></Route>
         <Route path="/history" element={<History/>}></Route>
+        <Route path="/edit" element={<EditProfile/>}></Route>
       </Routes>
       <Routes>
       <Route path="/dashboard" element={<AdminRoute/>}>
