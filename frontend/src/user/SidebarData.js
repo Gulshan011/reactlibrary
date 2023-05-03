@@ -29,11 +29,16 @@ const LogoutButton = () => {
     </div>
   );
 };
-
+const welcomeTxt = (auth) => `Welcome, ${auth.user && auth.user.fname}!`;
 export const SidebarData = [
   {
+    title: '',
+    icon: welcomeTxt,
+    
+  },
+  {
     title: 'UserProfile',
-    path: '/about',
+    path: '/About',
     icon: <AiIcons.AiFillHome />
   },
   {

@@ -3,7 +3,8 @@ import imagepic from "../images/girl.jpg";
 import imagenew from "../images/boy.jpg";
 import{useContext,AuthContext}from "../context/auth.js";
 import {useNavigate } from "react-router-dom";
-
+import Sidebar from "../user/Sidebar";
+import AdminSidebar from "./Admin/AdminSidebar";
 
 const About = () => {
 
@@ -11,7 +12,8 @@ const About = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div>
+    {auth.user && auth.user.role==="1"?<AdminSidebar/>:<Sidebar/>}
       <div className="parent-container">
         <div className="container emp-profile">
           <form method="GET">
@@ -212,7 +214,7 @@ const About = () => {
           </form>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

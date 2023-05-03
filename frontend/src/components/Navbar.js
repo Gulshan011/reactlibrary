@@ -35,13 +35,9 @@ const Navbar = () => {
 
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav ml-auto">
+ 
           <li className="nav-item">
-            <NavLink className="nav-link" to="/About">
-              About
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="#"></NavLink>
+            <NavLink className="nav-link" to={auth.user && auth.user.role==="0"?"/History":"/BooksList"} >IssuedBooks</NavLink>
           </li>
 
           {!auth.user ? (
@@ -78,7 +74,7 @@ const Navbar = () => {
                 >
                   Logout
                 </NavLink>
-             
+               
              
               </ul>
           </li>

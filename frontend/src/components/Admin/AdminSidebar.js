@@ -57,7 +57,11 @@ const AdminSidebar = () => {
 
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
+          <NavIcon to='/Home'>
+          <AiIcons.AiFillHome />
+        </NavIcon>
         </Nav>
+      
         
         <SidebarNav sidebar={sidebar}>
       
