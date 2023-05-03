@@ -3,12 +3,12 @@ import Fullcalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import '../../src/App.css'
-import Sidebar from '../user/Sidebar'
-function Calendar() {
+import '../../App.css'
+import AdminSidebar from './AdminSidebar'
+function AdminCalendar() {
   return (
     <div className="calender">
-    <Sidebar/>
+    <AdminSidebar/>
   
     <br/>
       <Fullcalendar
@@ -27,6 +27,6 @@ function Calendar() {
   );
 }
 
-export default Calendar;
+export default AdminCalendar;
 
 
