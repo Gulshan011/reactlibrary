@@ -21,6 +21,9 @@ const BookSchema = new mongoose.Schema({
   issuedDate: {
     type: Date,
     required: true,
+  },
+  returnDate:{
+    type:Date
   }
 });
 
