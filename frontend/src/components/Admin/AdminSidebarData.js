@@ -51,7 +51,7 @@ export const AdminSidebarData = [
   },
   {
     title: 'Records',
-    path: '/MyTasks.js',
+    path: '/Records',
     icon: <FaIcons.FaHistory />
   },
   {

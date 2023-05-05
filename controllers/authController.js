@@ -204,7 +204,7 @@ export const testController = (req,res) =>{
 
       export const bookController = async (req, res) => {
         try {
-            const { fname, bookname, authors, publisher, publishedDate, issuedDate,email } = req.body;
+            const { fname, bookname, authors, publisher, publishedDate, issuedDate,email ,returnDate} = req.body;
     
             // Validations
 
@@ -245,6 +245,7 @@ export const testController = (req,res) =>{
                 publisher,
                 publishedDate,
                 issuedDate,
+                returnDate
             });
     
             res.status(200).send({
@@ -261,7 +262,105 @@ export const testController = (req,res) =>{
             });
         }
     };
-    
+
+    //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+// export const bookListController =  async (req, res) => {
+//  try {
+//    const issues=await bookModel.find({}).populate("bookname","publisher").populate("user","fname","email","issuedDate")
+//    .sort({issuedOn:"-1"}) 
+//    res.json(issues)
+// } 
+//  catch (error) {
+//   console.log(`error`);
+//   res.status(500).send({
+//     success: false,
+//     message: "Something went wrongg",
+//     error,
+//   });
+//  }
+//  }
+
+//  const User = require('../models/User');
+// const Book = require('../models/Book');
+
+// export const bookListController = async (req, res) => {
+//     try {
+     
+//       const issues = await bookModel
+//         .find({ "data":"fname" })
+//         .sort({ issuedDate: '-1' });
+  
+//       res.json(issues);
+//     } catch (error) {
+//       console.log(error);
+//       res.status(500).send({
+//         success: false,
+//         message: 'Something went wrong',
+//         error,
+//       });
+//     }
+// };
+
+export const bookListController = async (req, res) => {
+    try {
+        const issues = await bookModel
+            .find({} )
+            .sort({ issuedDate: '-1' });
+
+            res.json({
+                success: true,
+                message: 'Books fetched successfully',
+                data: issues
+            });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: 'Something went wrong',
+            error,
+        });
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //-----------------------------------------------------------------------------
     export const queryController = async (req, res) => {
       try {
@@ -302,4 +401,6 @@ export const testController = (req,res) =>{
               error,
           });
       }
-  }
+  };
+
+ 
