@@ -1,13 +1,13 @@
-import React from "react";
+import React ,{useState} from "react";
 import imagepic from "../images/girl.jpg";
 import imagenew from "../images/boy.jpg";
 import{useContext,AuthContext}from "../context/auth.js";
 import {useNavigate } from "react-router-dom";
 import Sidebar from "../user/Sidebar";
 import AdminSidebar from "./Admin/AdminSidebar";
-
+import '../App.css'
 const About = () => {
-
+  const [photo, setPhoto] = useState("");
   const{auth,setAuth}=useContext(AuthContext);
   const navigate = useNavigate();
 
