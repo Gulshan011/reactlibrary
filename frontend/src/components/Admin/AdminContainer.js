@@ -15,9 +15,7 @@ const AdminContainer = () => {
     <Widgets type="status"/> </div>
     <div className='charts'>
         <Featured />
-        <Chart/>
-
-    </div>
+        <Chart/></div>
     <div className='listContainer'>
        <div className="listTitle">Latest issues</div>
         <List/>

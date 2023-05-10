@@ -4,7 +4,8 @@ import JWT from "jsonwebtoken"
 import { title } from "process";
 import bookModel from "../models/bookModel.js";
 import queryModel from "../models/queryModel.js";
-export const registerController = async (req, res) => {
+import taskModel from "../models/taskModel.js";
+export  const registerController = async (req, res) => {
     //register
     try {
         const{fname,lname,email,password,regnumber,role,dept,gender,answer} = req.body;
@@ -263,46 +264,7 @@ export const testController = (req,res) =>{
         }
     };
 
-    //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-// export const bookListController =  async (req, res) => {
-//  try {
-//    const issues=await bookModel.find({}).populate("bookname","publisher").populate("user","fname","email","issuedDate")
-//    .sort({issuedOn:"-1"}) 
-//    res.json(issues)
-// } 
-//  catch (error) {
-//   console.log(`error`);
-//   res.status(500).send({
-//     success: false,
-//     message: "Something went wrongg",
-//     error,
-//   });
-//  }
-//  }
-
-//  const User = require('../models/User');
-// const Book = require('../models/Book');
-
-// export const bookListController = async (req, res) => {
-//     try {
-     
-//       const issues = await bookModel
-//         .find({ "data":"fname" })
-//         .sort({ issuedDate: '-1' });
-  
-//       res.json(issues);
-//     } catch (error) {
-//       console.log(error);
-//       res.status(500).send({
-//         success: false,
-//         message: 'Something went wrong',
-//         error,
-//       });
-//     }
-// };
-
+    
 export const bookListController = async (req, res) => {
     try {
         const issues = await bookModel
@@ -324,44 +286,90 @@ export const bookListController = async (req, res) => {
     }
 };
 
+export const taskListController = async (req, res) => {
+    try {
+        const tasks = await taskModel
+            .find({} )
+          
+            res.json({
+                success: true,
+                message: 'Tasks fetched successfully',
+                data: tasks
+            });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: 'Something went wrong',
+            error,
+        });
+    }
+};
+
+
+
+export const registerListController = async (req, res) => {
+    try {
+        const registers= await userModel
+            .find({} )
+           
+
+            res.json({
+                success: true,
+                message: 'Books fetched successfully',
+                data: registers
+            });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: 'Something went wrong',
+            error,
+        });
+    }
+};
 
 
 
 
+//-----------------------
 
+export const addTaskController = async (req, res) => {
+    try {
+        const {title,start,end,priority} = req.body;
 
+       
 
+       if(!title){
+        return res.send({ message: "Task is required" });
+       } 
+       if(!start){
+        return res.send({ message: "S.D. is required" });
+       }
+        
 
+   
+     
 
+        const newTask = await taskModel.create({
+            title,start,end,priority
+        });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //-----------------------------------------------------------------------------
+        res.status(200).send({
+            success: true,
+            message: "Task added successfully",
+            data: newTask,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error ",
+            error,
+        });
+    }
+};
+ //-----------------------------------------------------------------------------
     export const queryController = async (req, res) => {
       try {
           const { fname,email,query} = req.body;
