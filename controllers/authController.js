@@ -306,7 +306,25 @@ export const taskListController = async (req, res) => {
         });
     }
 };
-
+export const usertaskListController = async (req, res) => {
+    try {
+        const tasks = await taskModel
+            .find({} )
+          
+            res.json({
+                success: true,
+                message: 'Tasks fetched successfully',
+                data: tasks
+            });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: 'Something went wrong',
+            error,
+        });
+    }
+};
 
 
 export const registerListController = async (req, res) => {
@@ -412,4 +430,86 @@ export const addTaskController = async (req, res) => {
       }
   };
 
- 
+  export const updateTaskController = async (req, res) => {
+    try {
+      const { title, start, end, priority, description } = req.body;
+  
+      const task = await taskModel.findOne({ title: title });
+  
+      await taskModel.findByIdAndUpdate(task._id, {
+        $set: { title, start, end, priority, description },
+      });
+  
+      res.status(200).send({
+        success: true,
+        message: "Updated Successfully",
+      });
+    } catch (error) {
+      console.log(`error in updating task: ${error}`);
+      res.status(500).send({
+        success: false,
+        message: "Something went wrong",
+        error,
+      });
+    }
+  };
+
+  export const updateProfileController = async (req, res) => {
+    try {
+      const { title, start, end, priority, description } = req.body;
+  
+      const task = await taskModel.findOne({ title: title });
+  
+      await taskModel.findByIdAndUpdate(task._id, {
+        $set: { title, start, end, priority, description },
+      });
+  
+      res.status(200).send({
+        success: true,
+        message: "Updated Successfully",
+      });
+    } catch (error) {
+      console.log(`error in updating task: ${error}`);
+      res.status(500).send({
+        success: false,
+        message: "Something went wrong",
+        error,
+      });
+    }
+  };
+
+  export const addUserTaskController = async (req, res) => {
+    try {
+        const {title,start,end,priority} = req.body;
+
+       
+
+       if(!title){
+        return res.send({ message: "Task is required" });
+       } 
+       if(!start){
+        return res.send({ message: "S.D. is required" });
+       }
+        
+
+   
+     
+
+        const newTask = await taskModel.create({
+            title,start,end,priority
+        });
+
+        res.status(200).send({
+            success: true,
+            message: "Task added successfully",
+            data: newTask,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({
+            success: false,
+            message: "Error ",
+            error,
+        });
+    }
+};

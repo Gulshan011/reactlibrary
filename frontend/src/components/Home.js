@@ -14,7 +14,8 @@ const Home = () => {
   return (
     <div >
    
-    <div className='home-page'>
+    <div className='home-page'>;
+
     <div className="box-content">
       <div className="home-div">
         <p className="pt-5">WELCOME {auth.user && auth.user.fname}</p>

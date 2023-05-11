@@ -7,8 +7,8 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import Signup from "./components/Signup";
 import About from "./components/About";
-import Dashboard from "./user/Dashboard";
-import Messages from "./user/Messages";
+import Dashboard from "./components/user/Dashboard";
+import Messages from "./components/user/Messages";
 import BooksList from "./components/Admin/BooksList";
 //import Edit from './components/Edit';
 
@@ -19,10 +19,10 @@ import AdminRoute from "./components/routes/AdminRoute";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import AboutRoute from "./components/routes/AboutRoute";
 import MyTasks from "./components/Admin/MyTasks";
-import Calender from "./user/Calender";
+import Calender from "./components/user/Calender";
 import AdminCalender from "./components/Admin/AdminCalender/AdminCalender.js";
-import IssueBook from "./user/IssueBook/IssueBook";
-import Modal from "./user/IssueBook/Modal";
+import IssueBook from "./components/user/IssueBook/IssueBook";
+import Modal from "./components/user/IssueBook/Modal";
 import Contact from "./components/Contact";
 import HistoryRoute from "./components/routes/HistoryRoute.js";
 import EditProfile from "./components/EditProfile";
@@ -40,6 +40,7 @@ const App = () => {
       location.pathname === "/BooksList" ||
       location.pathname === "/admincalender" ||
       location.pathname === "/dashboard/admin" ||
+      location.pathname === "/dashboard/Admin" ||
       location.pathname === "/issuebook" ||
       location.pathname === "/history" ||
       location.pathname === "/IssueBookForm" ||

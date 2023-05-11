@@ -3,7 +3,7 @@ import Fullcalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import '../../src/App.css'
+import '../../App.css'
 import Sidebar from './Sidebar'
 function Calendar() {
   return (

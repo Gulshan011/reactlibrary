@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "../user/Sidebar";
+import Sidebar from "../components/user/Sidebar";
 import { toast } from "react-toastify";
 import { useContext, AuthContext } from "../context/auth.js";
 
