@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import * as IoIcons from 'react-icons/io';
 import { toast } from "react-toastify";
 import QRCode from 'qrcode.react';
-import { useContext, AuthContext } from "../../context/auth.js";
+import { useContext, AuthContext } from "../../../context/auth";
 
 const Modal = ({ show, item, onClose }) => {
 

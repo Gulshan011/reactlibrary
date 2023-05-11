@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import QRCode from 'qrcode.react';
-import Sidebar from '../user/Sidebar';
+import Sidebar from '../components/user/Sidebar';
 import Table from 'react-bootstrap/Table';
 import { useContext } from 'react';
 import { AuthContext } from "../context/auth.js";

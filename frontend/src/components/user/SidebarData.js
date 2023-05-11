@@ -1,5 +1,5 @@
 import React from 'react';
-import { useContext, AuthContext } from "../context/auth";
+import { useContext, AuthContext } from "../../context/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as FaIcons from 'react-icons/fa';

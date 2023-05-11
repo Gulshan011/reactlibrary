@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
-import { AuthContext } from '../context/auth';
+import { AuthContext } from '../../context/auth';
 
 const SidebarLink = styled(Link)`
   display: flex;
