@@ -1,5 +1,5 @@
 import express from "express";
-import {registerController,bookController,queryController,loginController,testController, forgotPasswordController,addUserTaskController,usertaskListController,bookListController,updateProfileController,updateTaskController,registerListController,taskListController,addTaskController} from '../controllers/authController.js'
+import {registerController,bookController,queryController,loginController,testController, userUpdateTaskController,deleteTaskController,deleteUserTaskController,forgotPasswordController,addUserTaskController,usertaskListController,bookListController,updateProfileController,updateTaskController,registerListController,taskListController,addTaskController} from '../controllers/authController.js'
 import {requireSignIn,isAdmin} from "../middlewares/authMiddleware.js";
 //route object
 const router = express.Router()
@@ -36,7 +36,10 @@ router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
     res.status(200).send({ ok: true });
   });
 router.put("/update-tasks",updateTaskController);
+router.put("/userupdatetasks",userUpdateTaskController);
 router.put("/update-profile",updateProfileController);
+router.delete("/deletetasks", deleteTaskController);
+router.delete("/deleteusertasks/:id", deleteUserTaskController);
 export default router;
 
 
