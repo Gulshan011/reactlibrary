@@ -152,7 +152,7 @@ h1 {
   font-weight: bold; /* sets the font weight of the heading to bold */
   margin-top: 16px; /* adds a small margin to the top of the heading */
   color: #333; /* sets the text color of the heading to dark gray */
-  padding-top:3rem !important;
+  /*padding-top:3rem !important;*/
 }
 .box-content{
   width:500px;
@@ -163,6 +163,15 @@ h1 {
   box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(70, 61, 61),
   0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
   border-radius: 8px;
+}
+.task-tooltip {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 200px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
 }
 
 
@@ -393,4 +402,15 @@ tbody:nth-child(even) {
  text-align:center;
  justify-content: center;
  width: 100px;
+}
+.description-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #af3838;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  width: 200px;
+  z-index: 999;
 }

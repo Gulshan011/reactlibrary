@@ -136,7 +136,7 @@ function List() {
   }, []);
 
   const latestBooks = bookList.slice(Math.max(bookList.length - 5, 0)); // get the latest 5 books
-
+ latestBooks.sort();
   return (
     <div>
       <div className='tablecontainer-center'>

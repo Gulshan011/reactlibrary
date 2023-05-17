@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
+
 import * as AiIcons from 'react-icons/ai';
 import { AdminSidebarData } from './AdminSidebarData.js';
 import AdminSubMenu from './AdminSubMenu';
@@ -25,7 +26,7 @@ const NavIcon = styled(Link)`
 `;
 
 const SidebarNav = styled.nav`
-  background: #15171c;
+  background: #000000;
   width: 250px;
   height: 100vh;
   display: flex;

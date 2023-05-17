@@ -4,7 +4,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import UpdateCalender from "./UpdateCalender";
+
 import "./AdminCalender.css";
 import { Select } from "antd";
 import axios from "axios";
@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import AdminSidebar from "../AdminSidebar";
 import * as IoIcons from "react-icons/io";
 import Title from "antd/es/skeleton/Title";
+import { getBackgroundColor, getBorderColor } from "./utils";
 const { Option } = Select;
 function AdminCalendar() {
   const [newEvent, setNewEvent] = useState([]);
@@ -26,58 +27,12 @@ function AdminCalendar() {
     end: "",
   });
   const [selectedEvent, setSelectedEvent] = useState(null);
-  useEffect(() => {
-    fetch("http://localhost:8081/api/v1/auth/taskslist")
-      .then((res) => res.json())
-      .then((data) => setTaskList(data.data))
-      .catch((error) => console.log(error));
-  }, []);
-  useEffect(() => {
-    // Filter events based on search term
-    const filteredEvents = taskList.filter((task) =>
-      task.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    // Convert filtered events to FullCalendar compatible format
-    const events = filteredEvents.map((task) => ({
-      title: task.title,
-      start: new Date(task.start),
-      end: new Date(task.end),
-      backgroundColor: getBackgroundColor(task.priority),
-      borderColor: getBorderColor(task.priority),
-    }));
-    setNewEvent(events);
-  }, [taskList, searchTerm]);
-  const getBackgroundColor = (priority) => {
-    switch (priority) {
-      case "High":
-        return "#d86161";
-      case "Medium":
-        return "#5a80c7";
-      case "Low":
-        return "#c9c159";
-    }
-  };
 
-  const getBorderColor = (priority) => {
-    switch (priority) {
-      case "High":
-        return "#000000";
-      case "Medium":
-        return "#000000";
-      case "Low":
-        return "#000000";
-    }
-  };
   const handleSelect = (arg) => {
-    setFormValues({ title: "", start: arg.start, end: arg.end });
+    setFormValues({ title: "", start: arg.start, end: arg.end, priority: "" });
     setShowForm(true);
     const container = document.querySelector(".cal-container");
     container.classList.add("fade");
-    // Wait for the transition to complete before removing the class
-    //   setTimeout(() => {
-    //     container.classList.remove("fade");
-    //   }, 500);
-    // };
   };
   const handleTaskCloseClick = () => {
     setSelectedEvent(null);
@@ -88,11 +43,13 @@ function AdminCalendar() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
     const { title, start, end } = formValues;
     const newTask = {
       title,
       start,
       end,
+      priority,
     };
 
     const response = await axios.post(
@@ -102,6 +59,7 @@ function AdminCalendar() {
         start,
         end,
         priority,
+       
       }
     );
     const { success, data, message } = response.data;
@@ -110,7 +68,7 @@ function AdminCalendar() {
       toast.success(message);
       setNewEvent((prevState) => [...prevState, data]);
       setShowForm(false);
-      setFormValues({ title: "", start: "", end: "" });
+      setFormValues({ title: "", start: "", end: "", priority: "" });
     } else {
       toast.error(message);
     }
@@ -118,7 +76,7 @@ function AdminCalendar() {
 
     setNewEvent((prevState) => [...prevState, newTask]);
     setShowForm(false);
-    setFormValues({ title: "", start: "", end: "" });
+    setFormValues({ title: "", start: "", end: "", priority: "" });
   };
 
   const handleFormChange = (e) => {
@@ -142,15 +100,41 @@ function AdminCalendar() {
     setShowUpdateForm(true);
   };
 
-  const handleUpdateFormClose = () => {
-    setShowUpdateForm(false);
-  };
+ 
   const handleCloseClick = () => {
     setSelectedEvent(null);
   };
+
+  //fetching list of task
+  useEffect(() => {
+    fetch("http://localhost:8081/api/v1/auth/taskslist")
+      .then((res) => res.json())
+      .then((data) => setTaskList(data.data))
+      .catch((error) => console.log(error));
+  }, []);
+  useEffect(() => {
+    // Filter events based on search term
+    const filteredEvents = taskList.filter((task) =>
+      task.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    // Convert filtered events to FullCalendar compatible format
+    const events = filteredEvents.map((task) => ({
+      title: task.title,
+      start: new Date(task.start),
+      end: new Date(task.end),
+      priority: task.priority,
+      backgroundColor: getBackgroundColor(task.priority),
+      borderColor: getBorderColor(task.priority),
+    }));
+    setNewEvent(events);
+  }, [taskList, searchTerm]);
+ 
+
   const handleFormUpdate = async (e) => {
     e.preventDefault();
-    const { title, start, end,description ,priority} = formValues;
+    const { title, start, end,  description } = formValues;
+    console.log(formValues);
+
     const response = await axios.put(
       `http://localhost:8081/api/v1/auth/update-tasks`,
       {
@@ -158,23 +142,38 @@ function AdminCalendar() {
         start,
         end,
         priority,
-        description
+        description,
       }
     );
+
+    // Log the response data to check for errors
+    console.log(response);
+
     const { success, data, message } = response.data;
 
     if (success) {
       toast.success(message);
-    
+
+      const filteredEvents = taskList.filter((task) =>
+        task.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+      const events = filteredEvents.map((task) => ({
+        title: task.title,
+        start: new Date(task.start),
+        end: new Date(task.end),
+        priority: task.priority,
+        backgroundColor: getBackgroundColor(task.priority),
+        borderColor: getBorderColor(task.priority),
+      }));
+
+      setNewEvent(events);
       setShowForm(false);
-      
     } else {
       toast.error(message);
     }
-    //   // Save the new task to local storage
-
-    
   };
+
   return (
     <div className="calendar-container ">
       <AdminSidebar />
@@ -187,6 +186,9 @@ function AdminCalendar() {
               Start: {selectedEvent?.start?.toLocaleDateString()} | End:{" "}
               {selectedEvent?.end?.toLocaleDateString()}
             </p>
+            <button className="close-btn" onClick={handleCloseClick}>
+              <IoIcons.IoIosClose />
+            </button>
 
             <button className="btn btn-danger" onClick={handleDeleteClick}>
               Delete Task
@@ -194,84 +196,85 @@ function AdminCalendar() {
             <button className="btn btn-success" onClick={handleUpdateClick}>
               Update Task
             </button>
-            <button className="btn btn-primary" onClick={handleCloseClick}>
-            Close
-          </button>
           </div>
         </div>
       )}
       {showUpdateForm && (
         <form onSubmit={handleFormUpdate} className="update-form">
-        <div className="update-form-container">
-          
-        <button className="close-btn" onClick={() => setShowUpdateForm(false) }>
-        <IoIcons.IoIosClose />
-      </button>
-      
-          <div className="updateform-group ">
-            <label htmlFor="title">Task Name</label>
-            <input
-              type="text"
-              className="form-control"
-              id="title"
-              name="title"
-            />
+          <div className="update-form-container">
+            <button
+              className="close-btn"
+              onClick={() => setShowUpdateForm(false)}
+            >
+              <IoIcons.IoIosClose />
+            </button>
+
+            <div className="updateform-group ">
+              <label htmlFor="title">Task Name</label>
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                name="title"
+                onChange={handleFormChange}
+              />
+            </div>
+            <div className="updateform-group mt-2">
+              <label htmlFor="start">Start Date</label>
+              <input
+                type="date"
+                className="form-control"
+                id="start"
+                name="start"
+                onChange={handleFormChange}
+                required
+              />
+            </div>
+            <div className="updateform-group mt-2">
+              <label htmlFor="end">End Date</label>
+              <input
+                type="date"
+                className="form-control"
+                id="end"
+                name="end"
+                onChange={handleFormChange}
+                required
+              />
+            </div>
+            <div className="taskform-group">
+              <label htmlFor="priority">Set Priority</label>
+              <Select
+                bordered={false}
+                placeholder="Set Priority"
+                size="large"
+                showSearch
+                className="form-select mb-3"
+                onChange={(value) => {
+                  setPriority(value);
+                }}
+                value={priority}
+              >
+                <Option value="Low">Low</Option>
+                <Option value="Medium">Medium</Option>
+                <Option value="High">High</Option>
+              </Select>
+            </div>
+            <div className="updateform-group mt-2">
+              <label htmlFor="description">Description</label>
+              <input
+                type="text"
+                className="form-control description-lg"
+                id="description"
+                name="description"
+                onChange={handleFormChange}
+              />
+            </div>
+            <div className="button-update">
+              <button type="submit" className="btn btn-success">
+                Update
+              </button>
+            </div>
           </div>
-          <div className="updateform-group mt-2">
-            <label htmlFor="start">Start Date</label>
-            <input
-              type="date"
-              className="form-control"
-              id="start"
-              name="start"
-              required
-            />
-          </div>
-          <div className="updateform-group mt-2">
-            <label htmlFor="end">End Date</label>
-            <input
-              type="date"
-              className="form-control"
-              id="end"
-              name="end"
-              required
-            />
-          </div>
-          <div className="taskform-group mt-2">
-          <label htmlFor="priority">Set Priority</label>
-          <Select
-            bordered={false}
-            placeholder="Set Priority "
-          
-            showSearch
-            className="form-select "
-            onChange={(value) => {
-              setPriority(value);
-            }}
-            value={formValues.priority}
-          >
-            <Option value="Low">Low</Option>
-            <Option value="Medium">Medium</Option>
-            <Option value="High">High</Option>
-          </Select>
-        </div>
-          <div className="updateform-group mt-2">
-            <label htmlFor="description">Description</label>
-            <input
-              type="text"
-              className="form-control description-lg"
-              id="description"
-              name="description"
-             
-            />
-          </div>
-          <div className="button-update"> 
-          <button type="submit" className="btn btn-success">
-          Update
-        </button></div>
-          
-          </div>
-       
         </form>
       )}
       <br />
@@ -335,15 +338,16 @@ function AdminCalendar() {
           <div className="taskform-group">
             <label htmlFor="priority">Set Priority</label>
             <Select
+        
               bordered={false}
-              placeholder="Set Priority "
+              placeholder="Set Priority"
               size="large"
               showSearch
               className="form-select mb-3"
               onChange={(value) => {
                 setPriority(value);
               }}
-              value={formValues.priority}
+              value={priority}
             >
               <Option value="Low">Low</Option>
               <Option value="Medium">Medium</Option>
