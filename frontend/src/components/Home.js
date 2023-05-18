@@ -9,8 +9,7 @@ const Home = () => {
   }
   else{
     toast.error(`Logged out ;relogin!!`);
-  }
-  
+ }
   return (
     <div >
    
@@ -22,7 +21,9 @@ const Home = () => {
         <h1>ETERNAL LIBRARY</h1>
         
        </div>
+      
     </div>
+   
     </div>
     </div>
  

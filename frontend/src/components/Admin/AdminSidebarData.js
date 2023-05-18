@@ -37,7 +37,7 @@ export const AdminSidebarData = [
   {
     title: '',
     icon: welcomeText,
-    path: '/dashboard/Admin',
+    path:'/dashboard/Admin'
   },
   { 
     title: 'Profile',

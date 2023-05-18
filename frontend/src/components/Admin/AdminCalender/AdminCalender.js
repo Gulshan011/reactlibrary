@@ -4,20 +4,22 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-
+import * as bootstrap from "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./AdminCalender.css";
 import { Select } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
 import AdminSidebar from "../AdminSidebar";
 import * as IoIcons from "react-icons/io";
-import Title from "antd/es/skeleton/Title";
 import { getBackgroundColor, getBorderColor } from "./utils";
 const { Option } = Select;
+
 function AdminCalendar() {
   const [newEvent, setNewEvent] = useState([]);
   const [taskList, setTaskList] = useState([]);
   const [priority, setPriority] = useState("");
+  const [category, setCategory] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,6 +30,8 @@ function AdminCalendar() {
   });
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  
+  
   const handleSelect = (arg) => {
     setFormValues({ title: "", start: arg.start, end: arg.end, priority: "" });
     setShowForm(true);
@@ -41,18 +45,12 @@ function AdminCalendar() {
     container.classList.remove("fade");
   };
 
+//add task api-----------
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+  const { title, start, end } = formValues;
 
-    const { title, start, end } = formValues;
-    const newTask = {
-      title,
-      start,
-      end,
-      priority,
-    };
-
-    const response = await axios.post(
+  const response = await axios.post(
       `http://localhost:8081/api/v1/auth/addtasks`,
       {
         title,
@@ -63,7 +61,6 @@ function AdminCalendar() {
       }
     );
     const { success, data, message } = response.data;
-
     if (success) {
       toast.success(message);
       setNewEvent((prevState) => [...prevState, data]);
@@ -72,13 +69,8 @@ function AdminCalendar() {
     } else {
       toast.error(message);
     }
-    //   // Save the new task to local storage
-
-    setNewEvent((prevState) => [...prevState, newTask]);
-    setShowForm(false);
-    setFormValues({ title: "", start: "", end: "", priority: "" });
   };
-
+//------------------
   const handleFormChange = (e) => {
     setFormValues({
       ...formValues,
@@ -87,25 +79,39 @@ function AdminCalendar() {
   };
 
   const handleEventClick = (arg) => {
-    setSelectedEvent(arg.event);
+    console.log(arg, "args...");
+    const task = arg.event;
+    console.log(task, "task...");
+    setSelectedEvent(task);
   };
 
-  const handleDeleteClick = () => {
-    setNewEvent((prevState) =>
-      prevState.filter((task) => task !== selectedEvent)
-    );
-    setSelectedEvent(null);
-  };
+ //delete task api ----
+  const handleDeleteClick = async (id) => {
+    try {
+      const {data} = await axios.delete(
+        `http://localhost:8081/api/v1/auth/deletetasks/${id}`
+      );
+      if (data.success) {
+        toast.success('Deleted successfully');
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error('Something went wrong');
+      console.log(error);
+    }
+  }; 
+//------------
+  
   const handleUpdateClick = () => {
     setShowUpdateForm(true);
   };
-
- 
+  
   const handleCloseClick = () => {
     setSelectedEvent(null);
   };
 
-  //fetching list of task
+//fetching list of task
   useEffect(() => {
     fetch("http://localhost:8081/api/v1/auth/taskslist")
       .then((res) => res.json())
@@ -119,20 +125,24 @@ function AdminCalendar() {
     );
     // Convert filtered events to FullCalendar compatible format
     const events = filteredEvents.map((task) => ({
+      id: task._id,
       title: task.title,
       start: new Date(task.start),
       end: new Date(task.end),
       priority: task.priority,
+      description:task.description,
+      category:task.category,
       backgroundColor: getBackgroundColor(task.priority),
       borderColor: getBorderColor(task.priority),
     }));
     setNewEvent(events);
   }, [taskList, searchTerm]);
- 
+  console.log(newEvent,"eee")
 
+  //--------updatetasks
   const handleFormUpdate = async (e) => {
     e.preventDefault();
-    const { title, start, end,  description } = formValues;
+    const { title, start, end,  description ,category} = formValues;
     console.log(formValues);
 
     const response = await axios.put(
@@ -143,6 +153,7 @@ function AdminCalendar() {
         end,
         priority,
         description,
+        category,
       }
     );
 
@@ -159,16 +170,19 @@ function AdminCalendar() {
       );
 
       const events = filteredEvents.map((task) => ({
+        id: task._id,
         title: task.title,
         start: new Date(task.start),
         end: new Date(task.end),
         priority: task.priority,
+       category:task.category,
         backgroundColor: getBackgroundColor(task.priority),
         borderColor: getBorderColor(task.priority),
       }));
 
       setNewEvent(events);
       setShowForm(false);
+      console.log(events,"event")
     } else {
       toast.error(message);
     }
@@ -189,10 +203,17 @@ function AdminCalendar() {
             <button className="close-btn" onClick={handleCloseClick}>
               <IoIcons.IoIosClose />
             </button>
-
-            <button className="btn btn-danger" onClick={handleDeleteClick}>
-              Delete Task
-            </button>
+<div>
+              <button
+                className="btn btn-danger"
+                onClick={() => {
+                  //setSelectedEventId(selectedEvent?.id);//
+                  handleDeleteClick(selectedEvent?.id);
+                }}
+              >
+                Delete
+              </button>
+            </div>
             <button className="btn btn-success" onClick={handleUpdateClick}>
               Update Task
             </button>
@@ -208,7 +229,24 @@ function AdminCalendar() {
             >
               <IoIcons.IoIosClose />
             </button>
-
+            <div className="taskform-group">
+              <label htmlFor="category">Set Category</label>
+              <Select
+                bordered={false}
+                placeholder="Set Category"
+                size="large"
+                showSearch
+                className="form-select mb-3"
+                onChange={(value) => {
+                  setCategory(value);
+                }}
+                value={category}
+              >
+                <Option value="News event">News Event</Option>
+                <Option value="Self Task">Personal </Option>
+               
+              </Select>
+            </div>
             <div className="updateform-group ">
               <label htmlFor="title">Task Name</label>
               <input
@@ -279,21 +317,36 @@ function AdminCalendar() {
       )}
       <br />
       <div className={`cal-container ${selectedEvent ? "fade-out" : ""}`}>
-        <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          initialView={"dayGridMonth"}
-          headerToolbar={{
-            start: "today prev,next",
-            center: "title",
-            end: "dayGridMonth,timeGridWeek,timeGridDay",
-          }}
-          height={"80vh"}
-          style={{ backgroundColor: "#5a80c7" }} // Update background color here
-          selectable={true}
-          select={handleSelect}
-          events={newEvent}
-          eventClick={handleEventClick}
-        />
+      <FullCalendar
+      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+      initialView={"dayGridMonth"}
+      headerToolbar={{
+        start: "today prev,next",
+        center: "title",
+        end: "dayGridMonth,timeGridWeek,timeGridDay",
+      }}
+      height={"80vh"}
+      style={{ backgroundColor: "#5a80c7" }} // Update background color here
+      selectable={true}
+      select={handleSelect}
+      events={newEvent}
+      eventClick={handleEventClick}
+      eventDidMount={(info) => {
+        return new bootstrap.Popover(info.el, {
+          title: info.event.title,
+          description: info.event.extendedProps.description,
+          placement: "auto",
+          trigger: "hover",
+          customClass: "popoverStyle",
+          content:
+          `<p>${info.event.extendedProps.description}</p>`,
+          html: true,
+          
+        });
+     
+      }}
+    />
+    
       </div>
       {showForm && (
         <form onSubmit={handleFormSubmit} className="add-task-form">

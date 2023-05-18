@@ -34,7 +34,7 @@ export const SidebarData = [
   {
     title: '',
     icon: welcomeTxt,
-    
+    path:'/dashboard/user'
   },
   {
     title: 'UserProfile',

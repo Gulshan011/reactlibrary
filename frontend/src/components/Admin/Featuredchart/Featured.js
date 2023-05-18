@@ -2,33 +2,69 @@ import React from "react";
 import "./featured.css";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
+import imagepic from "../../../images/girl.jpg";
+import imagenew from "../../../images/boy.jpg";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-
+import{useContext,AuthContext}from "../../../context/auth";
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  CardText,
+  FormGroup,
+  Form,
+  Input,
+  Row,
+  Col
+} from "reactstrap";
 const Featured = () => {
+  const{auth,setAuth}=useContext(AuthContext);
   return (
     <div className="featured">
-      <div className="top">
-        <h1 className="titles" style={{ marginBottom: "450px" }}>
-          Total work
-        </h1>
-        <FaIcons.FaTasks
-          fontSize="small"
-          style={{ marginBottom: "450px", padding: "2px" }}
-        />
-      </div>
-      <div className="bottom">
-        <div className="featuredChart">
-          <CircularProgressbar value={70} text={"70%"} strokeWidth={5} />
+    <Col md="12" sm-21 >
+    <Card className="card-user">
+      <CardBody>
+        <CardText />
+        <div className="author">
+          <div className="block block-one" />
+          <div className="block block-two" />
+          <div className="block block-three" />
+          <div className="block block-four" />
+          <a href="#pablo" onClick={(e) => e.preventDefault()}>
+            <img
+              alt="..."
+              className="avatar"
+            src={auth.user && auth.user.gender==="M"?imagenew :imagepic}
+            />
+            <h5 className="title">{auth.user && auth.user.fname}</h5>
+          </a>
+          <p className="role">{auth.user && auth.user.dept}</p>
         </div>
-        <p className="titles1">"Total tasks done today"</p>
-        <p className="number">400</p>
-        <p className="desc">
-          Lots of work successfully done today . Visit @add tasks to add new
-          tasks
-        </p>
-        <div className="summary"></div>
-      </div>
+        <div className="card-description">
+          Do not be scared of the truth because we need to restart the
+          human foundation in truth And I love you like Kanye loves
+          Kanye I love Rick Owens’ bed design but the back is...
+        </div>
+      </CardBody>
+      <CardFooter>
+        <div className="button-container">
+          <Button className="btn-icon btn-round" color="facebook">
+            <i className="fab fa-facebook" />
+          </Button>
+          <Button className="btn-icon btn-round" color="twitter">
+            <i className="fab fa-twitter" />
+          </Button>
+          <Button className="btn-icon btn-round" color="google">
+            <i className="fab fa-google-plus" />
+          </Button>
+        </div>
+      </CardFooter>
+    </Card>
+  </Col>
+
     </div>
   );
 };

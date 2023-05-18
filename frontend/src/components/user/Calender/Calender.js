@@ -4,24 +4,21 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-
+import * as bootstrap from "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Select } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Sidebar from "../user/Sidebar";
+import Sidebar from "../Sidebar";
 import * as IoIcons from "react-icons/io";
-import Title from "antd/es/skeleton/Title";
+import { getBackgroundColor, getBorderColor } from "../../Admin/AdminCalender/utils";
 const { Option } = Select;
+
 function Calendar() {
   const [newEvent, setNewEvent] = useState([]);
   const [taskList, setTaskList] = useState([]);
-
   const [priority, setPriority] = useState("");
-
   const [showForm, setShowForm] = useState(false);
-
- 
-
   const [showUpdateForm, setShowUpdateForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [formValues, setFormValues] = useState({
@@ -30,8 +27,9 @@ function Calendar() {
     end: "",
   });
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const[selectedTask,setSelectedTask]=useState(null);
 
+  
+  
   const handleSelect = (arg) => {
     setFormValues({ title: "", start: arg.start, end: arg.end, priority: "" });
     setShowForm(true);
@@ -44,19 +42,12 @@ function Calendar() {
     const container = document.querySelector(".cal-container");
     container.classList.remove("fade");
   };
-///add user api -------------------------
+  ///add usertask api -------------------------
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+  const { title, start, end } = formValues;
 
-    const { title, start, end } = formValues;
-    const newTask = {
-      title,
-      start,
-      end,
-      priority,
-    };
-
-    const response = await axios.post(
+  const response = await axios.post(
       `http://localhost:8081/api/v1/auth//useraddtasks`,
       {
         title,
@@ -65,18 +56,18 @@ function Calendar() {
         priority,
       }
     );
-    const { success, data, message } = response.data;
-
-    if (success) {
+  const { success, data, message } = response.data;
+  if (success) {
       toast.success(message);
       setNewEvent((prevState) => [...prevState, data]);
+
       setShowForm(false);
       setFormValues({ title: "", start: "", end: "", priority: "" });
-    } else {
+  } else {
       toast.error(message);
     }
   };
-  
+
   //---------------------------------------------------
   const handleFormChange = (e) => {
     setFormValues({
@@ -92,6 +83,7 @@ function Calendar() {
     setSelectedEvent(task);
   };
 
+  //----delete task api ----
   const handleDeleteClick = async (id) => {
     try {
       const { data } = await axios.delete(
@@ -106,24 +98,11 @@ function Calendar() {
       toast.error("Somtihing went wrong");
     }
   };
-
+   //-----------
   const handleUpdateClick = () => {
     setShowUpdateForm(true);
   };
 
-  const handleMouseEnter = (arg) => {
-    const taskId = arg.event.id;
-    const task = taskList.find((task) => task._id === taskId);
-    const taskDescription = task.description;
-    console.log("entered")
-    setSelectedTask(taskDescription);
-  };
-
-  const handleMouseLeave = () => {
-   
-    setSelectedTask("");
-  };
- 
   const handleCloseClick = () => {
     setSelectedEvent(null);
   };
@@ -135,7 +114,7 @@ function Calendar() {
       .then((data) => setTaskList(data.data))
       .catch((error) => console.log(error));
   }, []);
-  
+
   useEffect(() => {
     // Filter events based on search term
     const filteredEvents = taskList.filter((task) =>
@@ -148,38 +127,15 @@ function Calendar() {
       start: new Date(task.start),
       end: new Date(task.end),
       priority: task.priority,
-      description: task.description,
+     
       backgroundColor: getBackgroundColor(task.priority),
       borderColor: getBorderColor(task.priority),
     }));
     setNewEvent(events);
   }, [taskList, searchTerm]);
-  const getBackgroundColor = (priority) => {
-    switch (priority) {
-      case "High":
-        return "#d86161";
-      case "Medium":
-        return "#feba30";
-      case "Low":
-        return "#c9c159";
-      default:
-        return "#1f2424";
-    }
-  };
-
-  const getBorderColor = (priority) => {
-    switch (priority) {
-      case "High":
-        return "#000000";
-      case "Medium":
-        return "#000000";
-      case "Low":
-        return "#000000";
-      default:
-        return "#000000";
-    }
-  };
-  //.............................................
+  console.log(newEvent, "eee");
+  
+  //.....................updatetasks.
   const handleFormUpdate = async (e) => {
     e.preventDefault();
     const { title, start, end, description } = formValues;
@@ -216,8 +172,8 @@ function Calendar() {
         end: new Date(task.end),
         priority: task.priority,
         description: task.description,
-        backgroundColor: getNewBackgroundColor(task.priority),
-        borderColor: getNewBorderColor(task.priority),
+        backgroundColor: getBackgroundColor(task.priority),
+        borderColor: getBorderColor(task.priority),
       }));
 
       setNewEvent(events);
@@ -226,47 +182,17 @@ function Calendar() {
       toast.error(message);
     }
   };
-  const getNewBackgroundColor = (priority) => {
-    switch (priority) {
-      case "High":
-        return "#d86161";
-      case "Medium":
-        return "#5a80c7";
-      case "Low":
-        return "#c9c159";
-      default:
-        return "#000000";
-    }
-  };
-
-  const getNewBorderColor = (priority) => {
-    switch (priority) {
-      case "High":
-        return "#000000";
-      case "Medium":
-        return "#000000";
-      case "Low":
-        return "#000000";
-      default:
-        return "#000000";
-    }
-  };
-
+ 
 
   return (
     <div className="calendar-container ">
       <Sidebar />
-     {selectedTask&&(
-      <div className="task-description" >
-      <p>{selectedTask}</p>
-   
-     </div>
-     )}
+
       {selectedEvent && (
         <div className="event-overlay">
           <div className="event-details ">
             <h2>{selectedEvent.title}</h2>
-            
+
             <p>
               Start: {selectedEvent?.start?.toLocaleDateString()} | End:{" "}
               {selectedEvent?.end?.toLocaleDateString()}
@@ -347,7 +273,7 @@ function Calendar() {
                 onChange={(value) => {
                   setPriority(value);
                 }}
-                name="priority" // Add the name attribute here
+                name="priority"
                 value={priority}
               >
                 <Option value="Low">Low</Option>
@@ -389,8 +315,17 @@ function Calendar() {
           select={handleSelect}
           events={newEvent}
           eventClick={handleEventClick}
-          eventMouseEnter={handleMouseEnter} 
-          eventMouseLeave={handleMouseLeave}
+          eventDidMount={(info) => {
+            return new bootstrap.Popover(info.el, {
+              title: info.event.title,
+              description: info.event.extendedProps.description,
+              placement: "auto",
+              trigger: "hover",
+              customClass: "popoverStyle",
+              content: `<p>${info.event.extendedProps.description}</p>`,
+              html: true,
+            });
+          }}
         />
       </div>
 
@@ -445,7 +380,7 @@ function Calendar() {
               onChange={(value) => {
                 setPriority(value);
               }}
-              name="priority" // Add the name attribute here
+              name="priority"
               value={priority}
             >
               <Option value="Low">Low</Option>

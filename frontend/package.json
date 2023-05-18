@@ -24,6 +24,7 @@
     "react": "^18.2.0",
     "react-big-calendar": "^1.6.9",
     "react-bootstrap": "^2.7.2",
+    "react-chatbot-kit": "^2.1.2",
     "react-circular-progressbar": "^2.1.0",
     "react-datepicker": "^4.11.0",
     "react-dom": "^18.2.0",
@@ -32,6 +33,7 @@
     "react-router-dom": "^6.10.0",
     "react-scripts": "^5.0.1",
     "react-toastify": "^9.1.2",
+    "reactstrap": "^9.1.10",
     "recharts": "^2.5.0",
     "styled-components": "^5.3.9",
     "web-vitals": "^2.1.4"

@@ -3,6 +3,7 @@ Styles */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color:black;
  
 }
 .parent-container {
@@ -21,6 +22,7 @@ Styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #c4c1c1;
+  color:black;
 }
 
 /* Sign Up Form Styles */
@@ -403,14 +405,12 @@ tbody:nth-child(even) {
  justify-content: center;
  width: 100px;
 }
-.description-box {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #af3838;
-  border: 1px solid #ccc;
-  padding: 10px;
-  border-radius: 4px;
-  width: 200px;
-  z-index: 999;
+.popoverStyle .popover-header {
+  background-color: rgb(238, 153, 41); /* Set the background color for the popover header */
+  color: #fff; /* Set the text color for the popover header */
+}
+
+.popoverStyle .popover-body {
+  background-color: rgb(202, 223, 202); /* Set the background color for the popover body */
+  color: #000; /* Set the text color for the popover body */
 }
