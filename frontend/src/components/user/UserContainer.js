@@ -18,10 +18,7 @@ const UserContainer = () => {
         <Chart/>
 
     </div>
-    <div className='listContainer'>
-       <div className="listTitle">Latest issues</div>
-        <List/>
-       </div>
+
    
        
         </div>

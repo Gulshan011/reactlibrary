@@ -37,7 +37,7 @@ export const AdminSidebarData = [
   {
     title: '',
     icon: welcomeText,
-    path: '/dashboard/Admin',
+    path:'/dashboard/Admin'
   },
   { 
     title: 'Profile',
@@ -54,11 +54,7 @@ export const AdminSidebarData = [
     path: '/Records',
     icon: <FaIcons.FaHistory />
   },
-  {
-    title: 'Send Notifications',
-    path: '/messages',
-    icon: <FaIcons.FaEnvelopeOpenText />,
-  },
+  
   {
     title: 'Queries',
     path: '/Query',

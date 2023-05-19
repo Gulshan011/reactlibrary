@@ -29,6 +29,7 @@
         font-size:30px;
         color:black;
     }
+  
     .total{
         font-weight: bold;
         font-size:20px;
@@ -75,6 +76,7 @@
     display:flex;
     padding: 20px;
     gap:20px;
+   
 }
 .AdminContainer{
     flex:8;

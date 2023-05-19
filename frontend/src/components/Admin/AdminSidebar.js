@@ -7,13 +7,14 @@ import * as AiIcons from 'react-icons/ai';
 import { AdminSidebarData } from './AdminSidebarData.js';
 import AdminSubMenu from './AdminSubMenu';
 import { IconContext } from 'react-icons/lib';
-import Widgets from './widgets/Widgets.js';
+
 const Nav = styled.div`
   background: #15171c;
   height: 80px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-family:"Poppins",sans-serif;
 `;
 
 const NavIcon = styled(Link)`
@@ -23,10 +24,11 @@ const NavIcon = styled(Link)`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-family:"Poppins",sans-serif;
 `;
 
 const SidebarNav = styled.nav`
-  background: #000000;
+  background: #20232a;
   width: 250px;
   height: 100vh;
   display: flex;

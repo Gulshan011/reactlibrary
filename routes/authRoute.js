@@ -38,7 +38,7 @@ router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
 router.put("/update-tasks",updateTaskController);
 router.put("/userupdatetasks",userUpdateTaskController);
 router.put("/update-profile",updateProfileController);
-router.delete("/deletetasks", deleteTaskController);
+router.delete("/deletetasks/:id", deleteTaskController);
 router.delete("/deleteusertasks/:id", deleteUserTaskController);
 export default router;
 

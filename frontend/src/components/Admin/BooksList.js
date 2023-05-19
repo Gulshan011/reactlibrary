@@ -7,11 +7,10 @@ const { Option } = Select;
 function BookList() {
   const [bookList, setBookList] = useState([]);
   const [status, setStatus] = useState([
-        "Not Process",
-        "Processing",
-        "Shipped",
-        "deliverd",
-        "cancel",
+        "Online Issued ",
+        "Book Collected",
+        "Returned ",
+       
       ]);
   
   useEffect(() => {
@@ -24,8 +23,8 @@ function BookList() {
   return (
     <div>
       <AdminSidebar/>
-      <h1 className='text-center'>Book List</h1>
-      
+  
+      <br></br>
       <div className='tablecontainer-center'>
           <div className="table-responsive">
             <Table striped bordered hover variant="dark">

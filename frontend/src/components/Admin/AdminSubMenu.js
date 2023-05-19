@@ -14,11 +14,14 @@ const SidebarLink = styled(Link)`
   height: 60px;
   text-decoration: none;
   font-size: 18px;
+  font-family:"Poppins",sans-serif;
+  font-weight:"300px";
 
   &:hover {
     background: #252831;
     border-left: 4px solid #632ce4;
     cursor: pointer;
+    color:cyan;
   }
 `;
 
@@ -59,6 +62,7 @@ const AdminSubMenu = ({ item }) => {
         <div>
         {item.icon && typeof item.icon === 'function' && item.icon(auth)
         }
+        <SidebarLabel>{item.icon}</SidebarLabel>
           <SidebarLabel>{item.title}</SidebarLabel>
         </div>
         

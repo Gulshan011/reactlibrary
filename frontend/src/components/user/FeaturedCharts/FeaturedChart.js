@@ -4,47 +4,257 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import {CircularProgressbar}from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css"
-
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  CardHeader,
+  CardBody,
+  CardTitle,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+  Label,
+  FormGroup,
+  Input,
+  Table,
+  Row,
+  Col,
+  UncontrolledTooltip
+} from "reactstrap";
 const Featured = () => {
   return (
+  
     <div className='featured'>
-    
-      <div className='top'>
-        <h1 className="titles" style={{marginBottom:"450px"}}>Total work</h1>
-        <FaIcons.FaTasks fontSize="small" style={{marginBottom:"450px",padding:"2px"}} />
-      </div>
-      <div className='bottom'>
-         <div className='featuredChart'>
-         <CircularProgressbar value={70} text={"70%"} strokeWidth={5}/>
-         </div>
-         <p className='titles1'>"Total tasks done today"</p>
-         <p className='number'>400</p>
-         <p className='desc'>Lots of work successfully done today . Visit @add tasks to add new tasks</p>
-         <div className="summary">
-         <div className="item">
-           <div className="itemTitle">Target</div>
-           <div className="itemResult negative">
-             <FaIcons.FaSortUp fontSize="small"/>
-             <div className="resultAmount">$12.4k</div>
-           </div>
-         </div>
-         <div className="item">
-           <div className="itemTitle">Last Week</div>
-           <div className="itemResult positive">
-             <FaIcons.FaArrowDown fontSize="small"/>
-             <div className="resultAmount">$12.4k</div>
-           </div>
-         </div>
-         <div className="item">
-           <div className="itemTitle">Last Month</div>
-           <div className="itemResult positive">
-             <FaIcons.FaArrowDown fontSize="small"/>
-             <div className="resultAmount">$12.4k</div>
-           </div>
-         </div>
-       </div>
-                </div>
+    <CardBody>
+
+    <div className="table-full-width table-responsive">
+      <Table>
+        <tbody>
+          <tr style={{ height: "10vh" , fontStyle:"inherit" }}>
+            <td>
+              <FormGroup check>
+                <Label check>
+                  <Input defaultValue="" type="checkbox" />
+                  <span className="form-check-sign">
+                    <span className="check" />
+                  </span>
+                </Label>
+              </FormGroup>
+            </td>
+            <td>
+              <p className="featured-title">Update the Documentation</p>
+              <p className="text-muted" style={{fontStyle:"italic"}}>
+                Dwuamish Head, Seattle, WA 8:47 AM
+              </p>
+            </td>
+            <td className="td-actions text-right">
+              <Button
+                color="link"
+                id="tooltip636901683"
+                title=""
+                type="button"
+              >
+                <i className="FaIcons.FaHistory " />
+              </Button>
+              <UncontrolledTooltip
+                delay={0}
+                target="tooltip636901683"
+                placement="right"
+              >
+                Edit Task
+              </UncontrolledTooltip>
+            </td>
+          </tr>
+          <tr style={{ height: "10vh" , fontStyle:"inherit" }} >
+            <td>
+              <FormGroup check>
+                <Label check>
+                  <Input
+                    defaultChecked
+                    defaultValue=""
+                    type="checkbox"
+                  />
+                  <span className="form-check-sign">
+                    <span className="check" />
+                  </span>
+                </Label>
+              </FormGroup>
+            </td>
+            <td>
+              <p className="featured-title">GDPR Compliance</p>
+              <p className="text-muted"style={{fontStyle:"italic"}}>
+                The GDPR is a regulation that requires businesses to
+               
+              </p>
+            </td>
+            <td className="td-actions text-right">
+              <Button
+                color="link"
+                id="tooltip457194718"
+                title=""
+                type="button"
+              >
+                <i className="tim-icons icon-pencil" />
+              </Button>
+              <UncontrolledTooltip
+                delay={0}
+                target="tooltip457194718"
+                placement="right"
+              >
+                Edit Task
+              </UncontrolledTooltip>
+            </td>
+          </tr>
+          <tr style={{ height: "10vh" , fontStyle:"inherit" }}>
+            <td>
+              <FormGroup check>
+                <Label check>
+                  <Input defaultValue="" type="checkbox" />
+                  <span className="form-check-sign">
+                    <span className="check" />
+                  </span>
+                </Label>
+              </FormGroup>
+            </td>
+            <td>
+              <p className="featured-title">Solve the issues</p>
+              <p className="text-muted"style={{fontStyle:"italic"}}>
+                Fifty percent of all respondents said they would be
+                more likely to shop at a company
+              </p>
+            </td>
+            <td className="td-actions text-right">
+              <Button
+                color="link"
+                id="tooltip362404923"
+                title=""
+                type="button"
+              >
+                <i className="tim-icons icon-pencil" />
+              </Button>
+              <UncontrolledTooltip
+                delay={0}
+                target="tooltip362404923"
+                placement="right"
+              >
+                Edit Task
+              </UncontrolledTooltip>
+            </td>
+          </tr>
+          <tr style={{ height: "10vh" , fontStyle:"inherit" }}>
+            <td>
+              <FormGroup check>
+                <Label check>
+                  <Input defaultValue="" type="checkbox" />
+                  <span className="form-check-sign">
+                    <span className="check" />
+                  </span>
+                </Label>
+              </FormGroup>
+            </td>
+            <td>
+              <p className="featured-title">Release v2.0.0</p>
+              <p className="text-muted"style={{fontStyle:"italic"}}>
+                Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM
+              </p>
+            </td>
+            <td className="td-actions text-right">
+              <Button
+                color="link"
+                id="tooltip818217463"
+                title=""
+                type="button"
+              >
+                <i className="tim-icons icon-pencil" />
+              </Button>
+              <UncontrolledTooltip
+                delay={0}
+                target="tooltip818217463"
+                placement="right"
+              >
+                Edit Task
+              </UncontrolledTooltip>
+            </td>
+          </tr>
+          <tr style={{ height: "10vh" , fontStyle:"inherit" }}> 
+            <td>
+              <FormGroup check>
+                <Label check>
+                  <Input defaultValue="" type="checkbox" />
+                  <span className="form-check-sign">
+                    <span className="check" />
+                  </span>
+                </Label>
+              </FormGroup>
+            </td>
+            <td>
+              <p className="featured-title">Export the processed files</p>
+              <p className="text-muted"style={{fontStyle:"italic"}}>
+                The report also shows that consumers will not easily
+                forgive a company once a breach exposing their
+                personal data occurs.
+              </p>
+            </td>
+            <td className="td-actions text-right">
+              <Button
+                color="link"
+                id="tooltip831835125"
+                title=""
+                type="button"
+              >
+                <i className="tim-icons icon-pencil" />
+              </Button>
+              <UncontrolledTooltip
+                delay={0}
+                target="tooltip831835125"
+                placement="right"
+              >
+                Edit Task
+              </UncontrolledTooltip>
+            </td>
+          </tr>
+          <tr style={{ height: "10vh" , fontStyle:"inherit" }}>
+            <td>
+              <FormGroup check>
+                <Label check>
+                  <Input defaultValue="" type="checkbox" />
+                  <span className="form-check-sign">
+                    <span className="check" />
+                  </span>
+                </Label>
+              </FormGroup>
+            </td>
+            <td>
+              <p className="featured-title">Arival at export process</p>
+              <p className="text-muted"style={{fontStyle:"italic"}}>
+                Capitol Hill, Seattle, WA 12:34 AM
+              </p>
+            </td>
+            <td className="td-actions text-right">
+              <Button
+                color="link"
+                id="tooltip217595172"
+                title=""
+                type="button"
+              >
+                <i className="tim-icons icon-pencil" />
+              </Button>
+              <UncontrolledTooltip
+                delay={0}
+                target="tooltip217595172"
+                placement="right"
+              >
+                Edit Task
+              </UncontrolledTooltip>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
     </div>
+  </CardBody>
+  </div>
   )
 }
 

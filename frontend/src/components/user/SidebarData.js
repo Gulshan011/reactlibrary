@@ -34,12 +34,12 @@ export const SidebarData = [
   {
     title: '',
     icon: welcomeTxt,
-    
+    path:'/dashboard/user'
   },
   {
     title: 'UserProfile',
     path: '/About',
-    icon: <AiIcons.AiFillHome />
+    icon: <AiIcons.AiFillHome style={{color:"white"}} />
   },
   {
     title: 'My Tasks',
