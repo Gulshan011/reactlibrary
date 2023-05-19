@@ -3,7 +3,7 @@
 
 // export default Chart
 import React, { useEffect, useState } from 'react';
-import './Chart.css';
+import './chart.css';
 import {
   AreaChart,
   CartesianGrid,

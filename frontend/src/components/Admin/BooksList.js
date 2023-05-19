@@ -7,11 +7,10 @@ const { Option } = Select;
 function BookList() {
   const [bookList, setBookList] = useState([]);
   const [status, setStatus] = useState([
-        "Not Process",
-        "Processing",
-        "Shipped",
-        "deliverd",
-        "cancel",
+        "Online Issued ",
+        "Book Collected",
+        "Returned ",
+       
       ]);
   
   useEffect(() => {

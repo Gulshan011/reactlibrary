@@ -54,11 +54,7 @@ export const AdminSidebarData = [
     path: '/Records',
     icon: <FaIcons.FaHistory />
   },
-  {
-    title: 'Send Notifications',
-    path: '/messages',
-    icon: <FaIcons.FaEnvelopeOpenText />,
-  },
+  
   {
     title: 'Queries',
     path: '/Query',

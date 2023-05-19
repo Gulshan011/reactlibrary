@@ -39,7 +39,7 @@ export const SidebarData = [
   {
     title: 'UserProfile',
     path: '/About',
-    icon: <AiIcons.AiFillHome />
+    icon: <AiIcons.AiFillHome style={{color:"white"}} />
   },
   {
     title: 'My Tasks',

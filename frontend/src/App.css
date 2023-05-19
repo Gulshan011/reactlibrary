@@ -4,7 +4,7 @@ Styles */
   padding: 0;
   box-sizing: border-box;
   color:black;
- 
+  font-family:"Poppins",sans-serif;
 }
 .parent-container {
   display: flex;
@@ -20,7 +20,7 @@ Styles */
 
 }
 body {
-  font-family: Arial, sans-serif;
+  font-family:"Poppins",sans-serif;
   background-color: #c4c1c1;
   color:black;
 }
@@ -32,7 +32,7 @@ body {
   align-items: center;
   height: 100vh;
   background-color: #f1f1f1;
- 
+  
 }
 
 .contanier  {
@@ -53,7 +53,8 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
- 
+  font-family: inherit;
+  
 }
 
 .form-title {
@@ -66,12 +67,14 @@ body {
   display:flex;
   align-items: center;
   margin-bottom: 20px;
+  font-family: inherit;
 }
 
 .form-group label {
   margin-right: 10px;
   font-size: 1.2rem;
   color: #333;
+  font-family: inherit;
 }
 .mt-5{
   margin-top:16rem !important;
@@ -84,7 +87,17 @@ body {
   border: 1px solid #ccc;
   outline: none;
   transition: all 0.3s ease;
+
+  /* input[type="text"],
+input[type="date"] { */
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color:black;
+  font-family:"Poppins",sans-serif;
 }
+
  
 .form-group input:focus {
   border-color: #007bff;
@@ -223,10 +236,12 @@ h1 {
 .nav-tabs {
   margin-top: 2rem;
   border-bottom: none;
+  font-family:"Poppins",sans-serif;
 }
 
 .nav-tabs .nav-item {
   margin-right: 1rem;
+  font-family:"Poppins",sans-serif;
 }
 
 .nav-tabs .nav-link {
@@ -236,6 +251,7 @@ h1 {
   border: none;
   border-radius: 0.5rem 0.5rem 0 0;
   background-color: transparent;
+  font-family:"Poppins",sans-serif;
 }
 
 .nav-tabs .nav-link.active {
@@ -405,6 +421,7 @@ tbody:nth-child(even) {
  justify-content: center;
  width: 100px;
 }
+
 .popoverStyle .popover-header {
   background-color: rgb(238, 153, 41); /* Set the background color for the popover header */
   color: #fff; /* Set the text color for the popover header */
