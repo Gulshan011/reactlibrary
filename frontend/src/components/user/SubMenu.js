@@ -59,7 +59,7 @@ const SubMenu = ({ item }) => {
       <SidebarLink to={item.path} onClick={onClick}>
         <div>
         {item.icon && typeof item.icon === 'function' && item.icon(auth)
-      }
+      }      <SidebarLabel>{item.icon}</SidebarLabel>
           <SidebarLabel>{item.title}</SidebarLabel>
         </div>
        

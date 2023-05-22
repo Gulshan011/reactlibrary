@@ -3,7 +3,7 @@ import imagepic from "../images/girl.jpg";
 import imagenew from "../images/boy.jpg";
 import{useContext,AuthContext}from "../context/auth.js";
 import {useNavigate } from "react-router-dom";
-import Sidebar from "../components/user/Sidebar";
+import Sidebar from "../../src/components/user/Sidebar";
 import AdminSidebar from "./Admin/AdminSidebar";
 import '../App.css'
 const About = () => {
@@ -15,7 +15,7 @@ const About = () => {
     <div>
     {auth.user && auth.user.role==="1"?<AdminSidebar/>:<Sidebar/>}
       <div className="parent-container">
-        <div className="container emp-profile">
+        <div className="containers emp-profile">
           <form method="GET">
             <div className="row">
               <div className="col-md-4">

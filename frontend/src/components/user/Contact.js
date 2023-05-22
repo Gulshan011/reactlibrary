@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Sidebar from "../components/user/Sidebar";
+import Sidebar from "./Sidebar";
 import { toast } from "react-toastify";
-import { useContext, AuthContext } from "../context/auth.js";
+import { useContext, AuthContext } from "../../context/auth.js";
 
 import axios from "axios";
 import * as FaIcons from "react-icons/fa";
@@ -82,7 +82,7 @@ export const Contact = () => {
             </div>
 
             <div className="contact_form">
-              <div className="container overflow-hidden">
+              <div className="containers overflow-hidden">
                 <div className="row gx-5">
                   <div className="col-lg-10 offset-lg-1">
                     <div className="contact_form_container py-5">

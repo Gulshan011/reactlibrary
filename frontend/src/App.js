@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useContext }from "react";
 import "./App.css";
 import { useLocation } from "react-router-dom";
 
@@ -23,17 +23,19 @@ import Calender from "./components/user/Calender/Calender";
 import AdminCalender from "./components/Admin/AdminCalender/AdminCalender.js";
 import IssueBook from "./components/user/IssueBook/IssueBook";
 import Modal from "./components/user/IssueBook/Modal";
-import Contact from "./components/Contact";
+import Contact from "./components/user/Contact";
 import HistoryRoute from "./components/routes/HistoryRoute.js";
 import EditProfile from "./components/EditProfile";
 import History from "./components/History";
 import Records from "./components/Admin/Records";
 
+import DarkMode from "./components/DarkMode";
+
 const App = () => {
   const location = useLocation();
 
   return (
-    <div>
+    <div >
       {location.pathname === "/dashboard/user" ||
       location.pathname === "/messages" ||
       location.pathname === "/History" ||
@@ -80,8 +82,8 @@ const App = () => {
         <Route path="/issuebook" element={<IssueBook />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
       <Route path="/records" element={<Records/>}></Route>
-      
-
+     
+      <Route path="/darkmode" element={<DarkMode/>}></Route>
         <Route path="/edit" element={<EditProfile />}></Route>
       </Routes>
       <Routes>

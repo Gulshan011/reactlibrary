@@ -39,12 +39,12 @@ export const SidebarData = [
   {
     title: 'UserProfile',
     path: '/About',
-    icon: <AiIcons.AiFillHome style={{color:"white"}} />
+    icon:<IoIcons.IoIosPaper />,
   },
   {
     title: 'My Tasks',
     path: '/calender',
-    icon: <IoIcons.IoIosPaper />,
+    icon:  <IoIcons.IoIosPaper />,
   },
   {
     title: 'History',
@@ -59,7 +59,7 @@ export const SidebarData = [
   {
     title: 'Ask for help',
     path: '/Contact',
-    icon: <IoIcons.IoMdHelpCircle />
+    icon:<IoIcons.IoMdHelpCircle />
   },
   {
     title: 'Issue book',
@@ -71,7 +71,13 @@ export const SidebarData = [
     path:'/home',
     icon: <LogoutButton />,
   }
+  
+
+
+  
+ 
 ];
+
 
 export default SidebarData;
 
