@@ -2,10 +2,11 @@
 
 import React, { useEffect, useState } from 'react';
 import QRCode from 'qrcode.react';
-import Sidebar from '../components/user/Sidebar';
+import Sidebar from '../../src/components/user/Sidebar';
 import Table from 'react-bootstrap/Table';
 import { useContext } from 'react';
 import { AuthContext } from "../context/auth.js";
+import { FaFontAwesome } from 'react-icons/fa';
 
 const History = () => {
   const [qrValues, setQrValues] = useState([]);
@@ -28,7 +29,7 @@ const History = () => {
             <Table striped bordered hover variant="dark">
               <thead>
                 <tr>
-                  <th>QR Codes</th>
+                  <th>QR Codes </th>
                   <th>Quick Description</th>
                 </tr>
               </thead>
@@ -40,9 +41,9 @@ const History = () => {
                       <p>Scan QRs for complete info!!!</p>
                     </td>
                     <td>
-                      {qrValue.data.fname && <p className='text-center mt-4 '>Issued By :-{qrValue.data.fname}</p>}
-                      {qrValue.data.issuedDate.split("T")[0]&& <p  className='text-center mt-4 '> IssuedDate:- {qrValue.data.issuedDate.split("T")[0]}</p>}
-                      {qrValue.data.returnDate&& <p  className='text-center mt-4 '> ReturnDate:- {qrValue.data.returnDate.split("T")[0]}</p>}
+                      {qrValue.data.fname && <p className='text-center mt-4' style={{fontFamily:"poppins"}} >BookName:-{qrValue.data.bookname}</p>}
+                      {qrValue.data.issuedDate.split("T")[0]&& <p  className='text-center mt-4 'style={{fontFamily:"poppins"}}> IssuedDate:- {qrValue.data.issuedDate.split("T")[0]}</p>}
+                      {qrValue.data.returnDate&& <p  className='text-center mt-4 'style={{fontFamily:"poppins"}}> ReturnDate:- {qrValue.data.returnDate.split("T")[0]}</p>}
                     </td>
                   </tr>
                 ))}

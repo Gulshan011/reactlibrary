@@ -28,7 +28,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark"  style={{ fontFamily: "Poppins, sans-serif" ,fontWeight:"300px" }} >
+    <nav className="navbar navbar-expand-lg navbar-light bg-light"  style={{ fontFamily: "Poppins, sans-serif" ,fontWeight:"300px" }} >
       <Link className="navbar-brand" to="/Home" style={{ fontFamily: "Poppins, sans-serif" }} >
         ELibrary
       </Link>
