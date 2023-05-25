@@ -45,7 +45,7 @@ const Featured = () => {
             </td>
             <td>
               <p className="featured-title">Update the Documentation</p>
-              <p className="text-muted" style={{fontStyle:"italic"}}>
+              <p className="text-small" style={{fontStyle:"italic"}}>
                 Dwuamish Head, Seattle, WA 8:47 AM
               </p>
             </td>
@@ -84,7 +84,7 @@ const Featured = () => {
             </td>
             <td>
               <p className="featured-title">GDPR Compliance</p>
-              <p className="text-muted"style={{fontStyle:"italic"}}>
+              <p className="text-small"style={{fontStyle:"italic",color:"cyan"}}>
                 The GDPR is a regulation that requires businesses to
                
               </p>
@@ -120,7 +120,7 @@ const Featured = () => {
             </td>
             <td>
               <p className="featured-title">Solve the issues</p>
-              <p className="text-muted"style={{fontStyle:"italic"}}>
+              <p className="text-small"style={{fontStyle:"italic"}}>
                 Fifty percent of all respondents said they would be
                 more likely to shop at a company
               </p>
@@ -156,7 +156,7 @@ const Featured = () => {
             </td>
             <td>
               <p className="featured-title">Release v2.0.0</p>
-              <p className="text-muted"style={{fontStyle:"italic"}}>
+              <p className="text-small"style={{fontStyle:"italic"}}>
                 Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM
               </p>
             </td>
@@ -191,7 +191,7 @@ const Featured = () => {
             </td>
             <td>
               <p className="featured-title">Export the processed files</p>
-              <p className="text-muted"style={{fontStyle:"italic"}}>
+              <p className="text-small"style={{fontStyle:"italic"}}>
                 The report also shows that consumers will not easily
                 forgive a company once a breach exposing their
                 personal data occurs.
@@ -228,7 +228,7 @@ const Featured = () => {
             </td>
             <td>
               <p className="featured-title">Arival at export process</p>
-              <p className="text-muted"style={{fontStyle:"italic"}}>
+              <p className="text-small"style={{fontStyle:"italic"}}>
                 Capitol Hill, Seattle, WA 12:34 AM
               </p>
             </td>

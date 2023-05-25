@@ -13,7 +13,7 @@ body{
 .header{
     width: 100%;
     height: 500px;
-    color: var(--secondary-color);
+    background-color: #1e1e2f;
     box-shadow: 0 5px 10px var(--secondary-color);
     display: flex;
     align-items: center;
@@ -28,7 +28,7 @@ body{
     height: 100%;
     background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(bg1.png);
     clip-path: circle(60% at left 300px);
-    z-index: -1;
+    z-index: 1;
 }
 .row2{
     position: absolute;
@@ -36,11 +36,14 @@ body{
     right: 150px;
     text-align: center;
 }
+.row1{
+    z-index:1;
+}
 .row2 h2{
     font-size: 3rem;
     margin-top: 20px;
     margin-bottom: 15px;
-    color:black;
+    color:rgb(240, 240, 240);
 }
 .row2 img{
     margin-top: 30px;
@@ -52,6 +55,7 @@ body{
     margin-left: 35px;
     font-family: 'Bodoni Moda', serif;
     color:white;
+    
 }
 .search{
     display: flex;
@@ -82,21 +86,17 @@ body{
     grid-gap:20px;
     box-sizing: border-box;
     height:fit-content;
+    background-color: #1e1e2f;
+    padding: 10px;
+    border-radius: 10px;
+    --secondary-color:#D4B996FF;
+
 }
-.card{
-    background-color: var(--secondary-color);
-    border-radius: 1rem;
-    padding: 0.5rem;
-    margin-bottom: 10px;
-    box-shadow: 0 5px 5px rgba(212,185,150,.5);
-    transition: .5s;
-    text-align: center;
-    position: relative;
-}
+
 .card {
     background-color: #aaa9cf;
     border-radius: 1rem;
-    padding: 0.5rem;
+    padding: 20px;
     margin-bottom: 10px;
     box-shadow: 0 5px 5px rgb(212 185 150 / 50%);
     transition: .5s;
@@ -109,8 +109,9 @@ body{
 }
 .card img {
     width: 100%;
-    height: 400px;
+    height:200px;
     border-radius: 50%;
+    
 }
 .card .bottom{
     display: flex;

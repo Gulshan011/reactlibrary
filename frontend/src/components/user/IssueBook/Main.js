@@ -15,8 +15,10 @@ const Main=()=>{
         }
     }
     return(
-        <>
-            <div className="header">
+        <> 
+        
+        <div className="issuecontainer"style={{backgroundColor: "#1e1e2f"}}>
+            <div className="header" >
                 <div className="row1">
                     <h1>A room without books is like<br/> a body without a soul.</h1>
                 </div>
@@ -36,6 +38,7 @@ const Main=()=>{
               {
                     <Card book={bookData}/>
               }  
+            </div>
             </div>
         </>
     )

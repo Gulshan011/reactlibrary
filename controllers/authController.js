@@ -560,6 +560,24 @@ export const usertaskListController = async (req, res) => {
     });
   }
 }; 
+//-single user tasks
+export const getUserTaskController = async (req, res) => {
+  try {
+    const userId = req.user._id; // Assuming req.user contains the authenticated user details
+    
+    const tasks = await userTaskModel.find({ user: userId });
+    
+    res.json(tasks);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting tasks",
+      error,
+    });
+  }
+};
+
 
 //--userupdate tasks
 export const userUpdateTaskController = async (req, res) => {

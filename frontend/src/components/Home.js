@@ -7,9 +7,7 @@ const Home = () => {
   if(auth.user && auth.user.fname){
     toast.success(`WELCOME ${auth.user && auth.user.fname}!!!!`);
   }
-  else{
-    toast.error(`Logged out ;relogin!!`);
- }
+ 
   return (
     <div >
    

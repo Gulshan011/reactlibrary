@@ -9,7 +9,7 @@ import AdminSubMenu from './AdminSubMenu';
 import { IconContext } from 'react-icons/lib';
 
 const Nav = styled.div`
-  background: #15171c;
+  background: #1e1e2f;
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -25,6 +25,7 @@ const NavIcon = styled(Link)`
   justify-content: flex-start;
   align-items: center;
   font-family:"Poppins",sans-serif;
+color:#000000;
 `;
 
 const SidebarNav = styled.nav`
