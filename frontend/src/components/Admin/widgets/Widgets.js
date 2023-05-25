@@ -70,9 +70,9 @@ const Widgets = ({type}) => {
         };
         break;
   }
-
+ 
   return (
-    <div className="widget">
+    <div className="widget" >
       <div className="left">
         <div>
           <span className="title">{data.title}</span>

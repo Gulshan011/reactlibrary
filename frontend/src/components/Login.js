@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
+import Swal from "sweetalert";
 import { useContext, AuthContext, useAuth } from "../context/auth.js";
 import axios from "axios";
 const Login = () => {
@@ -25,6 +26,13 @@ const Login = () => {
           user: res.data.user.fname,
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
+        Swal.fire({
+          icon: "success",
+          title: "Success!",
+          text: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/About");
       } else {
         toast.error(res.data.message);

@@ -1,5 +1,5 @@
 import express from "express";
-import {registerController,bookController,queryController,loginController,testController, userUpdateTaskController,deleteTaskController,deleteUserTaskController,forgotPasswordController,addUserTaskController,usertaskListController,bookListController,updateProfileController,updateTaskController,registerListController,taskListController,addTaskController} from '../controllers/authController.js'
+import {registerController,bookController,queryController,loginController,testController, userUpdateTaskController,getUserTaskController,deleteTaskController,deleteUserTaskController,forgotPasswordController,addUserTaskController,usertaskListController,bookListController,updateProfileController,updateTaskController,registerListController,taskListController,addTaskController} from '../controllers/authController.js'
 import {requireSignIn,isAdmin} from "../middlewares/authMiddleware.js";
 //route object
 const router = express.Router()
@@ -21,6 +21,7 @@ router.get('/test',requireSignIn,isAdmin,testController);
 router.get('/booklist',bookListController);
 router.get('/taskslist',taskListController);
 router.get('/usertaskslist',usertaskListController);
+router.get("/usertasks/:id", requireSignIn, getUserTaskController);
 router.get('/registerlist',registerListController);
 //protected user route auth
 router.get("/user-auth", requireSignIn, (req, res) => {

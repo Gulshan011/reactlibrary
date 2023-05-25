@@ -34,11 +34,12 @@ Styles */
   --bg-secondary: var(--bg-secondary-dark);
   --bg-navbar: var(--bg-navbar-dark);
 } */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color:black;
+  color:rgb(255, 248, 248);
   font-family:"Poppins",sans-serif;
 }
 .parent-container {
@@ -48,6 +49,13 @@ Styles */
   height: 100vh;
   background-color: #1e1e2f;
  
+}
+.navbar{
+  background-color: #1e1e2f;
+ 
+}
+#basic-nav-dropdown{
+  color:white;
 }
 .history-container {
   
@@ -336,7 +344,7 @@ h1 {
   height:fit-content;
   box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
   0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-  background-color: #c9bfbf;
+ 
   border-radius: 10px;
 
 }

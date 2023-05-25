@@ -11,10 +11,12 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Sidebar from "../Sidebar";
 import * as IoIcons from "react-icons/io";
+import { useContext, AuthContext } from "../../../context/auth";
 import { getBackgroundColor, getBorderColor } from "../../Admin/AdminCalender/utils";
 const { Option } = Select;
 
 function Calendar() {
+   const { auth, setAuth } = useContext(AuthContext);
   const [newEvent, setNewEvent] = useState([]);
   const [taskList, setTaskList] = useState([]);
   const [priority, setPriority] = useState("");
@@ -108,13 +110,25 @@ function Calendar() {
   };
 
   //fetching list of task
+  // useEffect((id) => {
+  //   fetch(`http://localhost:8081/api/v1/auth/usertasks/${id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setTaskList(data.data))
+  //     .catch((error) => console.log(error));
+  // }, []);
   useEffect(() => {
-    fetch("http://localhost:8081/api/v1/auth/usertaskslist")
-      .then((res) => res.json())
-      .then((data) => setTaskList(data.data))
-      .catch((error) => console.log(error));
-  }, []);
-
+    if (auth?.token) {
+      fetch("http://localhost:8081/api/v1/auth/usertasks", {
+        headers: {
+          Authorization: `Bearer ${auth.token}`
+        }
+      })
+        .then((res) => res.json())
+        .then((data) => setTaskList(data))
+        .catch((error) => console.log(error));
+    }
+  }, [auth?.token]);
+  
   useEffect(() => {
     // Filter events based on search term
     const filteredEvents = taskList.filter((task) =>
@@ -127,14 +141,14 @@ function Calendar() {
       start: new Date(task.start),
       end: new Date(task.end),
       priority: task.priority,
-     
+       description:task.description,
       backgroundColor: getBackgroundColor(task.priority),
       borderColor: getBorderColor(task.priority),
     }));
     setNewEvent(events);
   }, [taskList, searchTerm]);
   console.log(newEvent, "eee");
-  
+ 
   //.....................updatetasks.
   const handleFormUpdate = async (e) => {
     e.preventDefault();

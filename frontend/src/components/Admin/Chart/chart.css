@@ -4,11 +4,17 @@
     gap:20px;
     padding:5px 20px;
    flex:2;
-    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
-    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    /* box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3); */
+    background-color:rgb(82,95,127,1);
 }
+/* .chart:hover{
+  transform: scale(0.9);
+  background-color: rgb(177, 177, 226);
+} */
 .chart .title{
     margin-bottom: 20px;
+    padding-top: 10px;
 }
 .chartGrid{
   stroke:lightgray;

@@ -28,7 +28,7 @@ import HistoryRoute from "./components/routes/HistoryRoute.js";
 import EditProfile from "./components/EditProfile";
 import History from "./components/History";
 import Records from "./components/Admin/Records";
-
+import ChatBotWidget from "./components/user/ChatBotWidget";
 import DarkMode from "./components/DarkMode";
 
 const App = () => {
@@ -70,6 +70,7 @@ const App = () => {
         </Route>
 
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/chatbotwidget" element={<ChatBotWidget />}></Route>
         <Route path="/messages" element={<Messages />}></Route>
         <Route path="/bookslist" element={<BooksList />}></Route>
         <Route path="/forgot-password" element={<Forgotpassword />}></Route>

@@ -25,7 +25,7 @@ const Featured = () => {
   return (
     <div className="featured">
     <Col md="12" sm-21 >
-    <Card className="card-user">
+    <div className="card-user">
       <CardBody>
         <CardText />
         <div className="author">
@@ -41,9 +41,9 @@ const Featured = () => {
             />
             <h5 className="title">{auth.user && auth.user.fname}</h5>
           </a>
-          <p className="role">{auth.user && auth.user.dept}</p>
+          <p className="role"style={{color:"white"}}>{auth.user && auth.user.dept}</p>
         </div>
-        <div className="card-description">
+        <div className="card-description" style={{color:"white"}}>
           Do not be scared of the truth because we need to restart the
           human foundation in truth And I love you like Kanye loves
           Kanye I love Rick Owens’ bed design but the back is...
@@ -62,7 +62,7 @@ const Featured = () => {
           </Button>
         </div>
       </CardFooter>
-    </Card>
+    </div>
   </Col>
 
     </div>

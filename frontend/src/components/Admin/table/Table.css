@@ -11,7 +11,10 @@
         margin-right: 10px;
         object-fit: cover;
       }
-    
+      /* .listContainer:hover{
+        transform: scale(0.9);
+        background-color: rgb(177, 177, 226);
+    } */
   
       .table  .status {
       padding: 5px;
@@ -27,6 +30,6 @@
         background-color: rgba(189, 189, 3, 0.103);
       }
    .listContainer{
-      box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
-      0.3em 0.3em 1em rgba(0, 0, 0, 0.3);}
+    background-color:rgb(82,95,127,1);
+  border-radius: 10px;}
       

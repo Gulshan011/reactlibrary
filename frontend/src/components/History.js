@@ -26,7 +26,7 @@ const History = () => {
       {qrValues.length > 0 ? (
         <div className='tablecontainer'>
           <div className="table-responsive">
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered hover variant="light">
               <thead>
                 <tr>
                   <th>QR Codes </th>

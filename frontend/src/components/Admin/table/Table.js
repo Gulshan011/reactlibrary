@@ -28,7 +28,7 @@ function List() {
     <div>
       <div className='tablecontainer-center'>
         <div className="table-responsive">
-          <Table striped bordered hover variant="dark">
+          <Table striped bordered hover variant="light">
             <thead>
               <tr>
                 <th>Book Name</th>

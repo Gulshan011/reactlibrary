@@ -7,7 +7,7 @@ import './widgets/widgets.css'
 const AdminContainer = () => {
   return (
    
-    <div className='AdminContainer'>
+    <div className='AdminContainer' style={{backgroundColor:" #1e1e2f"}}>
     
     <div className='widgets'>
     <Widgets type="user"/>

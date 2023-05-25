@@ -7,9 +7,9 @@ import List from './table/Table'
 const UserContainer = () => {
   return (
    
-    <div className='UserContainer'>
+    <div className='UserContainer'style={{backgroundColor:" #1e1e2f"}}>
     
-    <div className='widgets'>
+    <div className='widgets'  >
     <Widgets type="user"/>
     <Widgets type="books"/>
     <Widgets type="status"/> </div>
