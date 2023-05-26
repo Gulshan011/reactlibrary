@@ -34,7 +34,7 @@ const Main=()=>{
                 </div>
             </div>
 
-            <div className="container">
+            <div className="contianer">
               {
                     <Card book={bookData}/>
               }  

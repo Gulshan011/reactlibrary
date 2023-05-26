@@ -26,13 +26,7 @@ const Login = () => {
           user: res.data.user.fname,
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
-        Swal.fire({
-          icon: "success",
-          title: "Success!",
-          text: res.data.message,
-          showConfirmButton: false,
-          timer: 1500,
-        });
+       
         navigate("/About");
       } else {
         toast.error(res.data.message);

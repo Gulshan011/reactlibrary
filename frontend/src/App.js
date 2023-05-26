@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
-import Home from "./components/Home";
+import Home from "./components/Home/Home";
 import Signup from "./components/Signup";
 import About from "./components/About";
 import Dashboard from "./components/user/Dashboard";
@@ -49,6 +49,7 @@ const App = () => {
       location.pathname === "/IssueBookForm" ||
       location.pathname === "/Records" ||
       location.pathname === "/calender" ||
+      location.pathname === "/ChatBotWidget" ||
       location.pathname === "/Contact" ? (
         <div></div>
       ) : (
