@@ -7,12 +7,12 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export const Banner = () => {
 
  const { auth, setAuth } = useContext(AuthContext);
-
+ const navigate=useNavigate();
   return (
     <section className="banner" id="home">
       <Container>
@@ -24,7 +24,7 @@ export const Banner = () => {
                 <span className="tagline">Welcome </span>
                 <h1>{`Hi! ,  ${auth.user && auth.user.fname}`} <span className="txt-rotate" dataPeriod="1000" ><span className="wrap"></span></span></h1>
                   <p>More than 25,000 books of national and international authors are on the shelves, besides access to curriculum based videos and web courses through NPTL and MIT courses wares..</p>
-                  <button onClick={() => console.log('connect')}>Let’s Connect <ArrowRightCircle size={25} /></button>
+                  <button onClick={() => navigate("/Login")}>Let’s Connect <ArrowRightCircle size={25} /></button>
               </div>}
             </TrackVisibility>
           </Col>
