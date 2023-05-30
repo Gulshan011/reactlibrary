@@ -24,7 +24,8 @@ const Modal = ({ show, item, onClose }) => {
         publisher: item.volumeInfo.publisher,
         publisheddate: item.volumeInfo.publishedDate,
         issuedDate: new Date().toJSON(),
-        returnDate: returnDate.toJSON()
+        returnDate: returnDate.toJSON(),
+        
       });
 
       if (res && res.data.success) {

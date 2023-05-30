@@ -363,6 +363,26 @@ export const bookListController = async (req, res) => {
     });
   }
 };
+
+//-update status for books 
+export const updateStatusController = async (req, res) => {
+  try{
+    const { id } = req.params;
+    const{status}=req.body
+    await bookModel.findByIdAndUpdate(id,{status},{new:true});
+    res.status(200).send({
+      success: true,
+      message: " Updated successfully",
+    });
+      
+  }catch(error){
+    res.status(500).send({
+      success: false,
+      message: "Something went wrong",
+      error,
+    });
+  }
+}
 //-----------------------------------------------------------------------------------------------------------------------
 
 

@@ -1,94 +1,117 @@
-.widgets ,.chart,.featured{
-    display:flex;
-    padding: 20px;
-    gap:20px;
-    
+/* .Widgets,
+.chart,
+.featured {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
 }
-.widget{
-    margin-right: 20px;
-    display:flex;
-    flex:1;
-    padding:10px;
-   
-  background-color:"#525f7f";
-    border-radius: 10px;
-    height: 150px;
-   justify-content: space-between;
-    align-items:center;
+.Widget {
+  margin-right: 20px;
 
-    
-}
-.widget .left .right{
-    display:flex;
-    flex-direction: column;
-    justify-content: space-between;
+  padding: 10px;
+  color: #525f7f;
 
-}
-    .title{
-        font-weight: bold;
-        font-size:30px;
-        color:black;
-    }
-    .featured-title {font-weight: bold;
-    font-size:10px;
-    color:rgb(255, 255, 255);}
-    .text-small {
-        --bs-text-opacity: 1;
-        color: #ffffff!important;
-        font-size:x-small;
-    }
-    .total{
-        font-weight: bold;
-        font-size:20px;
-        color:rgb(255, 253, 253);
-    }
-    .links{
-        font-weight: bold;
-        font-size:15px;
-        color:rgb(46, 24, 247);
-        text-decoration: underline;
-    }
-    .icon{
-    font-size:14px;
-    padding:5px;
-    border-radius:5px;
-   box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
-    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-   align-self:flex-end;
-    
-   
-    }
-  
-    .percentage .negative{
-        color:red;
-       
-    }
-    .percentage.positive {
-        color: green;
-        margin-top: -30%;
-    }
-
-    .listContainer{
-        
-        padding:20px;
-        margin:20px;
-    }
-    .listContainer .listTitle{
-        font: weight 100px;
-        color:grey;
-        margin-bottom:15px;
-    }
-.charts{
-    display:flex;
-    padding: 20px;
-    gap:20px;
-    height:800px;
- 
+  border-radius: 10px;
+  height: 150px;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.AdminContainer{
-    flex:8;
+.chart {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  padding: 25px;
+  flex: 3;
+
+  border-radius: 8%;
 }
-.chart{
-    flex-direction:column;
+.chart .title {
+  margin-bottom: 20px;
 }
+.chartGrid {
+  stroke: lightgray;
+}
+
+.chartsdata {
+  flex: 2 2;
+  display: flex;
+} */
+/* Widgets.css */
+
+.Widgets,
+.featured {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+}
+
+.Widget {
+  margin-right: 20px;
+  margin: 20px;
+  padding: 10px;
+  color: #525f7f;
+  border-radius: 10px;
+  height: 150px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.charts data {
+  flex: 2 2;
+  gap: 5px;
+}
+
+.Widget .left,
+.Widget .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.listContainer {
+  padding: 20px;
+  margin: 20px;
+}
+
+.listContainer .listTitle {
+  font-weight: bold;
+  color: grey;
+  margin-bottom: 15px;
+}
+
+.charts {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  height: 800px;
+}
+
+.AdminContainer {
+  flex: 8;
+}
+
+.chart {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  padding: 25px;
+  flex: 3;
+  border-radius: 8%;
+}
+
+.chart .title {
+  margin-bottom: 20px;
+}
+
+.chartGrid {
+  stroke: lightgray;
+}
+
+.chartsdata {
+  flex: 2 2;
+  display: flex;
+}
+.card-user {
+    margin: 0;
+  }
