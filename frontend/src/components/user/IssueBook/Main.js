@@ -36,7 +36,7 @@ const Main=()=>{
 
             <div className="contianer">
               {
-                    <Card book={bookData}/>
+                    <Card className="your-card-class" book={bookData}/>
               }  
             </div>
             </div>

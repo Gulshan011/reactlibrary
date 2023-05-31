@@ -28,7 +28,7 @@ const BookSchema = new mongoose.Schema({
   status:{
     type:String,
     default:"IssuedNotCollected",
-    enum:["IssuedNotCollected","issued","Collected","Returned","Reissued"]
+    enum:["IssuedNotCollected","issued","Collected","Returned","Reissued","Available"]
   }
 });
 

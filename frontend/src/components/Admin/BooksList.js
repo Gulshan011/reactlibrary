@@ -37,21 +37,32 @@ function BookList() {
       })
       .catch((error) => console.log(error));
   }, []);
-
   const handleChange = async (id, value) => {
     try {
+      if (value === "Returned") {
+        // Make an API call to delete the book if status is "Returned"
+        await axios.delete(`http://localhost:8081/api/v1/auth/deletebook/${id}`);
+        // Filter out the book from the bookList state
+        setBookList((prevBookList) =>
+          prevBookList.filter((book) => book._id !== id)
+        );
+        toast.success("Book details deleted successfully");
+        return;
+      }
+  
       const { data } = await axios.put(
         `http://localhost:8081/api/v1/auth/update-status/${id}`,
         {
           status: value,
         }
       );
-      // Update the bookList state after successful status update
+  
       setBookList((prevBookList) =>
         prevBookList.map((book) =>
           book._id === id ? { ...book, status: value } : book
         )
       );
+  
       if (data.success) {
         toast.success("Updated successfully");
       } else {
@@ -61,6 +72,9 @@ function BookList() {
       console.log(error);
     }
   };
+  
+
+ 
 
   const isReturnDateCloser = (returnDate) => {
     const currentDate = moment();
@@ -132,6 +146,7 @@ function BookList() {
                 
                     {reminderStatus[book._id] && toast.success("Reminder Sent!")}
                   </td>
+                  
                 </tr>
               ))}
             </tbody>
@@ -143,4 +158,6 @@ function BookList() {
 }
 
 export default BookList;
+
+
 

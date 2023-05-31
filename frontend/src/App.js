@@ -26,7 +26,7 @@ import Modal from "./components/user/IssueBook/Modal";
 import Contact from "./components/user/Contact";
 import HistoryRoute from "./components/routes/HistoryRoute.js";
 import EditProfile from "./components/EditProfile";
-import History from "./components/History";
+
 import Records from "./components/Admin/Records";
 import ChatBotWidget from "./components/user/ChatBotWidget";
 import DarkMode from "./components/DarkMode";
@@ -38,7 +38,7 @@ const App = () => {
     <div >
       {location.pathname === "/dashboard/user" ||
       location.pathname === "/messages" ||
-      location.pathname === "/History" ||
+
       location.pathname === "/About" ||
       location.pathname === "/BooksList" ||
       location.pathname === "/admincalender" ||
@@ -66,9 +66,7 @@ const App = () => {
         <Route path="/about" element={<AboutRoute />}>
           <Route path="" element={<About />} />
         </Route>
-        <Route path="/history" element={<HistoryRoute />}>
-          <Route path="" element={<History />} />
-        </Route>
+       
 
         <Route path="/login" element={<Login />}></Route>
         <Route path="/chatbotwidget" element={<ChatBotWidget />}></Route>

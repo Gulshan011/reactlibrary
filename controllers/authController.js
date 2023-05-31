@@ -49,9 +49,7 @@ export const registerController = async (req, res) => {
     if (!dept) {
       return res.send({ message: "dept is required" });
     }
-    if (!answer) {
-      return res.send({ message: "answer is required" });
-    }
+   
     //check existing user
     const existinguser = await userModel.findOne({ email });
     //existing user
@@ -276,6 +274,78 @@ export const queryController = async (req, res) => {
   }
 };
 //-----------------------------------------------------------issue book api-------------------------------------------------------------------
+
+// export const bookController = async (req, res) => {
+//   try {
+//     const {
+//       fname,
+//       bookname,
+//       authors,
+//       publisher,
+//       publishedDate,
+//       issuedDate,
+//       email,
+//       returnDate,
+//     } = req.body;
+
+//     // Validations
+
+//     if (!fname) {
+//       return res.send({ message: "Fname is required" });
+//     }
+//     if (!email) {
+//       return res.send({ message: "Book name is required" });
+//     }
+//     if (!bookname) {
+//       return res.send({ message: "Book name is required" });
+//     }
+//     if (!authors) {
+//       return res.send({ message: "Authors is required" });
+//     }
+//     if (!publisher) {
+//       return res.send({ message: "Publisher is required" });
+//     }
+//     if (!issuedDate) {
+//       return res.send({ message: "Issued date is required" });
+//     }
+
+//     // Check if book is already issued
+//     const issuedBook = await bookModel.findOne({ bookname });
+//     if (issuedBook) {
+//       return res.status(200).send({
+//         success: false,
+//         message: "Book is already issued; out of stock",
+//       });
+//     }
+
+//     // Create the book in the database
+//     const newBook = await bookModel.create({
+//       fname,
+//       bookname,
+//       authors,
+//       publisher,
+//       publishedDate,
+//       issuedDate,
+//       returnDate,
+//     });
+
+//     res.status(200).send({
+//       success: true,
+//       message: "Book issued successfully",
+//       data: {
+//         ...newBook.toObject(),
+//         status: newBook.status, // Include the status field in the response
+//       },
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send({
+//       success: false,
+//       message: "Error in book issuance",
+//       error,
+//     });
+//   }
+// };
 export const bookController = async (req, res) => {
   try {
     const {
@@ -312,12 +382,26 @@ export const bookController = async (req, res) => {
 
     // Check if book is already issued
     const issuedBook = await bookModel.findOne({ bookname });
-    if (issuedBook) {
+
+    if (issuedBook && issuedBook.status !== "Returned") {
       return res.status(200).send({
         success: false,
         message: "Book is already issued; out of stock",
       });
     }
+if (issuedBook && issuedBook.status === "Returned") {
+  issuedBook.status = "Returned";
+  await issuedBook.save();
+  
+  return res.status(200).send({
+    success: true,
+    message: "Book is available for issuance again",
+    data: {
+      ...issuedBook.toObject(),
+      status: issuedBook.status,
+    },
+  });
+}
 
     // Create the book in the database
     const newBook = await bookModel.create({
@@ -333,7 +417,10 @@ export const bookController = async (req, res) => {
     res.status(200).send({
       success: true,
       message: "Book issued successfully",
-      data: newBook,
+      data: {
+        ...newBook.toObject(),
+        status: newBook.status,
+      },
     });
   } catch (error) {
     console.log(error);
@@ -344,6 +431,8 @@ export const bookController = async (req, res) => {
     });
   }
 };
+
+
 //---book list controller 
 export const bookListController = async (req, res) => {
   try {
@@ -383,6 +472,28 @@ export const updateStatusController = async (req, res) => {
     });
   }
 }
+
+export const deleteBookController=async(req,res)=>{
+  try {
+    const bookId = req.params.id;
+
+    // Delete the book by its ID
+    await bookModel.findByIdAndDelete(bookId);
+
+    res.json({
+      success: true,
+      message: "Book deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Something went wrong",
+      error,
+    });
+  }
+};
+
 //-----------------------------------------------------------------------------------------------------------------------
 
 
@@ -585,7 +696,7 @@ export const getUserTaskController = async (req, res) => {
   try {
     const userId = req.user._id; // Assuming req.user contains the authenticated user details
     
-    const tasks = await userTaskModel.find({ user: userId });
+    const tasks = await userTaskModel.find({ user: userId }).populate(tasks);
     
     res.json(tasks);
   } catch (error) {

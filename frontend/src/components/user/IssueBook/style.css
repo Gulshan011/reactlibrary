@@ -93,7 +93,7 @@ body{
 
 }
 
-.card {
+.your-card-class {
     background-color: #aaa9cf;
     border-radius: 1rem;
     padding: 20px;
@@ -103,25 +103,25 @@ body{
     text-align: center;
     position: relative;
   }
-.card:hover{
+  .your-card-class:hover{
     transform: scale(0.9);
     background-color: rgba(255,255,255,0.8);
 }
-.card img {
+.your-card-class img {
     width: 100%;
     height:200px;
     border-radius: 50%;
     
 }
-.card .bottom{
+.your-card-class .bottom{
     display: flex;
     flex-direction: column;
 }
-.card .bottom .title{
+.your-card-class .bottom .title{
     font-size: 14px;
     margin-bottom: 32px;
 }
-.card .bottom .amount{
+.your-card-class .bottom .amount{
     position: absolute;
     bottom: 10px;
     left: 10px;

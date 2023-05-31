@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Sidebar from "./Sidebar";
+import Swal from "sweetalert2";  
 import { toast } from "react-toastify";
 import { useContext, AuthContext } from "../../context/auth.js";
-
+import { useNavigate, NavLink } from "react-router-dom";
 import axios from "axios";
 import * as FaIcons from "react-icons/fa";
 
@@ -12,6 +13,8 @@ export const Contact = () => {
   
   const { auth, setAuth } = useContext(AuthContext);
 
+
+  const navigate = useNavigate();
 
 
   const handleSubmit = async (e) => {
@@ -23,14 +26,20 @@ export const Contact = () => {
         `http://localhost:8081/api/v1/auth/query`, 
      {fname: auth.user && auth.user.fname, email:auth.user && auth.user.email,query
       });
-      if (res && res.data.success) {
-        toast.success(`Query Recieved dear , ${auth.user && auth.user.fname}!!`);
-        setAuth({
-          ...auth,
-          user: auth.user && auth.user.fname,
+       if (res && res.data.success) {
+        Swal.fire({
+          title: "Success!",
+          text: res.data.message,
+          icon: "success",
+          timer: 2000,
+          showConfirmButton: false,
+          didClose: () => {
+           
+            navigate("/Home");
+          },
         });
       } else {
-        toast.error("errr");
+        toast.error(res.data.message);
       }
     } catch (error) {
       console.log(error);

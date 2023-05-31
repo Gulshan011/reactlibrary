@@ -110,24 +110,13 @@ function Calendar() {
   };
 
   //fetching list of task
-  // useEffect((id) => {
-  //   fetch(`http://localhost:8081/api/v1/auth/usertasks/${id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setTaskList(data.data))
-  //     .catch((error) => console.log(error));
-  // }, []);
   useEffect(() => {
-    if (auth?.token) {
-      fetch("http://localhost:8081/api/v1/auth/usertasks", {
-        headers: {
-          Authorization: `Bearer ${auth.token}`
-        }
-      })
-        .then((res) => res.json())
-        .then((data) => setTaskList(data))
-        .catch((error) => console.log(error));
-    }
-  }, [auth?.token]);
+    fetch(`http://localhost:8081/api/v1/auth/usertaskslist`)
+      .then((res) => res.json())
+      .then((data) => setTaskList(data.data))
+      .catch((error) => console.log(error));
+  }, []);
+ 
   
   useEffect(() => {
     // Filter events based on search term
