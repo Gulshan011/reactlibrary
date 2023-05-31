@@ -25,7 +25,7 @@ const Modal = ({ show, item, onClose }) => {
         publisheddate: item.volumeInfo.publishedDate,
         issuedDate: new Date().toJSON(),
         returnDate: returnDate.toJSON(),
-        
+        status: item.status,
       });
 
       if (res && res.data.success) {
@@ -78,7 +78,7 @@ const Modal = ({ show, item, onClose }) => {
                 <button onClick={issueBook}>Issue</button>
               </div> 
              
-              {qrValue && (
+              {item.status !== "Returned" && qrValue && (
                 <div
                   className="qr-code"
                   onMouseOver={handleMouseOver}

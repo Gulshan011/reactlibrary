@@ -168,6 +168,7 @@ img.botplatformchat-user, img.botplatformchatchat-user, img.botplatformframechat
 }
 .boxmenu {
 	height: 25px;
+	width:25px;
 	opacity: 0.7;
 	background-color: #84a3e1;
 }
@@ -481,6 +482,8 @@ span.botplatformmenu, span.botplatformchatmenu {
 	display: inline-block;
 	margin: 0;
 }
+
+  
 /* ###########################################  Botplatform Chat Live Chat  ############################################ */
 .botplatformchatbox img {
 	display: inline;

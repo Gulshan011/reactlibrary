@@ -54,10 +54,9 @@ const Navbar = () => {
           <li className="nav-item">
             <Link
               className="nav-link" style={{ color:"white"}}
-              to={auth.user && auth.user.role === "0" ? "/History" : "/BooksList"}
+              to={auth.user && auth.user.role === "1" ? "/BooksList":""}
             >
-              IssuedBooks
-            </Link>
+           </Link>
            </li>
            {auth.user && auth.user.role === "0" && (
             <li className="nav-item">
