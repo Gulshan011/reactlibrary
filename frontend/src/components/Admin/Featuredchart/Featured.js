@@ -44,9 +44,7 @@ const Featured = () => {
           <p className="role"style={{color:"white"}}>{auth.user && auth.user.dept}</p>
         </div>
         <div className="card-description" style={{color:"white"}}>
-          Do not be scared of the truth because we need to restart the
-          human foundation in truth And I love you like Kanye loves
-          Kanye I love Rick Owens’ bed design but the back is...
+        {auth.user && auth.user.bio}
         </div>
       </CardBody>
       <CardFooter>

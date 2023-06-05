@@ -3,8 +3,10 @@ import axios from 'axios';
 import React, { useState } from "react";
 import * as IoIcons from 'react-icons/io';
 import"./style.css"
+import Swal from "sweetalert2";  
 import { toast } from "react-toastify";
 import QRCode from 'qrcode.react';
+import { useNavigate, NavLink } from "react-router-dom";
 import { useContext, AuthContext } from "../../../context/auth";
 
 const Modal = ({ show, item, onClose }) => {
@@ -12,6 +14,7 @@ const Modal = ({ show, item, onClose }) => {
   const { auth, setAuth } = useContext(AuthContext);
   const issuedDate = new Date(); 
   const returnDate = new Date(issuedDate);
+  const navigate = useNavigate();
   returnDate.setDate(returnDate.getDate() + 14);
 
   const issueBook = async () => {
@@ -36,10 +39,22 @@ const Modal = ({ show, item, onClose }) => {
         const existingQrValues = JSON.parse(localStorage.getItem('qrValues')) || [];
         existingQrValues.push(JSON.stringify(res.data));
         localStorage.setItem('qrValues', JSON.stringify(existingQrValues));
-        toast.success("Issued book");
-      } else {
-        toast.error("Not available");
-      }
+        
+          Swal.fire({
+            title: "Success!",
+            text: res.data.message,
+            icon: "success",
+            timer: 2000,
+            showConfirmButton: false,
+            didClose: () => {
+             
+              navigate("/Home");
+            
+          }});
+        } else {
+          toast.error(res.data.message);
+        }
+     
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");

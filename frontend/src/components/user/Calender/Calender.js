@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
+import Swal from "sweetalert2";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -60,7 +61,13 @@ function Calendar() {
     );
   const { success, data, message } = response.data;
   if (success) {
-      toast.success(message);
+    Swal.fire({
+     title: "Success!",
+     text: message,
+     icon: "success",
+     timer: 2000,
+     showConfirmButton: false
+    })
       setNewEvent((prevState) => [...prevState, data]);
 
       setShowForm(false);
@@ -91,11 +98,28 @@ function Calendar() {
       const { data } = await axios.delete(
         `http://localhost:8081/api/v1/auth/deleteusertasks/${id}`
       );
-      if (data.success) {
-        toast.success(`Deleted successfully`);
-      } else {
-        toast.error(data.message);
-      }
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this! ⚠️",
+        type: 'warning',
+        showCancelButton: true,
+        // Background color of the "Confirm"-button. The default color is #3085d6
+        confirmButtonColor: 'LightSeaGreen',
+        // Background color of the "Cancel"-button. The default color is #aaa
+        cancelButtonColor: 'Crimson',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire({
+            type: 'success',
+            title: 'Deleted!',
+            text: "Your file has been deleted.",
+            timer: 2000,
+            showCancelButton: false,
+            showConfirmButton: false
+          })
+        }
+      })
     } catch (error) {
       toast.error("Somtihing went wrong");
     }
@@ -161,7 +185,13 @@ function Calendar() {
     const { success, data, message } = response.data;
 
     if (success) {
-      toast.success(message);
+      Swal.fire({
+       title: "Success!",
+       text: message,
+       icon: "success",
+       timer: 2000,
+       showConfirmButton: false
+      })
 
       const filteredEvents = taskList.filter((task) =>
         task.title.toLowerCase().includes(searchTerm.toLowerCase())

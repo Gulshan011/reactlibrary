@@ -1,44 +1,4 @@
-/* .Widgets,
-.chart,
-.featured {
-  display: flex;
-  padding: 20px;
-  gap: 20px;
-}
-.Widget {
-  margin-right: 20px;
-
-  padding: 10px;
-  color: #525f7f;
-
-  border-radius: 10px;
-  height: 150px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chart {
-  display: flex;
-  padding: 20px;
-  gap: 20px;
-  padding: 25px;
-  flex: 3;
-
-  border-radius: 8%;
-}
-.chart .title {
-  margin-bottom: 20px;
-}
-.chartGrid {
-  stroke: lightgray;
-}
-
-.chartsdata {
-  flex: 2 2;
-  display: flex;
-} */
-/* Widgets.css */
-
+/* 
 .Widgets,
 .featured {
   display: flex;
@@ -114,4 +74,130 @@
 }
 .card-user {
     margin: 0;
+  
   }
+
+  .new-card{
+    background-color:#525f7f;
+      border-radius: 20px;
+      padding:10px;
+      margin:30px;
+      box-shadow: 0 5px 5px rgb(212 185 150 / 50%);
+      transition: .5s;
+  }
+   */
+   /* Widgets.css */
+
+.Widget {
+  background-color:#525f7f;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.new-card {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color:#525f7f;
+}
+
+.author {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color:#525f7f;
+  border-radius: 20px;
+  box-shadow: 0 5px 5px rgb(212 185 150 / 50%);
+}
+
+.author a {
+  text-decoration: none;
+}
+.author:hover{
+  transform: scale(0.9);
+  background-color: rgba(255,255,255,0.8);
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.title {
+  font-size: 18px;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.role {
+  font-size: 14px;
+  color: #fff;
+  margin-top: 5px;
+}
+
+.card-description {
+  color: #fff;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.chart {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 18px;
+  color: #000;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.chartGrid {
+  stroke: #e5e5e5;
+}
+
+@media (max-width: 768px) {
+  .col-xl-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .author {
+    padding: 10px;
+  }
+
+  .avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .role {
+    font-size: 12px;
+  }
+
+  .card-description {
+    font-size: 14px;
+  }
+}

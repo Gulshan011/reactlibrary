@@ -84,14 +84,10 @@ const Widgets = ({type}) => {
           <span className="links">{data.link}</span>
         </div>
       </div>
-      <div className="right">
-        <div className="percentage positive" >
-          <FaIcons.FaArrowUp />
-          20%
-        </div>
+      
         <span className="icon">{data.icon}</span> 
       </div>
-    </div>
+
   );
 };
 

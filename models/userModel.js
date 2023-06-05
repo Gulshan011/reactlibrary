@@ -34,14 +34,23 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
       },
+      photo:{
+        type:Buffer,
+        contentType:String,
+      },
       answer:{
         type:String,
        
       },
-    
+      address:{
+        type:String,
+      },
+      bio:{
+        type:String,
+      },
+  
     
     },
 {timestamps:true},
 )
 export default mongoose.model("users",userSchema);
-

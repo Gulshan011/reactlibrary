@@ -1,5 +1,6 @@
 import express from "express";
-import {registerController,bookController,queryController,loginController,testController, deleteBookController,userUpdateTaskController,getUserTaskController,deleteTaskController,deleteUserTaskController,forgotPasswordController,addUserTaskController,usertaskListController,bookListController,updateProfileController,updateTaskController,registerListController,taskListController,addTaskController,updateStatusController} from '../controllers/authController.js'
+import formidable from "express-formidable";
+import {registerController,bookController,queryController,loginController,queryListController,userDataController,testController, deleteBookController,userUpdateTaskController,getUserTaskController,deleteTaskController,deleteUserTaskController,forgotPasswordController,addUserTaskController,usertaskListController,bookListController,updateProfileController,updateTaskController,registerListController,taskListController,addTaskController,updateStatusController} from '../controllers/authController.js'
 import {requireSignIn,isAdmin} from "../middlewares/authMiddleware.js";
 //route object
 const router = express.Router()
@@ -19,7 +20,9 @@ router.post('/forgot-password',forgotPasswordController)
 //test route
 router.get('/test',requireSignIn,isAdmin,testController);
 router.get('/booklist',bookListController);
+router.get('/userdata',userDataController);
 router.get('/taskslist',taskListController);
+router.get('/querylist',queryListController);
 router.get('/usertaskslist',usertaskListController);
 router.get("/usertasks/:id", requireSignIn, getUserTaskController);
 router.get('/registerlist',registerListController);
@@ -39,7 +42,7 @@ router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
 router.put("/update-tasks",updateTaskController);
 router.put("/update-status/:id",updateStatusController);
 router.put("/userupdatetasks",userUpdateTaskController);
-router.put("/update-profile",updateProfileController);
+router.put("/updateprofile",updateProfileController);
 router.delete("/deletetasks/:id", deleteTaskController);
 router.delete("/deleteusertasks/:id", deleteUserTaskController);
 router.delete("/deletebook/:id",deleteBookController)

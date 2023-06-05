@@ -106,47 +106,7 @@ background-image{
   opacity:0.5;
 }
 
-/*sign up and login css--------------------------------------------------------------------------------------------------------------*/
 
-
-.signup-page {
-  height: 100vh; /* sets the height of the home page to be equal to the height of the viewport */
-  display: flex; /* enables flexbox layout */
-  justify-content: center; /* centers the content horizontally */
-  align-items: center; /* centers the content vertically */
-  background-color: #1e1e2f;
-  color: #525f7f;
-}
-.new-card-container {
-  max-width: 1000px; /* Decrease the maximum width of the container */
-  max-height: 800px; /* Decrease the maximum height of the container */
-  margin: 40px auto; /* Add a top margin of 40px and center the container horizontally */
-  border-radius: 20px; /* Add a border radius of 20px */
-  background-color: #1e1e2f;
-}
-
-.new-card .form-submit {
-  background-color: #000000;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-.new-card .signup-image-link {
-  color: #000000;
-  margin-top: 10px;
-  display: block;
-}
-.login-page {
-  height: 100vh; /* sets the height of the home page to be equal to the height of the viewport */
-  display: flex; /* enables flexbox layout */
-  justify-content: center; /* centers the content horizontally */
-  align-items: center; /* centers the content vertically */
-  background-color: #1e1e2f;
-  color: #525f7f;
-}
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------  */
 .home-page {

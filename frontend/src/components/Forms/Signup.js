@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";  
-import { Container, Card, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Card, Row, Col, Form} from 'react-bootstrap';
 
 import axios from "axios";
 import { useNavigate, NavLink } from "react-router-dom";
-import '../App.css'
+import './forms.css'
 const Signup = () => {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
@@ -59,14 +59,14 @@ const Signup = () => {
     
        
 
-        <Card className='new-card'>
+        <div className='new-card'>
        
             <Row className='g-0'>
               <Col md='6' className='d-none d-md-block'>
-                <Card.Img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp' alt='Sample photo' className='rounded-start' fluid />
+                <Card.Img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqsibS6krrFtrIbJSzFblxDZD3Fla_c9-GlQ&usqp=CAU' className='rounded-start' fluid />
               </Col>
               <Col md='6'>
-                <Card.Body className='text-black d-flex flex-column justify-content-center'>
+                <Card.Body className='text-black d-flex flex-column justify-content-center '>
                   <h3 className='mb-5 text-uppercase fw-bold'>Student registration form</h3>
                   <form method="POST" className="register-form" id="register-form"
                   onSubmit={handleSubmit}>
@@ -152,7 +152,7 @@ const Signup = () => {
                 </Card.Body>
               </Col>
             </Row>
-          </Card>
+          </div>
         </Col>
       </Row>
     </Container>
