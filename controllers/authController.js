@@ -6,7 +6,7 @@ import bookModel from "../models/bookModel.js";
 import queryModel from "../models/queryModel.js";
 import taskModel from "../models/taskModel.js";
 import userTaskModel from "../models/userTaskModel.js";
-
+import fs from 'fs'
 
 
 //--------------register api-----------------------------------------------------------------------------------------------
@@ -505,14 +505,22 @@ export const deleteBookController=async(req,res)=>{
 //-------------------------------------------------------------------------------update profile 
 
 
+
 export const updateProfileController = async (req, res) => {
   try {
-    const { title, start, end, priority, description } = req.body;
+    const { fname,email, lname, bio, address} = req.body;
 
-    const task = await taskModel.findOne({ title: title });
+    const user = await userModel.findOne({ email:email});
 
-    await taskModel.findByIdAndUpdate(task._id, {
-      $set: { title, start, end, priority, description },
+    if (!email) {
+      return res.status(404).send({
+        success: false,
+        message: `No task found with title "${email}"`,
+      });
+    }
+
+    await userModel.findByIdAndUpdate(user._id, {
+      $set: {  fname, lname, bio, address},
     });
 
     res.status(200).send({
@@ -520,16 +528,20 @@ export const updateProfileController = async (req, res) => {
       message: "Updated Successfully",
     });
   } catch (error) {
-    console.log(`error in updating task: ${error}`);
+    console.log(`error in updating : ${error}`);
     res.status(500).send({
       success: false,
       message: "Something went wrong",
       error,
     });
   }
-};
+}; 
 
 
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------
 
 ///task api ......for  admin calender ///////////////////////////////////////////////////////////////////////////////////////////////
 //adminadd task
@@ -763,3 +775,40 @@ export const deleteUserTaskController = async (req, res) => {
 };
 
 //----------------------------------------------------------------------------------------------------------------------------------
+export const userDataController = async (req, res) => {
+  try {
+    const user = await userModel.find({});
+
+    res.json({
+      success: true,
+      message: "Tasks fetched successfully",
+      data: user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Something went wrong",
+      error,
+    });
+  }
+}; 
+
+export const queryListController = async (req, res) => {
+  try {
+    const user = await queryModel.find({});
+
+    res.json({
+      success: true,
+      message: "Tasks fetched successfully",
+      data: user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Something went wrong",
+      error,
+    });
+  }
+}; 

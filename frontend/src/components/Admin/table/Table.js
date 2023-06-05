@@ -22,7 +22,7 @@ function List() {
       .catch(error => console.log(error));
   }, []);
 
-  const latestBooks = bookList.slice(Math.max(bookList.length - 5, 0)); // get the latest 5 books
+const latestBooks = bookList.slice(Math.max(bookList.length - 5, 0)); // get the latest 5 books
  latestBooks.sort();
   return (
     <div>

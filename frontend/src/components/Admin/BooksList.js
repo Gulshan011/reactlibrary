@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import AdminSidebar from "../Admin/AdminSidebar";
 import axios from "axios";
+import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import Table from "react-bootstrap/Table";
 import { Select } from "antd";
@@ -46,7 +47,28 @@ function BookList() {
         setBookList((prevBookList) =>
           prevBookList.filter((book) => book._id !== id)
         );
-        toast.success("Book details deleted successfully");
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this! ⚠️",
+          type: 'warning',
+          showCancelButton: true,
+          // Background color of the "Confirm"-button. The default color is #3085d6
+          confirmButtonColor: 'LightSeaGreen',
+          // Background color of the "Cancel"-button. The default color is #aaa
+          cancelButtonColor: 'Crimson',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.value) {
+            Swal.fire({
+              type: 'success',
+              title: 'Deleted!',
+              text: "Your file has been deleted.",
+              timer: 2000,
+              showCancelButton: false,
+              showConfirmButton: false
+            })
+          }
+        })
         return;
       }
   

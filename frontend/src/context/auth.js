@@ -6,6 +6,7 @@ const AuthProvider =({children}) =>{
         user:null,
         token:" "
     })
+ 
     //default axios
     axios.defaults.headers.common["Authorization"] = auth?.token;
     useEffect(() =>{
@@ -16,7 +17,9 @@ const AuthProvider =({children}) =>{
                 ...auth,
                 user:parseData.user,
                 token:parseData.token,
+                bio:parseData.bio,
             });
+            
         }
     },[]);
     console.log(setAuth);
@@ -31,8 +34,8 @@ const AuthProvider =({children}) =>{
 const useAuth = () => {
     const [auth, setAuth] = useContext(AuthContext);
     const fname = auth.user?.fname; // access fname property
-  
-    return { auth, setAuth, fname}; // return auth, setAuth, and fname
+    const bio = auth.user?.bio; 
+    return { auth, setAuth, fname,bio}; // return auth, setAuth, and fname
   };
   
   export { useContext,AuthContext,useAuth, AuthProvider };

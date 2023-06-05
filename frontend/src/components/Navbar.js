@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";  
 import { NavDropdown } from "react-bootstrap";
 import { FaBars } from 'react-icons/fa';
 import { color } from "@mui/system";
@@ -24,8 +25,20 @@ const Navbar = () => {
       token: "",
     });
     localStorage.removeItem("auth");
-    navigate("/home");
-    // toast.success(`Logged out ${auth.user && auth.user.fname}`);
+   
+        Swal.fire({
+          title: "Success!",
+          text: "Logged out!!!",
+          icon: "success",
+          timer: 2000,
+          showConfirmButton: false,
+          didClose: () => {
+           
+            navigate("/Home");
+          },
+        });
+     
+
   };
 
   return (
@@ -33,7 +46,7 @@ const Navbar = () => {
       <Link className="navbar-brand" to="/Home" style={{ fontFamily: "Poppins, sans-serif" ,color:"white"}} >
         ELibrary
       </Link>
-    
+     
       <button
         className="navbar-toggler" 
         type="button"

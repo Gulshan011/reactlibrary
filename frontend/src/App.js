@@ -1,20 +1,21 @@
-import React , { useContext }from "react";
+import React, { useContext } from "react";
 import "./App.css";
 import { useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import Login from "./components/Login";
+import Login from "./components/Forms/Login";
+import Queries from "./components/Admin/Queries";
 import Home from "./components/Home/Home";
-import Signup from "./components/Signup";
-import About from "./components/About";
+import Signup from "./components/Forms/Signup";
+import About from "./components/Forms/About";
 import Dashboard from "./components/user/Dashboard";
 import Messages from "./components/user/Messages";
 import BooksList from "./components/Admin/BooksList";
 //import Edit from './components/Edit';
-
+import UserList from "./components/Admin/UserList";
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "./components/routes/Private";
-import Forgotpassword from "./components/Forgotpassword";
+import Forgotpassword from "./components/Forms/Forgotpassword";
 import AdminRoute from "./components/routes/AdminRoute";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import AboutRoute from "./components/routes/AboutRoute";
@@ -24,8 +25,8 @@ import AdminCalender from "./components/Admin/AdminCalender/AdminCalender.js";
 import IssueBook from "./components/user/IssueBook/IssueBook";
 import Modal from "./components/user/IssueBook/Modal";
 import Contact from "./components/user/Contact";
-import HistoryRoute from "./components/routes/HistoryRoute.js";
-import EditProfile from "./components/EditProfile";
+
+
 
 import Records from "./components/Admin/Records";
 import ChatBotWidget from "./components/user/ChatBotWidget";
@@ -35,11 +36,11 @@ const App = () => {
   const location = useLocation();
 
   return (
-    <div >
+    <div>
       {location.pathname === "/dashboard/user" ||
       location.pathname === "/messages" ||
-
       location.pathname === "/About" ||
+      location.pathname === "/Queries" ||
       location.pathname === "/BooksList" ||
       location.pathname === "/admincalender" ||
       location.pathname === "/dashboard/admin" ||
@@ -50,6 +51,7 @@ const App = () => {
       location.pathname === "/Records" ||
       location.pathname === "/calender" ||
       location.pathname === "/ChatBotWidget" ||
+      location.pathname === "/UserList" ||
       location.pathname === "/Contact" ? (
         <div></div>
       ) : (
@@ -66,9 +68,10 @@ const App = () => {
         <Route path="/about" element={<AboutRoute />}>
           <Route path="" element={<About />} />
         </Route>
-       
 
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/queries" element={<Queries />}></Route>
+        <Route path="/userlist" element={<UserList />}></Route>
         <Route path="/chatbotwidget" element={<ChatBotWidget />}></Route>
         <Route path="/messages" element={<Messages />}></Route>
         <Route path="/bookslist" element={<BooksList />}></Route>
@@ -77,14 +80,14 @@ const App = () => {
         <Route path="/myTasks" element={<MyTasks />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/modal" element={<Modal />}></Route>
-      
+
         <Route path="/admincalender" element={<AdminCalender />}></Route>
         <Route path="/issuebook" element={<IssueBook />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
-      <Route path="/records" element={<Records/>}></Route>
+        <Route path="/records" element={<Records />}></Route>
+
+        <Route path="/darkmode" element={<DarkMode />}></Route>
      
-      <Route path="/darkmode" element={<DarkMode/>}></Route>
-        <Route path="/edit" element={<EditProfile />}></Route>
       </Routes>
       <Routes>
         <Route path="/dashboard" element={<AdminRoute />}>

@@ -57,7 +57,7 @@ export const AdminSidebarData = [
   
   {
     title: 'Queries',
-    path: '/Query',
+    path: '/Queries',
     icon: <IoIcons.IoMdHelpCircle />
   },
   {

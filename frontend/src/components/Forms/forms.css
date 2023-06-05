@@ -1,0 +1,95 @@
+/*sign up and login css--------------------------------------------------------------------------------------------------------------*/
+
+
+.signup-page {
+    height: 100vh; /* sets the height of the home page to be equal to the height of the viewport */
+    display: flex; /* enables flexbox layout */
+    justify-content: center; /* centers the content horizontally */
+    align-items: center; /* centers the content vertically */
+    background-color: #1e1e2f;
+    color: #525f7f;
+    box-shadow: 0 5px 5px rgb(212 185 150 / 50%);
+  }
+  .new-card-container {
+    max-width: 1000px; /* Decrease the maximum width of the container */
+    max-height: 800px; /* Decrease the maximum height of the container */
+    margin: 40px auto; /* Add a top margin of 40px and center the container horizontally */
+    border-radius: 20px; /* Add a border radius of 20px */
+    background-color: #1e1e2f;
+  }
+  .new-card{
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    padding:10px;
+  }
+  .new-card .form-submit {
+    background-color: #204164;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .new-card .signup-image-link {
+    color: #000000;
+    margin-top: 10px;
+    display: block;
+  }
+  .login-page {
+    height: 100vh; /* sets the height of the home page to be equal to the height of the viewport */
+    display: flex; /* enables flexbox layout */
+    justify-content: center; /* centers the content horizontally */
+    align-items: center; /* centers the content vertically */
+    background-color: #1e1e2f;
+    box-shadow: 0 5px 5px rgb(212 185 150 / 50%);
+    color: #525f7f;
+  }
+
+  input[type="text"], input[type="email"],input[type="password"],input[name="bio"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: black;
+    font-family: "Poppins", sans-serif;
+}
+
+
+input[type="submit"]:hover {
+  background-color: #d1c952;
+  
+}
+.about-card{
+  background-color:#525f7f;
+    border-radius: 20px;
+    padding:10px;
+    margin:40px;
+    height:600px;
+    box-shadow: 0 5px 5px rgb(212 185 150 / 50%);
+    transition: .5s;
+}
+.about-page {
+  height: 100vh; /* sets the height of the home page to be equal to the height of the viewport */
+  display: flex; /* enables flexbox layout */
+   /* centers the content vertically */
+  background-color: #1e1e2f;
+  color: #525f7f;
+}
+.aboutcard-user{
+  background-color:#525f7f;
+    border-radius: 20px;
+    padding:10px;
+    margin:30px;
+    box-shadow: 0 5px 5px rgb(212 185 150 / 50%);
+    transition: .5s;
+}
+.profile-image{
+  border-radius:80%;
+  height:400px;
+  width:400px;
+  object-fit: cover;
+}
+.form-control{
+  font-family:"Poppins", sans-serif;
+}

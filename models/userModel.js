@@ -34,30 +34,23 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
       },
+      photo:{
+        type:Buffer,
+        contentType:String,
+      },
       answer:{
         type:String,
        
       },
-    
+      address:{
+        type:String,
+      },
+      bio:{
+        type:String,
+      },
+  
     
     },
 {timestamps:true},
 )
 export default mongoose.model("users",userSchema);
-// const BookSchema=new mongoose.Schema({
-//   title: {
-//       type: String,
-      
-//     },
-//    author: {
-//       type: String,
-//       required: true,
-//     },
-//    publisher: {
-//       type: String,
-//       required: true,
-//     },
-    
-  
-//   })
-//    mongoose.model("books",BookSchema);
