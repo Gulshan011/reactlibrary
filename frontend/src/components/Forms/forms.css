@@ -55,7 +55,14 @@
     font-family: "Poppins", sans-serif;
 }
 
+.form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #fee886;
+  outline: 0;
 
+  box-shadow: 0 0 0 0.25rem #33eeffb6
+}
 input[type="submit"]:hover {
   background-color: #d1c952;
   

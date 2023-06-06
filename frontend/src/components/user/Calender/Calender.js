@@ -17,7 +17,10 @@ import { getBackgroundColor, getBorderColor } from "../../Admin/AdminCalender/ut
 const { Option } = Select;
 
 function Calendar() {
-   const { auth, setAuth } = useContext(AuthContext);
+  
+   const { auth } = useContext(AuthContext);
+const email = auth.user && auth.user.email; // Destructure the _id property from the auth object
+
   const [newEvent, setNewEvent] = useState([]);
   const [taskList, setTaskList] = useState([]);
   const [priority, setPriority] = useState("");
@@ -135,32 +138,31 @@ function Calendar() {
 
   //fetching list of task
   useEffect(() => {
-    fetch(`http://localhost:8081/api/v1/auth/usertaskslist`)
+    fetch(`http://localhost:8081/api/v1/auth/usertasks/${email}`)
       .then((res) => res.json())
       .then((data) => setTaskList(data.data))
       .catch((error) => console.log(error));
-  }, []);
- 
+  }, [email]);
   
-  useEffect(() => {
-    // Filter events based on search term
-    const filteredEvents = taskList.filter((task) =>
-      task.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    // Convert filtered events to FullCalendar compatible format
-    const events = filteredEvents.map((task) => ({
-      id: task._id,
-      title: task.title,
-      start: new Date(task.start),
-      end: new Date(task.end),
-      priority: task.priority,
-       description:task.description,
-      backgroundColor: getBackgroundColor(task.priority),
-      borderColor: getBorderColor(task.priority),
-    }));
-    setNewEvent(events);
-  }, [taskList, searchTerm]);
-  console.log(newEvent, "eee");
+  // useEffect(() => {
+  //   // Filter events based on search term
+  //   const filteredEvents = taskList.filter((task) =>
+  //     task.title.toLowerCase().includes(searchTerm.toLowerCase())
+  //   );
+  //   // Convert filtered events to FullCalendar compatible format
+  //   const events = filteredEvents.map((task) => ({
+  //     id: task._id,
+  //     title: task.title,
+  //     start: new Date(task.start),
+  //     end: new Date(task.end),
+  //     priority: task.priority,
+  //      description:task.description,
+  //     backgroundColor: getBackgroundColor(task.priority),
+  //     borderColor: getBorderColor(task.priority),
+  //   }));
+  //   setNewEvent(events);
+  // }, [taskList, searchTerm]);
+  // console.log(newEvent, "eee");
  
   //.....................updatetasks.
   const handleFormUpdate = async (e) => {
