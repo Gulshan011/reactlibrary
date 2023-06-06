@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Login from "./components/Forms/Login";
+
 import Queries from "./components/Admin/Queries";
 import Home from "./components/Home/Home";
 import Signup from "./components/Forms/Signup";
@@ -46,6 +47,7 @@ const App = () => {
       location.pathname === "/dashboard/admin" ||
       location.pathname === "/dashboard/Admin" ||
       location.pathname === "/issuebook" ||
+      location.pathname === "/forgotpassword" ||
       location.pathname === "/history" ||
       location.pathname === "/IssueBookForm" ||
       location.pathname === "/Records" ||
@@ -70,12 +72,13 @@ const App = () => {
         </Route>
 
         <Route path="/login" element={<Login />}></Route>
+       
         <Route path="/queries" element={<Queries />}></Route>
         <Route path="/userlist" element={<UserList />}></Route>
         <Route path="/chatbotwidget" element={<ChatBotWidget />}></Route>
         <Route path="/messages" element={<Messages />}></Route>
         <Route path="/bookslist" element={<BooksList />}></Route>
-        <Route path="/forgot-password" element={<Forgotpassword />}></Route>
+        <Route path="/forgotpassword" element={<Forgotpassword />}></Route>
         <Route path="/calender" element={<Calender />}></Route>
         <Route path="/myTasks" element={<MyTasks />}></Route>
         <Route path="/signup" element={<Signup />}></Route>

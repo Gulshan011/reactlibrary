@@ -44,6 +44,11 @@ export const AdminSidebarData = [
     path: '/About',
     icon: <AiIcons.AiFillHome />
   },
+  { 
+    title: 'UserList',
+    path: '/UserList',
+    icon: <AiIcons. AiFillQqCircle/>
+  },
   {
     title: 'My Tasks',
     path: '/admincalender',

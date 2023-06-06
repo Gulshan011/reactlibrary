@@ -6,8 +6,7 @@ import bookModel from "../models/bookModel.js";
 import queryModel from "../models/queryModel.js";
 import taskModel from "../models/taskModel.js";
 import userTaskModel from "../models/userTaskModel.js";
-import fs from 'fs'
-
+import fs from "fs";
 
 //--------------register api-----------------------------------------------------------------------------------------------
 export const registerController = async (req, res) => {
@@ -49,7 +48,7 @@ export const registerController = async (req, res) => {
     if (!dept) {
       return res.send({ message: "dept is required" });
     }
-   
+
     //check existing user
     const existinguser = await userModel.findOne({ email });
     //existing user
@@ -201,7 +200,7 @@ export const forgotPasswordController = async (req, res) => {
     });
   }
 };
-//--forgot passwrd 
+//--forgot passwrd
 
 export const queryControllers = async (req, res) => {
   try {
@@ -234,7 +233,7 @@ export const testController = (req, res) => {
   }
 };
 
-//-----------------------------------------------------------------------------query controller 
+//-----------------------------------------------------------------------------query controller
 export const queryController = async (req, res) => {
   try {
     const { fname, email, query } = req.body;
@@ -252,7 +251,6 @@ export const queryController = async (req, res) => {
       return res.send({ message: "Query is required" });
     }
 
-    
     const newQuery = await queryModel.create({
       fname,
       email,
@@ -389,19 +387,19 @@ export const bookController = async (req, res) => {
         message: "Book is already issued; out of stock",
       });
     }
-if (issuedBook && issuedBook.status === "Returned") {
-  issuedBook.status = "Returned";
-  await issuedBook.save();
-  
-  return res.status(200).send({
-    success: true,
-    message: "Book is available for issuance again",
-    data: {
-      ...issuedBook.toObject(),
-      status: issuedBook.status,
-    },
-  });
-}
+    if (issuedBook && issuedBook.status === "Returned") {
+      issuedBook.status = "Returned";
+      await issuedBook.save();
+
+      return res.status(200).send({
+        success: true,
+        message: "Book is available for issuance again",
+        data: {
+          ...issuedBook.toObject(),
+          status: issuedBook.status,
+        },
+      });
+    }
 
     // Create the book in the database
     const newBook = await bookModel.create({
@@ -432,8 +430,7 @@ if (issuedBook && issuedBook.status === "Returned") {
   }
 };
 
-
-//---book list controller 
+//---book list controller
 export const bookListController = async (req, res) => {
   try {
     const issues = await bookModel.find({}).sort({ issuedDate: "-1" });
@@ -453,27 +450,26 @@ export const bookListController = async (req, res) => {
   }
 };
 
-//-update status for books 
+//-update status for books
 export const updateStatusController = async (req, res) => {
-  try{
+  try {
     const { id } = req.params;
-    const{status}=req.body
-    await bookModel.findByIdAndUpdate(id,{status},{new:true});
+    const { status } = req.body;
+    await bookModel.findByIdAndUpdate(id, { status }, { new: true });
     res.status(200).send({
       success: true,
       message: " Updated successfully",
     });
-      
-  }catch(error){
+  } catch (error) {
     res.status(500).send({
       success: false,
       message: "Something went wrong",
       error,
     });
   }
-}
+};
 
-export const deleteBookController=async(req,res)=>{
+export const deleteBookController = async (req, res) => {
   try {
     const bookId = req.params.id;
 
@@ -496,21 +492,13 @@ export const deleteBookController=async(req,res)=>{
 
 //-----------------------------------------------------------------------------------------------------------------------
 
-
-
-
-
-
-
-//-------------------------------------------------------------------------------update profile 
-
-
+//-------------------------------------------------------------------------------update profile
 
 export const updateProfileController = async (req, res) => {
   try {
-    const { fname,email, lname, bio, address} = req.body;
+    const { fname, email, lname, bio, address } = req.body;
 
-    const user = await userModel.findOne({ email:email});
+    const user = await userModel.findOne({ email: email });
 
     if (!email) {
       return res.status(404).send({
@@ -520,7 +508,7 @@ export const updateProfileController = async (req, res) => {
     }
 
     await userModel.findByIdAndUpdate(user._id, {
-      $set: {  fname, lname, bio, address},
+      $set: { fname, lname, bio, address },
     });
 
     res.status(200).send({
@@ -535,11 +523,7 @@ export const updateProfileController = async (req, res) => {
       error,
     });
   }
-}; 
-
-
-
-
+};
 
 //--------------------------------------------------------------------------------------------------------------------------
 
@@ -576,7 +560,7 @@ export const addTaskController = async (req, res) => {
       error,
     });
   }
-}; 
+};
 //admin task list
 export const taskListController = async (req, res) => {
   try {
@@ -597,10 +581,10 @@ export const taskListController = async (req, res) => {
   }
 };
 
-//admin update task 
+//admin update task
 export const updateTaskController = async (req, res) => {
   try {
-    const { title, start, end, priority, description,category } = req.body;
+    const { title, start, end, priority, description, category } = req.body;
 
     const task = await taskModel.findOne({ start: start });
 
@@ -612,7 +596,7 @@ export const updateTaskController = async (req, res) => {
     }
 
     await taskModel.findByIdAndUpdate(task._id, {
-      $set: { title, start, end, priority, description,category },
+      $set: { title, start, end, priority, description, category },
     });
 
     res.status(200).send({
@@ -627,12 +611,12 @@ export const updateTaskController = async (req, res) => {
       error,
     });
   }
-}; 
-//admin delete task 
+};
+//admin delete task
 export const deleteTaskController = async (req, res) => {
   try {
     const { id } = req.params;
-  
+
     await taskModel.findByIdAndDelete(id);
     res.status(200).send({
       success: true,
@@ -648,17 +632,14 @@ export const deleteTaskController = async (req, res) => {
   }
 };
 
-
 //------------------------------------------------------------------------------*****************************************************************
 
-
-//user tasks api s----------------------------------for usercalender 
+//user tasks api s----------------------------------for usercalender
 //addtask
 export const addUserTaskController = async (req, res) => {
   try {
     const { title, start, end, priority } = req.body;
 
-  
     if (!start) {
       return res.send({ message: "S.D. is required" });
     }
@@ -702,16 +683,27 @@ export const usertaskListController = async (req, res) => {
       error,
     });
   }
-}; 
+};
 //-single user tasks
 export const getUserTaskController = async (req, res) => {
   try {
-    const userId = req.user._id; // Assuming req.user contains the authenticated user details
-    
-    const tasks = await userTaskModel.find({ user: userId }).populate(tasks);
-    
-    res.json(tasks);
-  } catch (error) {
+    const userEmail = req.params.email; // Assuming req.user contains the authenticated user details
+    console.log(userEmail, "uuu");
+    const tasks = await userTaskModel.find({email: userEmail });
+    if (!tasks) {
+      res.status(500).send({
+        success: false,
+        message: "Error while getting tasks",
+      });
+    }
+    else {
+      res.status(200).send({
+        success: true,
+        message: "Getting data",
+        data : tasks,
+    });
+  } 
+}catch (error) {
     console.log(error);
     res.status(500).send({
       success: false,
@@ -720,7 +712,6 @@ export const getUserTaskController = async (req, res) => {
     });
   }
 };
-
 
 //--userupdate tasks
 export const userUpdateTaskController = async (req, res) => {
@@ -759,7 +750,7 @@ export const deleteUserTaskController = async (req, res) => {
   try {
     const { id } = req.params;
     await userTaskModel.findByIdAndDelete(id);
-  
+
     res.status(200).send({
       success: true,
       message: " Deleted successfully",
@@ -792,7 +783,7 @@ export const userDataController = async (req, res) => {
       error,
     });
   }
-}; 
+};
 
 export const queryListController = async (req, res) => {
   try {
@@ -811,4 +802,4 @@ export const queryListController = async (req, res) => {
       error,
     });
   }
-}; 
+};

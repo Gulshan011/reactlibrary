@@ -24,7 +24,7 @@ router.get('/userdata',userDataController);
 router.get('/taskslist',taskListController);
 router.get('/querylist',queryListController);
 router.get('/usertaskslist',usertaskListController);
-router.get("/usertasks/:id", requireSignIn, getUserTaskController);
+router.get("/usertasks/email",getUserTaskController);
 router.get('/registerlist',registerListController);
 //protected user route auth
 router.get("/user-auth", requireSignIn, (req, res) => {

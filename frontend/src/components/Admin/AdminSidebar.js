@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 import * as AiIcons from 'react-icons/ai';
 import { AdminSidebarData } from './AdminSidebarData.js';
@@ -27,33 +28,51 @@ const NavIcon = styled(Link)`
   font-family:"Poppins",sans-serif;
 color:#000000;
 `;
-
-const SidebarNav = styled.nav`
-  background: #20232a;
-  width: 250px;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
-  transition: 350ms;
-  z-index: 10;
+const sidebarVariants = {
+  open: {
+    width: '250px',
+    left: '0',
+    transition: {
+      type: 'spring',
+      stiffness: 50,
+      damping: 10,
+    },
+  },
+  closed: {
+    width: '80px',
+    left: '-170px',
+    transition: {
+      type: 'spring',
+      stiffness: 50,
+      damping: 10,
+    },
+  },
+};
+const SidebarNav = styled(motion.nav)`
+background: #20232a;
+width: 250px;
+height: 100vh;
+display: flex;
+justify-content: center;
+position: fixed;
+top: 0;
+left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
+z-index: 10;
 `;
 
-const SidebarWrap = styled.div`
-  width: 100%;
+const SidebarWrap = styled(motion.div)`
+width: 100%;
 `;
 
 const AdminSidebar = () => {
  
-  const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
-  
+  const [sidebar, setSidebar] = useState({ isOpen: false });
+const showSidebar = () => setSidebar({ isOpen: !sidebar.isOpen });
+
   
   return (
     <> 
-      
+    <motion.div>
       <IconContext.Provider value={{ color: '#fff' }}>
         <Nav>
      
@@ -67,9 +86,16 @@ const AdminSidebar = () => {
         </Nav>
       
         
-        <SidebarNav sidebar={sidebar}>
+        <SidebarNav 
+        initial={sidebar.isOpen ? 'open' : 'closed'}
+  animate={sidebar.isOpen ? 'open' : 'closed'}
+  variants={sidebarVariants}
+  sidebar={sidebar.isOpen}>
       
-          <SidebarWrap>
+          <SidebarWrap  initial={sidebar.isOpen ? 'open' : 'closed'}
+          animate={sidebar.isOpen ? 'open' : 'closed'}
+          variants={sidebarVariants}
+          sidebar={sidebar.isOpen}>
             <NavIcon to=''>
               <AiIcons.AiOutlineClose onClick={showSidebar} />
             </NavIcon>
@@ -80,6 +106,7 @@ const AdminSidebar = () => {
           </SidebarWrap>
         </SidebarNav>
       </IconContext.Provider>
+      </motion.div>
     </>
   );
           }
