@@ -273,77 +273,7 @@ export const queryController = async (req, res) => {
 };
 //-----------------------------------------------------------issue book api-------------------------------------------------------------------
 
-// export const bookController = async (req, res) => {
-//   try {
-//     const {
-//       fname,
-//       bookname,
-//       authors,
-//       publisher,
-//       publishedDate,
-//       issuedDate,
-//       email,
-//       returnDate,
-//     } = req.body;
 
-//     // Validations
-
-//     if (!fname) {
-//       return res.send({ message: "Fname is required" });
-//     }
-//     if (!email) {
-//       return res.send({ message: "Book name is required" });
-//     }
-//     if (!bookname) {
-//       return res.send({ message: "Book name is required" });
-//     }
-//     if (!authors) {
-//       return res.send({ message: "Authors is required" });
-//     }
-//     if (!publisher) {
-//       return res.send({ message: "Publisher is required" });
-//     }
-//     if (!issuedDate) {
-//       return res.send({ message: "Issued date is required" });
-//     }
-
-//     // Check if book is already issued
-//     const issuedBook = await bookModel.findOne({ bookname });
-//     if (issuedBook) {
-//       return res.status(200).send({
-//         success: false,
-//         message: "Book is already issued; out of stock",
-//       });
-//     }
-
-//     // Create the book in the database
-//     const newBook = await bookModel.create({
-//       fname,
-//       bookname,
-//       authors,
-//       publisher,
-//       publishedDate,
-//       issuedDate,
-//       returnDate,
-//     });
-
-//     res.status(200).send({
-//       success: true,
-//       message: "Book issued successfully",
-//       data: {
-//         ...newBook.toObject(),
-//         status: newBook.status, // Include the status field in the response
-//       },
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send({
-//       success: false,
-//       message: "Error in book issuance",
-//       error,
-//     });
-//   }
-// };
 export const bookController = async (req, res) => {
   try {
     const {
@@ -368,9 +298,7 @@ export const bookController = async (req, res) => {
     if (!bookname) {
       return res.send({ message: "Book name is required" });
     }
-    if (!authors) {
-      return res.send({ message: "Authors is required" });
-    }
+   
     if (!publisher) {
       return res.send({ message: "Publisher is required" });
     }
@@ -485,6 +413,34 @@ export const deleteBookController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Something went wrong",
+      error,
+    });
+  }
+};
+
+export const userbookListController = async (req, res) => {
+  try {
+    const userName = req.params.fname; // Assuming req.user contains the authenticated user details
+    console.log(userName, "uuu");
+    const books = await bookModel.find({fname: userName });
+    if (!books) {
+      res.status(500).send({
+        success: false,
+        message: "Error while getting books",
+      });
+    }
+    else {
+      res.status(200).send({
+        success: true,
+        message: "Getting data",
+        data : books,
+    });
+  } 
+}catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting books",
       error,
     });
   }
@@ -638,8 +594,8 @@ export const deleteTaskController = async (req, res) => {
 //addtask
 export const addUserTaskController = async (req, res) => {
   try {
-    const { title, start, end, priority } = req.body;
-
+    const { title, start, end, priority,email } = req.body;
+   
     if (!start) {
       return res.send({ message: "S.D. is required" });
     }
@@ -649,6 +605,7 @@ export const addUserTaskController = async (req, res) => {
       start,
       end,
       priority,
+      email,
     });
 
     res.status(200).send({

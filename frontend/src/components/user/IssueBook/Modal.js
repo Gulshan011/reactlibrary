@@ -30,7 +30,7 @@ const Modal = ({ show, item, onClose }) => {
         returnDate: returnDate.toJSON(),
         status: item.status,
       });
-
+console.log(res,"rr")
       if (res && res.data.success) {
         setQrValue(JSON.stringify(res.data));
         const stringifiedData = JSON.stringify(res.data);

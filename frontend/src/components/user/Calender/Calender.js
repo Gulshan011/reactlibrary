@@ -31,6 +31,7 @@ const email = auth.user && auth.user.email; // Destructure the _id property from
     title: "",
     start: "",
     end: "",
+    email:auth.user && auth.user.email
   });
   const [selectedEvent, setSelectedEvent] = useState(null);
 
@@ -60,6 +61,7 @@ const email = auth.user && auth.user.email; // Destructure the _id property from
         start,
         end,
         priority,
+        email,
       }
     );
   const { success, data, message } = response.data;
@@ -74,7 +76,7 @@ const email = auth.user && auth.user.email; // Destructure the _id property from
       setNewEvent((prevState) => [...prevState, data]);
 
       setShowForm(false);
-      setFormValues({ title: "", start: "", end: "", priority: "" });
+      setFormValues({ title: "", start: "", end: "", priority: ""  , email:auth.user&&auth.user.email});
   } else {
       toast.error(message);
     }
@@ -136,33 +138,31 @@ const email = auth.user && auth.user.email; // Destructure the _id property from
     setSelectedEvent(null);
   };
 
-  //fetching list of task
+  //fetching authenticated usres  list of task
   useEffect(() => {
     fetch(`http://localhost:8081/api/v1/auth/usertasks/${email}`)
       .then((res) => res.json())
       .then((data) => setTaskList(data.data))
       .catch((error) => console.log(error));
   }, [email]);
-  
-  // useEffect(() => {
-  //   // Filter events based on search term
-  //   const filteredEvents = taskList.filter((task) =>
-  //     task.title.toLowerCase().includes(searchTerm.toLowerCase())
-  //   );
-  //   // Convert filtered events to FullCalendar compatible format
-  //   const events = filteredEvents.map((task) => ({
-  //     id: task._id,
-  //     title: task.title,
-  //     start: new Date(task.start),
-  //     end: new Date(task.end),
-  //     priority: task.priority,
-  //      description:task.description,
-  //     backgroundColor: getBackgroundColor(task.priority),
-  //     borderColor: getBorderColor(task.priority),
-  //   }));
-  //   setNewEvent(events);
-  // }, [taskList, searchTerm]);
-  // console.log(newEvent, "eee");
+  useEffect(() => {
+  const filteredEvents = taskList.filter((task) =>
+      task.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    const events = filteredEvents.map((task) => ({
+      id: task._id,
+      title: task.title,
+      start: new Date(task.start),
+      end: new Date(task.end),
+      priority: task.priority,
+       description:task.description,
+      backgroundColor: getBackgroundColor(task.priority),
+      borderColor: getBorderColor(task.priority),
+    }));
+    setNewEvent(events);
+  }, [taskList, searchTerm]);
+  console.log(newEvent, "eee");
  
   //.....................updatetasks.
   const handleFormUpdate = async (e) => {

@@ -1,6 +1,6 @@
 import express from "express";
 import formidable from "express-formidable";
-import {registerController,bookController,queryController,loginController,queryListController,userDataController,testController, deleteBookController,userUpdateTaskController,getUserTaskController,deleteTaskController,deleteUserTaskController,forgotPasswordController,addUserTaskController,usertaskListController,bookListController,updateProfileController,updateTaskController,registerListController,taskListController,addTaskController,updateStatusController} from '../controllers/authController.js'
+import {registerController,bookController,queryController,loginController,queryListController,userbookListController,userDataController,testController, deleteBookController,userUpdateTaskController,getUserTaskController,deleteTaskController,deleteUserTaskController,forgotPasswordController,addUserTaskController,usertaskListController,bookListController,updateProfileController,updateTaskController,registerListController,taskListController,addTaskController,updateStatusController} from '../controllers/authController.js'
 import {requireSignIn,isAdmin} from "../middlewares/authMiddleware.js";
 //route object
 const router = express.Router()
@@ -24,7 +24,8 @@ router.get('/userdata',userDataController);
 router.get('/taskslist',taskListController);
 router.get('/querylist',queryListController);
 router.get('/usertaskslist',usertaskListController);
-router.get("/usertasks/email",getUserTaskController);
+router.get("/usertasks/:email",getUserTaskController);
+router.get('/booklist/:fname',userbookListController);
 router.get('/registerlist',registerListController);
 //protected user route auth
 router.get("/user-auth", requireSignIn, (req, res) => {

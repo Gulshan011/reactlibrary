@@ -29,6 +29,9 @@ const BookSchema = new mongoose.Schema({
     type:String,
     default:"IssuedNotCollected",
     enum:["IssuedNotCollected","issued","Collected","Returned","Reissued","Available"]
+  },
+  email:{
+    type:String
   }
 });
 
