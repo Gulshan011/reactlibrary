@@ -19,7 +19,10 @@ const UserTaskSchema = new mongoose.Schema({
     type:String,
   },
   
-  
+  email:{
+    type:String,
+ 
+  }
 });
 
 export default mongoose.model("usertasks",UserTaskSchema);

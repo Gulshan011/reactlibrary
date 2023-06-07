@@ -81,9 +81,20 @@
     gap:20px;
    
 }
-.AdminContainer{
-    flex:8;
-}
+
 .chart{
     flex-direction:column;
+    flex:1;
+    
 }
+.AdminContainer {
+    margin-left: 345px;
+    transition: margin-left 0.3s;
+    
+  }
+  
+ .AdminContainer   .sidebar-closed {
+    margin-left: 80px;
+  }
+  
+  
