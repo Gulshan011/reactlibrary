@@ -6,6 +6,9 @@ import bookModel from "../models/bookModel.js";
 import queryModel from "../models/queryModel.js";
 import taskModel from "../models/taskModel.js";
 import userTaskModel from "../models/userTaskModel.js";
+import notificationModel from "../models/notificationModel.js";
+import messageModel from "../models/messageModel.js";
+
 import fs from "fs";
 
 //--------------register api-----------------------------------------------------------------------------------------------
@@ -756,6 +759,121 @@ export const queryListController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Something went wrong",
+      error,
+    });
+  }
+};
+
+
+
+
+export const sendNotificationController = async (req, res) => {
+  try {
+    const { sender, receiver, message } = req.body;
+
+    // Perform validations
+    if (!sender) {
+      return res.status(400).send({ message: "Sender is required" });
+    }
+    if (!receiver) {
+      return res.status(400).send({ message: "Receiver is required" });
+    }
+    if (!message) {
+      return res.status(400).send({ message: "Message is required" });
+    }
+
+    // Create a new notification
+    const newNotification = await notificationModel.create({
+      sender,
+      receiver,
+      message
+    });
+
+    res.status(200).send({
+      success: true,
+      message: "Notification sent successfully",
+      data: newNotification,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error sending notification",
+      error,
+    });
+  }
+};
+
+
+
+export const getNotificationController= async (req, res) => {
+  try {
+    const messages = await notificationModel.find();
+    res.status(200).json(messages);
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+export const sendEmailController = async (req, res) => {
+  try {
+    const { email, message } = req.body;
+
+    // Perform validations
+    if (!email) {
+      return res.status(400).send({ message: "email is required" });
+    }
+  
+    if (!message) {
+      return res.status(400).send({ message: "Message is required" });
+    }
+
+    // Create a new notification
+    const newEmail = await messageModel.create({
+     email,
+      
+      message
+    });
+
+    res.status(200).send({
+      success: true,
+      message: "Email sent successfully",
+      data: newEmail,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error sending reply",
+      error,
+    });
+  }
+};
+
+export const getReplyController = async (req, res) => {
+  try {
+    const userEmail = req.params.email; // Assuming req.user contains the authenticated user details
+    console.log(userEmail, "uuu");
+    const replies = await messageModel.find({email: userEmail });
+    if (!replies) {
+      res.status(500).send({
+        success: false,
+        message: "Error while getting tasks",
+      });
+    }
+    else {
+      res.status(200).send({
+        success: true,
+        message: "Getting data",
+        data : replies,
+    });
+  } 
+}catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting tasks",
       error,
     });
   }

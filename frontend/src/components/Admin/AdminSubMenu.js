@@ -45,7 +45,7 @@ const AdminSubMenu = ({ item }) => {
       user: null,
       token: "",
     });
-    localStorage.removeItem("auth") && redirect('/home')
+    localStorage.removeItem("auth") && redirect('/login')
     toast.success(`Logged out ${auth.user && auth.user.fname}`)
   };
 

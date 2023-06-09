@@ -1,6 +1,6 @@
 import express from "express";
-import formidable from "express-formidable";
-import {registerController,bookController,queryController,loginController,queryListController,userbookListController,userDataController,testController, deleteBookController,userUpdateTaskController,getUserTaskController,deleteTaskController,deleteUserTaskController,forgotPasswordController,addUserTaskController,usertaskListController,bookListController,updateProfileController,updateTaskController,registerListController,taskListController,addTaskController,updateStatusController} from '../controllers/authController.js'
+
+import {registerController,bookController,queryController,sendEmailController,getReplyController,sendNotificationController,getNotificationController,loginController,queryListController,userbookListController,userDataController,testController, deleteBookController,userUpdateTaskController,getUserTaskController,deleteTaskController,deleteUserTaskController,forgotPasswordController,addUserTaskController,usertaskListController,bookListController,updateProfileController,updateTaskController,registerListController,taskListController,addTaskController,updateStatusController} from '../controllers/authController.js'
 import {requireSignIn,isAdmin} from "../middlewares/authMiddleware.js";
 //route object
 const router = express.Router()
@@ -13,12 +13,16 @@ router.post('/login',loginController);
 router.post('/query',queryController);
 router.post('/issuebook',bookController);
 router.post('/addtasks',addTaskController);
+router.post('/send-notification',sendNotificationController)
+router.post('/send-email',sendEmailController)
 router.post('/useraddtasks',addUserTaskController);
 //Forgot Password -post
 router.post('/forgot-password',forgotPasswordController)
 
 //test route
 router.get('/test',requireSignIn,isAdmin,testController);
+router.get('/notification/:receiver',getNotificationController)
+router.get('/reply/:email',getReplyController)
 router.get('/booklist',bookListController);
 router.get('/userdata',userDataController);
 router.get('/taskslist',taskListController);

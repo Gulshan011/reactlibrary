@@ -28,7 +28,6 @@ import Modal from "./components/user/IssueBook/Modal";
 import Contact from "./components/user/Contact";
 
 
-
 import Records from "./components/Admin/Records";
 import ChatBotWidget from "./components/user/ChatBotWidget";
 import DarkMode from "./components/DarkMode";
@@ -71,7 +70,7 @@ const App = () => {
         <Route path="/about" element={<AboutRoute />}>
           <Route path="" element={<About />} />
         </Route>
-
+       
         <Route path="/login" element={<Login />}></Route>
         <Route path="/history" element={<History />}></Route>
         <Route path="/queries" element={<Queries />}></Route>

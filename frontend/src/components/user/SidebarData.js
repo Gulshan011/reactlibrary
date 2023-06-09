@@ -51,11 +51,7 @@ export const SidebarData = [
     path: '/history',
     icon: <FaIcons.FaHistory />
   },
-  {
-    title: 'Messages',
-    path: '/messages',
-    icon: <FaIcons.FaEnvelopeOpenText />,
-  },
+
   {
     title: 'Ask for help',
     path: '/Contact',

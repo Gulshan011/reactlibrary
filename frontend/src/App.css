@@ -710,3 +710,28 @@ filter: brightness(100%) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-r
 .closer-return-date {
   background-color: #ffe5e5; /* Example: Light red background */
 }
+.bell-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.bell-icon span.notification-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}

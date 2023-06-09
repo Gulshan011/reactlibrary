@@ -1,13 +1,17 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import AdminSidebar from "../Admin/AdminSidebar";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import Table from "react-bootstrap/Table";
 import { Select } from "antd";
-import { FaBell } from "react-icons/fa";
 import moment from "moment";
+import { FaBell } from "react-icons/fa";
+
+
+
+
 const { Option } = Select;
 
 function BookList() {
@@ -20,24 +24,19 @@ function BookList() {
     "Reissued",
   ]);
 
-  // Add a new state variable to track reminder status
-  const [reminderStatus, setReminderStatus] = useState({});
-
   useEffect(() => {
-    fetch("http://localhost:8081/api/v1/auth/booklist")
-      .then((res) => res.json())
-      .then((data) => {
-        setBookList(data.data);
-
-        // Initialize the reminder status for each book
-        const initialReminderStatus = {};
-        data.data.forEach((book) => {
-          initialReminderStatus[book._id] = false;
-        });
-        setReminderStatus(initialReminderStatus);
-      })
-      .catch((error) => console.log(error));
+    fetchBookList();
   }, []);
+
+  const fetchBookList = async () => {
+    try {
+      const response = await axios.get("http://localhost:8081/api/v1/auth/booklist");
+      setBookList(response.data.data);
+    } catch (error) {
+      console.error("Error fetching book list:", error);
+    }
+  };
+
   const handleChange = async (id, value) => {
     try {
       if (value === "Returned") {
@@ -50,41 +49,36 @@ function BookList() {
         Swal.fire({
           title: 'Are you sure?',
           text: "You won't be able to revert this! ⚠️",
-          type: 'warning',
+          icon: 'warning',
           showCancelButton: true,
-          // Background color of the "Confirm"-button. The default color is #3085d6
           confirmButtonColor: 'LightSeaGreen',
-          // Background color of the "Cancel"-button. The default color is #aaa
           cancelButtonColor: 'Crimson',
           confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
-          if (result.value) {
-            Swal.fire({
-              type: 'success',
-              title: 'Deleted!',
-              text: "Your file has been deleted.",
-              timer: 2000,
-              showCancelButton: false,
-              showConfirmButton: false
-            })
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            );
           }
-        })
+        });
         return;
       }
-  
+
       const { data } = await axios.put(
         `http://localhost:8081/api/v1/auth/update-status/${id}`,
         {
           status: value,
         }
       );
-  
+
       setBookList((prevBookList) =>
         prevBookList.map((book) =>
           book._id === id ? { ...book, status: value } : book
         )
       );
-  
+
       if (data.success) {
         toast.success("Updated successfully");
       } else {
@@ -94,92 +88,128 @@ function BookList() {
       console.log(error);
     }
   };
-  
-
- 
 
   const isReturnDateCloser = (returnDate) => {
     const currentDate = moment();
     const formattedReturnDate = moment(returnDate);
     const daysDifference = formattedReturnDate.diff(currentDate, "days");
-    return daysDifference <= 7; // Change the number of days as per your requirement
+    return daysDifference <= 7;
   };
 
-  const sendReminder = (id) => {
-    // Toggle the reminder status for the book
-    setReminderStatus((prevReminderStatus) => ({
-      ...prevReminderStatus,
-      [id]: !prevReminderStatus[id],
-    }));
+  const handleNotification = async (sender, receiver, message) => {
+    try {
+      const response = await axios.post("http://localhost:8081/api/v1/auth/send-notification", {
+        sender,
+        receiver,
+        message
+      });
+     
+      if (response.status === 200) {
+        // Swal.fire({
+        //   icon:"bell",
+        //   title: "Success!",
+        //   text: response.data.message,
+     
+        //   timer: 2000,
+        //   showConfirmButton: false,
+        //  } );
+         Swal.fire({
+          title: 'Success',
+          width: 600,
+          padding: '3em',
+          color: '#716add',
+          background: '#fff url(/images/trees.png)',
+          backdrop: `
+            rgba(0,0,123,0.4)
+            url(https://media.tenor.com/aJumv0mMceoAAAAi/cheer-cheering.gif)
+            left top
+            no-repeat
+          `
+        })
+      } else {
+        Swal.fire({
+          title: 'Error',
+          width: 600,
+          padding: '3em',
+          color: '#716add',
+          background: '#fff url(/images/trees.png)',
+          backdrop: `
+            rgba(0,0,123,0.4)
+            url(https://media.tenor.com/ptwljHtCNosAAAAi/peachcat-cat.gif)
+            left top
+            no-repeat
+          `
+        })
+      }
+    } catch (error) {
+      console.error("Error sending notification:", error);
+    }
   };
+
+  
 
   return (
     <div>
       <AdminSidebar />
-      <br></br>
-      <div className="tablecontainer-center">
-        <div className="table-responsive">
-          <Table striped bordered hover variant="light">
-            <thead>
-              <tr>
-                <th>Book Name</th>
-                <th>Publisher</th>
-                <th>Issued By</th>
-                <th>Issued On</th>
-                <th>Returned Date</th>
-                <th>Status</th>
-                <th>Send Reminder</th>
-              </tr>
-            </thead>
-            <tbody>
-              {bookList.map((book, index) => (
-                <tr
-                  key={index}
+      <div className="admin-booklist-container">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Issued By</th>
+              <th>Issued On</th>
+              <th>Return Date</th>
+              <th>Status</th>
+              <th>Notification</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bookList.map((book, index) => (
+              <tr key={book._id}>
+                <td>{book.bookname}</td>
+                <td>{book.publisher}</td>
+                <td>{book.fname}</td>
+                <td>{book.issuedDate.split("T")[0]}</td>
+                <td
                   className={
-                    isReturnDateCloser(book.returnDate)
-                      ? "closer-return-date"
-                      : ""
+                    isReturnDateCloser(book.returnDate) ? "text-danger" : ""
                   }
                 >
-                  <td>{book.bookname}</td>
-                  <td>{book.publisher}</td>
-                  <td>{book.fname}</td>
-                  <td>{book.issuedDate.split("T")[0]}</td>
-                  <td>
-                    {book.returnDate && book.returnDate.split("T")[0]}
-                  </td>
-                  <td>
-                    <Select
-                      onChange={(value) => handleChange(book._id, value)}
-                      defaultValue={book.status}
-                    >
-                      {status.map((status, index) => (
-                        <Option key={index} value={status}>
-                          {status}
-                        </Option>
-                      ))}
-                    </Select>
-                  </td>
-                  <td>
-                    <button onClick={() => sendReminder(book._id)}>
-                      <FaBell />
-                    </button>
-                  
-                
-                    {reminderStatus[book._id] && toast.success("Reminder Sent!")}
-                  </td>
-                  
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </div>
+                  {book.returnDate && book.returnDate.split("T")[0]}
+                </td>
+                <td>
+                  <Select
+                    defaultValue={book.status}
+                    style={{ width: 120 }}
+                    onChange={(value) => handleChange(book._id, value)}
+                  >
+                    {status.map((item) => (
+                      <Option value={item} key={item}>
+                        {item}
+                      </Option>
+                    ))}
+                  </Select>
+                </td>
+                <td>
+                  <FaBell
+                    className="bell-icon"
+                    onClick={() =>
+                      handleNotification(
+                        "Admin",
+                        `${book.fname}`,
+                        ` Hey ${book.fname} return date is approaching .Plese return ${book.bookname} on time`
+                      )
+                    }
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </div>
     </div>
   );
 }
 
 export default BookList;
-
-
-
