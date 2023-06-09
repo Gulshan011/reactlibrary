@@ -12,6 +12,64 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { setAuth } = useContext(AuthContext);
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const res = await axios.post(`http://localhost:8081/api/v1/auth/login`, {
+  //       email,
+  //       password,
+  //     });
+  //     if (res && res.data.success) {
+  //       Swal.fire({
+  //         title: "Success!",
+  //         text: res.data.message,
+  //         icon: "success",
+  //         timer: 2000,
+          
+  //         showConfirmButton: false,
+  //         didClose: () => {
+  //           setAuth({
+  //             user: res.data.user.fname,
+  //             token: res.data.token,
+            
+              
+  //           });
+  //           localStorage.setItem("auth", JSON.stringify(res.data));
+  //           navigate("/Home");
+  //         },
+  //       });
+  //     } else {
+  //       Swal.fire({
+  //         title: 'Error',
+  //         width: 600,
+  //         padding: '3em',
+  //         color: '#716add',
+  //         background: '#fff url(/images/trees.png)',
+  //         backdrop: `
+  //           rgba(0,0,123,0.4)
+  //           url(https://media.tenor.com/ptwljHtCNosAAAAi/peachcat-cat.gif)
+  //           left top
+  //           no-repeat
+  //         `
+  //       })
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //     Swal.fire({
+  //       title: 'Error',
+  //       width: 600,
+  //       padding: '3em',
+  //       color: '#716add',
+  //       background: '#fff url(/images/trees.png)',
+  //       backdrop: `
+  //         rgba(0,0,123,0.4)
+  //         url(https://media.tenor.com/ptwljHtCNosAAAAi/peachcat-cat.gif)
+  //         left top
+  //         no-repeat
+  //       `
+  //     })
+  //   }
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -25,42 +83,59 @@ const Login = () => {
           text: res.data.message,
           icon: "success",
           timer: 2000,
+          width: 600,
+          padding: '3em',
+          color: '#716add',
+          background: '#fff url(/images/trees.png)',
+          backdrop: `
+            rgba(0,0,123,0.4)
+            url(https://media.tenor.com/aJumv0mMceoAAAAi/cheer-cheering.gif)
+            left top
+            no-repeat
+          `,
           showConfirmButton: false,
           didClose: () => {
             setAuth({
               user: res.data.user.fname,
               token: res.data.token,
             });
-            localStorage.setItem("auth", JSON.stringify(res.data));
-            navigate("/Home");
-          },
+          
+          localStorage.setItem("auth", JSON.stringify(res.data));
+                    navigate("/Home");}
         });
       } else {
         Swal.fire({
-          title: "Error!",
-          text: res.data.message,
-          icon: "Error",
-          timer: 1000,
-          showConfirmButton: false,
-          didClose: () => {
-            navigate("/Login");
-          },
+          title: 'Error',
+          width: 600,
+          padding: '3em',
+          color: '#716add',
+          background: '#fff url(/images/trees.png)',
+          backdrop: `
+            rgba(0,0,123,0.4)
+            url(https://media.tenor.com/ptwljHtCNosAAAAi/peachcat-cat.gif)
+            left top
+            no-repeat
+          `
         });
       }
     } catch (error) {
       console.log(error);
       Swal.fire({
-        title: "Error!",
-        text: "Error",
-        icon: "Error",
-        timer: 1000,
-        showConfirmButton: false,
-        didClose: () => {
-          navigate("/Login");
-        },
+        title: 'Error',
+        width: 600,
+        padding: '3em',
+        color: '#716add',
+        background: '#fff url(/images/trees.png)',
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url(https://media.tenor.com/ptwljHtCNosAAAAi/peachcat-cat.gif)
+          left top
+          no-repeat
+        `
       });
     }
   };
+  
 
   return (
     <div className="login-page">

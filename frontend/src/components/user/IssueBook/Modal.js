@@ -46,11 +46,7 @@ console.log(res,"rr")
             icon: "success",
             timer: 2000,
             showConfirmButton: false,
-            didClose: () => {
-             
-              navigate("/Home");
-            
-          }});
+         });
         } else {
           toast.error(res.data.message);
         }

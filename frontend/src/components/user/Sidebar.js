@@ -7,9 +7,10 @@ import { SidebarData } from './SidebarData.js';
 import SubMenu from './SubMenu';
 
 import { IconContext } from 'react-icons/lib';
-
+import NotificationComponent from '../user/Messages'; // Import the NotificationComponent
+import EmailComponent from '../user/Emails';
 const Nav = styled.div`
-background: #1e1e2f;
+  background: #1e1e2f;
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -23,7 +24,6 @@ const NavIcon = styled(Link)`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
 `;
 
 const SidebarNav = styled.nav`
@@ -44,32 +44,32 @@ const SidebarWrap = styled.div`
 `;
 
 const Sidebar = () => {
- 
- 
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
-  
-          
-  
+
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
-    
         <Nav>
-       
           <NavIcon to='#'>
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
           <NavIcon to='/home'>
-          <AiIcons.AiFillHome  />
-        </NavIcon>
+            <AiIcons.AiFillHome />
+          </NavIcon>
+          <NavIcon to='#'>
+            <NotificationComponent /> {/* Add the NotificationComponent */}
+          </NavIcon>
+          <NavIcon to='#'>
+            <EmailComponent /> {/* Add the NotificationComponent */}
+          </NavIcon>
         </Nav>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
             <NavIcon to='#'>
               <AiIcons.AiOutlineClose onClick={showSidebar} />
             </NavIcon>
-           
+
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}
@@ -78,14 +78,6 @@ const Sidebar = () => {
       </IconContext.Provider>
     </>
   );
-          }
-export default Sidebar
+};
 
-
-
-
-
-
-
-
-
+export default Sidebar;
