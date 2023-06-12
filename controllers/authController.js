@@ -466,9 +466,8 @@ export const updateProfileController = async (req, res) => {
       });
     }
 
-    await userModel.findByIdAndUpdate(user._id, {
-      $set: { fname, lname, bio, address },
-    });
+    await userModel.findByIdAndUpdate(user._id, { $set: { fname, lname, bio, address } }, { new: true });
+
 
     res.status(200).send({
       success: true,

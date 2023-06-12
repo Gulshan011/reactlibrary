@@ -74,12 +74,14 @@ const email = auth.user && auth.user.email;
                   </p>
                   </td>
                   <td className="td-actions text-right">
-                    <Button color="link" id={`tooltip${index}`} title="" type="button">
-                      <i className="FaIcons.FaHistory " />
-                    </Button>
-                    <UncontrolledTooltip delay={0} target={`tooltip${index}`} placement="right">
-                      Edit Task
-                    </UncontrolledTooltip>
+                  <Button color="link" id={`tooltip${index}`} title="" type="button" style={{ color: 'white' }}>
+                  <FaIcons.FaPen />
+                </Button>
+                
+                <UncontrolledTooltip delay={0} target={`tooltip${index}`} placement="right-end" style={{ color: 'white' }}>
+                Edit Task
+              </UncontrolledTooltip>
+              
                   </td>
                 </tr>
               ))}
