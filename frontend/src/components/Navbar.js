@@ -25,6 +25,7 @@ const Navbar = () => {
       token: "",
     });
     localStorage.removeItem("auth");
+    localStorage.removeItem("inboxChecked");
    
         Swal.fire({
           title: "Success!",
@@ -34,7 +35,7 @@ const Navbar = () => {
           showConfirmButton: false,
           didClose: () => {
            
-            navigate("/Home");
+            navigate("/login");
           },
         });
      

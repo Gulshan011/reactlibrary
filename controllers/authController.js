@@ -806,19 +806,25 @@ export const sendNotificationController = async (req, res) => {
 
 
 
-export const getNotificationController= async (req, res) => {
+
+export const getNotificationController = async (req, res) => {
   try {
-    const messages = await notificationModel.find();
+    const userName = req.params.receiver; // Use req.params.receiver instead of req.params.fname
+    console.log(userName, "uuu");
+    const messages = await notificationModel.find({ receiver: userName });
     res.status(200).json(messages);
   } catch (error) {
+    console.log(error); // Log the error for debugging purposes
     res.status(500).json({ error: "Internal server error" });
   }
 };
 
 
+
+
 export const sendEmailController = async (req, res) => {
   try {
-    const { email, message } = req.body;
+    const { email, message,query } = req.body;
 
     // Perform validations
     if (!email) {
@@ -832,7 +838,7 @@ export const sendEmailController = async (req, res) => {
     // Create a new notification
     const newEmail = await messageModel.create({
      email,
-      
+      query,
       message
     });
 

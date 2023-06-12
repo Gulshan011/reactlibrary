@@ -31,9 +31,10 @@ function Queries() {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:8081/api/v1/auth/send-email", {
-         
+        query:selectedUser.query,
           email: selectedUser.email,
           message: replyMessage,
+       
         
       });
       if (res && res.data.success) {
