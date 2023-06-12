@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { Link, redirect } from 'react-router-dom';
+import { Link,  useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { AuthContext } from '../../context/auth';
-
+import Swal from "sweetalert2";  
 const SidebarLink = styled(Link)`
   display: flex;
   color: #e1e9fc;
@@ -31,6 +31,7 @@ const SidebarLabel = styled.span`
 
 
 const SubMenu = ({ item }) => {
+  const navigate = useNavigate();
   const [subnav, setSubnav] = useState(false);
 
   const showSubnav = () => setSubnav(!subnav);
@@ -38,14 +39,27 @@ const SubMenu = ({ item }) => {
 
   
   const handleLogOut = () => {
-    
     setAuth({
       ...auth,
       user: null,
       token: "",
     });
-    localStorage.removeItem("auth") && redirect('/home')
-    toast.success(`Logged out ${auth.user && auth.user.fname}`)
+    localStorage.removeItem("auth");
+    localStorage.removeItem("inboxChecked");
+   
+        Swal.fire({
+          title: "Success!",
+          text: "Logged out!!!",
+          icon: "success",
+          timer: 2000,
+          showConfirmButton: false,
+          didClose: () => {
+           
+            navigate("/login");
+          },
+        });
+     
+
   };
 
   const onClick=()=>{
