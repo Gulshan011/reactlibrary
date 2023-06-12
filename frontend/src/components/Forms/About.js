@@ -1,5 +1,4 @@
-
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Card,
@@ -33,26 +32,25 @@ function About() {
     regnumber: "",
     bio: "",
     address: "",
-    email:auth.user && auth.user.email
-   
+    email: auth.user && auth.user.email,
   });
- console.log(formValues)
- useEffect(() => {
-  if (auth.user) {
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      fname: auth.user.fname,
-      lname: auth.user.lname,
-      regnumber: auth.user.regnumber,
-      bio: auth.user.bio,
-      address: auth.user.address,
-    }));
-  }
-}, [auth.user]);
-console.log(auth.user)
+
+  useEffect(() => {
+    if (auth.user) {
+      setFormValues((prevValues) => ({
+        ...prevValues,
+        fname: auth.user.fname,
+        lname: auth.user.lname,
+        regnumber: auth.user.regnumber,
+        bio: auth.user.bio,
+        address: auth.user.address,
+      }));
+    }
+  }, [auth.user]);
+
   const handleFormUpdate = async (e) => {
     e.preventDefault();
-    const { fname, lname, bio, address ,email,photo} = formValues;
+    const { fname, lname, bio, address, email, photo } = formValues;
 
     try {
       const response = await axios.put(
@@ -60,10 +58,9 @@ console.log(auth.user)
         {
           fname,
           lname,
-         
           bio,
           address,
-          email
+          email,
         }
       );
 
@@ -77,17 +74,16 @@ console.log(auth.user)
             fname,
             lname,
             bio,
-          
           },
         }));
-  
+
         setFormValues((prevValues) => ({
           ...prevValues,
           fname,
           lname,
           bio,
-        
         }));
+
         Swal.fire({
           title: "Success!",
           text: message,
@@ -95,7 +91,6 @@ console.log(auth.user)
           timer: 2000,
           showConfirmButton: false,
         });
-        
       } else {
         toast.error(message);
       }
@@ -104,7 +99,6 @@ console.log(auth.user)
       toast.error("An error occurred. Please try again.");
     }
   };
-
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -159,7 +153,7 @@ console.log(auth.user)
                               Email address
                             </label>
                             <Input
-                            defaultValue={auth.user && auth.user.email}
+                              defaultValue={auth.user && auth.user.email}
                               type="email"
                               onChange={handleInputChange}
                             />
@@ -193,7 +187,7 @@ console.log(auth.user)
                         </Col>
                       </Row>
                       <Row>
-                       <Col md="12">
+                        <Col md="12">
                           <FormGroup>
                             <label>Address</label>
                             <Input
@@ -205,7 +199,6 @@ console.log(auth.user)
                             />
                           </FormGroup>
                         </Col>
-                   
                       </Row>
                       <Row>
                         <Col md="12">
@@ -214,12 +207,12 @@ console.log(auth.user)
                             <Input
                               name="bio"
                               value={formValues.bio}
+                              defaultValue={auth.user && auth.user.email}
                               onChange={handleInputChange}
                               cols="80"
                               placeholder="Here can be your description"
                               rows="4"
                               type="textarea"
-                             
                             />
                           </FormGroup>
                         </Col>
@@ -231,7 +224,6 @@ console.log(auth.user)
                       className="btn-fill"
                       color="primary"
                       type="submit"
-                      
                     >
                       Save
                     </Button>
@@ -256,7 +248,7 @@ console.log(auth.user)
                             : imagepic
                         }
                         alt="profile"
-                        className="profile-image"
+                        className="profile-image img-fluid" // Added img-fluid class here
                       />
                       <h5 className="title" style={{ color: "white" }}>
                         {auth.user && auth.user.fname}
@@ -266,8 +258,11 @@ console.log(auth.user)
                       {auth.user && auth.user.dept}
                     </p>
                   </div>
-                  <div className="card-description" style={{ color: "white" }}>
-                  {auth.user && auth.user.bio}
+                  <div
+                    className="card-description"
+                    style={{ color: "white" }}
+                  >
+                    {auth.user && auth.user.bio}
                   </div>
                 </CardBody>
                 <CardFooter>

@@ -5,6 +5,9 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@fullcalendar/core": "^6.1.5",
     "@fullcalendar/daygrid": "^6.1.7",
     "@fullcalendar/interaction": "^6.1.7",
@@ -23,6 +26,7 @@
     "framer-motion": "^10.12.16",
     "mdb-react-ui-kit": "^6.1.0",
     "nodemailer": "^6.9.3",
+    "pptxgenjs": "^3.12.0",
     "qrcode": "^1.5.3",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
@@ -50,6 +54,7 @@
     "styled-components": "^5.3.9",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^11.7.10",
+    "tesseract.js": "^4.1.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
