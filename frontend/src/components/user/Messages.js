@@ -35,24 +35,28 @@ const NotificationComponent = () => {
         showConfirmButton: false,
       });
     } else {
-      const tableRows = notifications.map((notification) => `
-        <tr>
-         
-          <td>${notification.message}</td>
-        </tr>
-      `);
-      const tableHTML = `
-        <table>
-          <thead>
-            <tr>
-              <th>Message</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${tableRows.join('')}
-          </tbody>
-        </table>
-      `;
+  const tableRows = notifications.map((notification) => `
+  <tr>
+    <td>${notification.sender}</td>
+    <td>${notification.message}</td>
+  </tr>
+`);
+
+const tableHTML = `
+  <table style="border-collapse: collapse; width: 100%;">
+    <thead>
+      <tr>
+        <th style="border: 1px solid #dddddd; text-align: left; padding: 8px; width:100px; height: 100px;">Sent By</th>
+        <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${tableRows.join('')}
+    </tbody>
+  </table>
+`;
+
+
       Swal.fire({
         position: 'top-end',
         title: 'Notifications from Librarian',

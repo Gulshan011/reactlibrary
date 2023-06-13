@@ -1,7 +1,7 @@
-
 import React, { useEffect, useState } from 'react';
 import { useContext, AuthContext } from "../../../context/auth";
 import * as FaIcons from 'react-icons/fa';
+import { redirect, useNavigate } from 'react-router-dom';
 import * as AiIcons from 'react-icons/ai';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -25,17 +25,11 @@ import {
   UncontrolledTooltip,
 } from 'reactstrap';
 
-
 const Featured = () => {
-    const { auth } = useContext(AuthContext);
-const email = auth.user && auth.user.email; 
+  const { auth } = useContext(AuthContext);
+  const email = auth.user && auth.user.email;
+  const navigate = useNavigate();
   const [taskList, setTaskList] = useState([]);
-  const [formValues, setFormValues] = useState({
-    title: "",
-    start: "",
-    end: "",
-    email:auth.user && auth.user.email
-  });
 
   useEffect(() => {
     fetch(`http://localhost:8081/api/v1/auth/usertasks/${email}`)
@@ -63,25 +57,24 @@ const email = auth.user && auth.user.email;
                     </FormGroup>
                   </td>
                   <td>
-                    <p className="featured-title" style={{ fontWeight:"300px" , fontStyle: "italic" }}>{task.title}</p>
+                    <p className="featured-title" style={{ fontWeight: "300px", fontStyle: "italic" }}>{task.title}</p>
                     <p className="text-small" style={{ fontStyle: 'italic' }}>
                       {task.start}
-                     
                     </p>
                     <p className="text-small" style={{ fontStyle: 'italic' }}>
-                
-                    {task.description}
-                  </p>
+                      {task.description}
+                    </p>
                   </td>
                   <td className="td-actions text-right">
-                  <Button color="link" id={`tooltip${index}`} title="" type="button" style={{ color: 'white' }}>
-                  <FaIcons.FaPen />
-                </Button>
-                
-                <UncontrolledTooltip delay={0} target={`tooltip${index}`} placement="right-end" style={{ color: 'white' }}>
-                Edit Task
-              </UncontrolledTooltip>
-              
+                    <Button color="link" id={`tooltip${index}`} title="" type="button" style={{ color: 'white' }}>
+                      <FaIcons.FaPen />
+                    </Button>
+
+                    <UncontrolledTooltip delay={0} target={`tooltip${index}`} placement="right-end" style={{ color: 'white' }} onClick={() => {
+                     navigate("../Calender/Calender.js");
+                    }}>
+                      Edit Task
+                    </UncontrolledTooltip>
                   </td>
                 </tr>
               ))}

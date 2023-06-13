@@ -13,17 +13,110 @@ import {
   Col,
 } from "reactstrap";
 import axios from "axios";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import * as FaIcons from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import Swal from "sweetalert2";
 import Sidebar from "../user/Sidebar";
 import AdminSidebar from "../Admin/AdminSidebar";
 import imagepic from "../../images/girl.jpg";
 import imagenew from "../../images/boy.jpg";
+import * as AiIcons from 'react-icons/ai';
+import { AdminSidebarData } from '../Admin/AdminSidebarData';
+import AdminSubMenu from '../Admin/AdminSubMenu';
+import { IconContext } from 'react-icons/lib';
+
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth.js";
 import { toast } from "react-toastify";
 
+const Nav = styled.div`
+  background-color: #1e1e2f;
+  height: 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+`;
+
+const NavIcon = styled(Link)`
+  margin-left: 2rem;
+  font-size: 2rem;
+  height: 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  background-color: #1e1e2f;
+`;
+
+const sidebarVariants = {
+  open: {
+    width: '345px',
+    left: '0',
+    transition: {
+      type: 'spring',
+      stiffness: 150,
+      damping: 20,
+    },
+  },
+  closed: {
+    width: '80px',
+    left: '-345px',
+    transition: {
+      type: 'spring',
+      stiffness: 150,
+      damping: 20,
+    },
+  },
+};
+
+const contentVariants = {
+  open: {
+    marginLeft: '345px',
+    transition: {
+      type: 'spring',
+      stiffness: 150,
+      damping: 20,
+    },
+  },
+  closed: {
+    marginLeft: '0px',
+    transition: {
+      type: 'spring',
+      stiffness: 150,
+      damping: 20,
+    },
+  },
+};
+
+const SidebarNav = styled(motion.nav)`
+  background-color: #1e1e2f;
+  width: 345px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: ${({ sidebar }) => (sidebar ? '0' : '-345px')};
+  z-index: 10;
+`;
+
+const SidebarWrap = styled(motion.div)`
+  width: 100%;
+  flex: 1;
+`;
+
+
+
 function About() {
   const { auth, setAuth } = useContext(AuthContext);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
 
   const [photo, setPhoto] = useState("");
   const [formValues, setFormValues] = useState({

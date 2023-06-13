@@ -68,7 +68,7 @@ const EmailComponent = () => {
   useEffect(() => {
     let popupInterval;
 
-    if (showPopup && !localStorage.getItem('inboxChecked')) {
+    if (showPopup && !localStorage.getItem('inboxChecked') && notifications.length !== 0) {
       popupInterval = setInterval(() => {
         Swal.fire({
           position: 'top-end',
@@ -82,13 +82,13 @@ const EmailComponent = () => {
             popup: 'custom-popup',
           },
         });
-      }, 5000); // 1 minute interval
-
-      return () => {
-        clearInterval(popupInterval);
-      };
+      }, 5000); // 5 seconds interval
     }
-  }, [showPopup]);
+
+    return () => {
+      clearInterval(popupInterval); // Clean up the interval when component unmounts
+    };
+  }, [showPopup, notifications]);
 
   return (
     <div>

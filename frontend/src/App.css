@@ -297,9 +297,9 @@ h1 {
 }
 
 /* Contact information */
-.contact_info {
+/* .contact_info {
   margin-top: 50px;
-}
+} */
 
 .contact_info_item {
   margin-bottom: 20px;
@@ -654,29 +654,37 @@ button {
 
 .footer {
   padding: 0 0 50px 0;
-  background-image: url('./images/images.jpeg');
-
+  background-image: url('https://www.shutterstock.com/image-illustration/digital-art-illustrator-background-colurful-260nw-1297422118.jpg');
+  height:400px;
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
 }
-
+.footer h4{
+  font-weight: 400px;
+  font-size: 20px;
+  color: #0e0d0d;
+  letter-spacing: 0.5px;
+  margin-top: 20px;
+  font-family: 'Poppins';
+}
 
 
 .footer p {
-  font-weight: 400;
-  font-size: 14px;
-  color: #000000;
+  font-weight: 200px;
+  font-size: 15px;
+  color: #080707;
   letter-spacing: 0.5px;
   margin-top: 20px;
+  font-family: 'Poppins';
 }
 .social-icon {
   display: inline-block;
   margin-left: 14px;
 }
 .social-icon a {
-  width: 42px;
-  height: 42px;
+  width:40px;
+  height:40px;
   background: rgba(217, 217, 217, 0.1);
   display: inline-flex;
   border-radius: 50%;
@@ -688,8 +696,8 @@ button {
 }
 .social-icon a::before {
   content: "";
-  width: 42px;
-  height: 42px;
+  width:40px;
+  height:40px;
   position: absolute;
   background-color: #0e0d0d;
   border-radius: 50%;
@@ -734,4 +742,19 @@ filter: brightness(100%) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-r
   color: white;
   font-size: 12px;
   font-weight: bold;
+}
+
+
+/* footer*/
+.move-left {
+  animation: moveLeftAnimation 10s linear infinite;
+}
+
+@keyframes moveLeftAnimation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }

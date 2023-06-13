@@ -63,9 +63,9 @@ export const SidebarData = [
     icon: <FaIcons.FaBoxTissue />
   },
   {
-    title: 'Logout',
+    title:'Logout',
     path:'/home',
-    icon: <LogoutButton />,
+    icon: <AiIcons.AiFillUnlock/>,
   }
   
 
