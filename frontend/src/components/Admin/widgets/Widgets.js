@@ -49,7 +49,7 @@ const Widgets = ({type}) => {
         data={
             title:"USERS",
              total:totalRegistered,
-             link:"See all users",
+             link:"See all users ",
              icon:<AiIcons.AiFillProfile/>,
         };
         break;
@@ -66,7 +66,7 @@ const Widgets = ({type}) => {
             title:"ISSUED BOOKS",
             total: totalIssuedBooks,
             link:"See updates",
-            icon:<AiIcons.AiOutlineHistory/>,
+            icon:<AiIcons.AiFillAccountBook/>,
         };
         break;
   }

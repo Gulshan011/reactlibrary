@@ -17,10 +17,10 @@ const SidebarLink = styled(Link)`
   font-family:"Poppins",sans-serif;
 
   &:hover {
-    background: #252831;
-    border-left: 4px solid #632ce4;
+    background:  hwb(240deg 94% 3%);
+    border-left: 4px solid #00FFFF;
     cursor: pointer;
-    color:cyan;
+    color:black;
   }
 `;
 

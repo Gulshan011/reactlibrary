@@ -70,31 +70,17 @@ const ForgotPasssword = () => {
                         placeholder="Your email"
                       />
                     </Form.Group>
-                    <Form.Group className="mb-4">
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control
-                        size="md"
-                        type="password"
-                        placeholder="Enter Password"
-                        value={newPassword}
-                        onChange={(e) => setNewPassword(e.target.value)}
-                      />
-                    </Form.Group>
+                   
                     <div className="form-group form-button">
                       <input
                         type="submit"
                         name="signup"
                         id="signup"
                         className="form-submit"
-                        value="Login"
+                        value="Submit"
                       />
 
-                      <NavLink to="/Signup" className="signup-image-link">
-                        Not Registered ? _Register Here!!
-                      </NavLink>
-                      <NavLink to="/ForgotPassword" className="signup-image-link">
-                     ForgotPasssword? Reset!!
-                    </NavLink>
+                     
                     </div>
                   </form>
                 </Card.Body>
