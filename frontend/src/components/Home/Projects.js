@@ -9,6 +9,7 @@ import projImg6 from "../../images/cafe.jpeg";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 
+
 export const Projects = () => {
 
   const projects = [
@@ -73,6 +74,7 @@ export const Projects = () => {
            
               </div>}
             </TrackVisibility>
+           
           </Col>
         </Row>
       </Container>

@@ -1,18 +1,22 @@
 
+
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import navIcon1 from "../../images/linkedin.png";
 import navIcon2 from "../../images/Facebook_icon.svg.webp";
 import navIcon3 from "../../images/download.jpeg";
 
+
 export const Footer = () => {
   return (
     <footer className="footer">
       <Container>
-        
-        <Row >
+  
+        <Row>
           <Col xs={12}>
-            <h4>Glimpses of the first Girls University of Himachal Pradesh 💫</h4>
+            <h4>
+              Glimpses of the first Girls University of Himachal Pradesh 💫
+            </h4>
             <div className="video-container d-flex flex-row overflow-hidden">
               <div className="video-frame move-left">
                 <iframe
@@ -61,6 +65,7 @@ export const Footer = () => {
             </div>
           </Col>
         </Row>
+        
         <Row className="align-items-center">
           <Col size={12} sm={6}></Col>
           <Col size={12} sm={6} className="text-center text-sm-end">
@@ -75,11 +80,12 @@ export const Footer = () => {
                 <img src={navIcon3} alt="Icon" />
               </a>
             </div>
-            <p>Project by Gulshan 💖</p>
+            <p> 
+          Project by Gulshan 💖</p>
           </Col>
         </Row>
       </Container>
+  
     </footer>
   );
 };
-

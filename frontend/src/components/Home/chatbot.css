@@ -1,0 +1,21 @@
+@keyframes chatIconAnimation {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+ 
+.chatbot-icon {
+    animation: chatIconAnimation 1s infinite;
+    position: fixed;
+    bottom: 20px;
+  right: 20px;
+    cursor: pointer;
+    z-index: 9999;
+  }
