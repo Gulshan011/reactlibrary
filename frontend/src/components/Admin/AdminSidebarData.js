@@ -67,7 +67,7 @@ export const AdminSidebarData = [
   },
   {
     title: 'Logout',
-    path:'/home',
+    path:'/login',
     icon: <LogoutButton/>,
   }
 ];
