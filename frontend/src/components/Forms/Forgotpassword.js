@@ -8,8 +8,7 @@ import { Container, Card, Row, Col, Form } from "react-bootstrap";
 
 const ForgotPasssword = () => {
   const [email, setEmail] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [answer, setAnswer] = useState("");
+
   
   const navigate = useNavigate();
 
@@ -17,10 +16,9 @@ const ForgotPasssword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8081/api/v1/auth/forgot-password", {
+      const res = await axios.post("http://localhost:8081/api/v1/auth/reset-password", {
         email,
-        newPassword,
-        answer,
+        
       });
       if (res && res.data.success) {
         toast.success(res.data && res.data.message);
@@ -77,7 +75,7 @@ const ForgotPasssword = () => {
                         name="signup"
                         id="signup"
                         className="form-submit"
-                        value="Submit"
+                        value="Reset"
                       />
 
                      

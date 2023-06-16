@@ -20,6 +20,7 @@ connectDB();
 //middlewares
 app.use(cors());
 app.use(express.json());
+app.set("view engine", "ejs");
 app.use(morgan("dev"));
 //Routes
 app.use("/api/v1/auth", authRoute);

@@ -1,6 +1,6 @@
 import express from "express";
 
-import {registerController,bookController,queryController,sendEmailController,getReplyController,sendNotificationController,getNotificationController,loginController,queryListController,userbookListController,userDataController,testController, deleteBookController,userUpdateTaskController,getUserTaskController,deleteTaskController,deleteUserTaskController,forgotPasswordController,addUserTaskController,usertaskListController,bookListController,updateProfileController,updateTaskController,registerListController,taskListController,addTaskController,updateStatusController} from '../controllers/authController.js'
+import {registerController,bookController,queryController,sendEmailController,resetPassWordToken,resetPassword,resetPassWordUpdate,getReplyController,sendNotificationController,getNotificationController,loginController,queryListController,userbookListController,userDataController,testController, deleteBookController,userUpdateTaskController,getUserTaskController,deleteTaskController,deleteUserTaskController,forgotPasswordController,addUserTaskController,usertaskListController,bookListController,updateProfileController,updateTaskController,registerListController,taskListController,addTaskController,updateStatusController} from '../controllers/authController.js'
 import {requireSignIn,isAdmin} from "../middlewares/authMiddleware.js";
 //route object
 const router = express.Router()
@@ -50,7 +50,13 @@ router.put("/userupdatetasks",userUpdateTaskController);
 router.put("/updateprofile",updateProfileController);
 router.delete("/deletetasks/:id", deleteTaskController);
 router.delete("/deleteusertasks/:id", deleteUserTaskController);
-router.delete("/deletebook/:id",deleteBookController)
+router.delete("/deletebook/:id",deleteBookController);
+//node -mailer--
+router.post("/reset-password", resetPassword);
+//node-mailer---check
+router.get("/reset-password/:id/:token", resetPassWordToken);
+////node-mailer---update password
+router.post("/reset-password/:id/:token", resetPassWordUpdate);
 export default router;
 
 

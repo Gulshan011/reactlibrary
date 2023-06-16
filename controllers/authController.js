@@ -8,8 +8,18 @@ import taskModel from "../models/taskModel.js";
 import userTaskModel from "../models/userTaskModel.js";
 import notificationModel from "../models/notificationModel.js";
 import messageModel from "../models/messageModel.js";
-
+import  nodemailer from 'nodemailer';
+import bcrypt from 'bcrypt';
 import fs from "fs";
+var transport = nodemailer.createTransport({
+  host: "sandbox.smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: "d5ecaa07294523",
+    pass: "e18fcefc1097ad"
+  }
+});
+
 
 //--------------register api-----------------------------------------------------------------------------------------------
 export const registerController = async (req, res) => {
@@ -169,18 +179,15 @@ export const loginController = async (req, res) => {
 //forgotPasswordController-------------------------------------------------------------------------------------
 export const forgotPasswordController = async (req, res) => {
   try {
-    const { email, answer, newPassword } = req.body;
+    const { email, newPassword } = req.body;
     if (!email) {
       res.status(400).send({ message: "Email is required" });
-    }
-    if (!answer) {
-      res.status(400).send({ message: "answer is required" });
     }
     if (!newPassword) {
       res.status(400).send({ message: "New Password is required" });
     }
     //check
-    const user = await userModel.findOne({ email, answer });
+    const user = await userModel.findOne({ email });
     //validation
     if (!user) {
       return res.status(404).send({
@@ -188,8 +195,8 @@ export const forgotPasswordController = async (req, res) => {
         message: "Wrong Email Or Answer",
       });
     }
-    const hashed = await hashPassword(newPassword);
-    await userModel.findByIdAndUpdate(user._id, { password: newPassword });
+    const hashed = await hashpassword(newPassword);
+    await userModel.findByIdAndUpdate(user._id, { password: hashed });
     res.status(200).send({
       success: true,
       message: "Password Reset Successfully",
@@ -226,6 +233,122 @@ export const queryControllers = async (req, res) => {
   }
 };
 //--------------------------------------------------------------------------------------------------------------
+export const resetPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    console.log(email, "emailll..");
+    const oldUser = await userModel.findOne(
+      { email: email },
+      { _id: 1, password: 1 }
+    );
+    if (!oldUser) {
+      return res.status(400).send({
+        status: false,
+        message: "User Not Found",
+      });
+    }
+    // const secret = process.env.JWT_SECRET + oldUser .password;
+    const secret = process.env.JWT_SECRET;
+    const token = JWT.sign({ email: oldUser.email, id: oldUser._id }, secret, {
+      expiresIn: "5m",
+    });
+    const link = `http://localhost:8081/api/v1/auth/reset-password/${oldUser._id}/${token}`;
+    const textHtml = `Please click <a href=${link}> here </a>to reset Password`;
+    var mainOptions = {
+      from: "gulshandeep0014@gmail.com",
+      to: email,
+      subject: "Password Reset",
+      text: link,
+      html: textHtml,
+    };
+    transport.sendMail(mainOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        return res.status(500).send({
+          status: false,
+          message: "Error occurred while sending email.",
+        });
+      } else {
+        console.log(info);
+        return res.status(200).send({
+          status: true,
+          message: "Password reset link has been sent to your email.",
+        });
+      }
+    });
+    console.log(oldUser);
+  } catch (err) {
+    return res.status(400).send({
+      status: false,
+      message: err.message,
+    });
+  }
+};
+export const resetPassWordToken = async (req, res) => {
+  const { id, token } = req.params;
+  console.log(req.params);
+  const oldUser = await userModel.findOne({ _id: id }, { email: 1 });
+  var userEmail;
+  if (!oldUser) {
+    return res.json({ status: "User Not Exists!!" });
+  } else {
+    userEmail = oldUser.email;
+  }
+  // const secret = process.env.JWT_SECRET + oldUser .password;
+  const secret = process.env.JWT_SECRET;
+  try {
+    const verify = JWT.verify(token, secret);
+    // res.send("Verified")
+    res.render('index', { email: userEmail });
+
+    // res.json({ email: verify.email, status: "verified" });
+  } catch (error) {
+    console.log(error);
+    res.send("Not Verified");
+  }
+};
+//----------reset password updated--------
+export const resetPassWordUpdate = async (req, res) => {
+  console.log("hey ;i am called")
+  const { id, token } = req.params;
+  const { password } = req.body;
+  console.log(req);
+
+  var userEmail;
+  console.log(password, "pasd");
+  if (!password) {
+    return res.json({ status: "Password is required!!" });
+  }
+  const oldUser = await userModel.findOne({ _id: id }, { email: 1 });
+  if (!oldUser) {
+    return res.json({ status: "User Not Exists!!" });
+  } else {
+    userEmail = oldUser.email;
+  }
+  // const secret = process.env.JWT_SECRET + oldUser .password;
+  const secret = process.env.JWT_SECRET;
+  try {
+    const verify = JWT.verify(token, secret);
+    console.log("New password:", password);
+    const encryptedPassword = await bcrypt.hash(password, 10);
+    await userModel.updateOne(
+      {
+        _id: id,
+      },
+      {
+        $set: {
+          password: encryptedPassword,
+        },
+      }
+    );
+    res.render("passwordSuccess", { email: verify.email });
+ 
+
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "Something Went Wrong" });
+  }
+};
 //test controller-----------------------------------------------------------------
 export const testController = (req, res) => {
   try {
