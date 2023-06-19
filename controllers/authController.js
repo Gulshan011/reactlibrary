@@ -311,9 +311,8 @@ export const resetPassWordToken = async (req, res) => {
 export const resetPassWordUpdate = async (req, res) => {
   console.log("hey ;i am called")
   const { id, token } = req.params;
-  const { password } = req.body;
-  console.log(req);
-
+  const  password  = req.body.password;
+console.log(req.body,"awds")
   var userEmail;
   console.log(password, "pasd");
   if (!password) {

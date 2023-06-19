@@ -54,7 +54,7 @@ export const Projects = () => {
               {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeIn": ""}>
                 <h2>Gallery</h2>
-                <p>The Kalgidhar Trust established Eternal University for the upliftment of girl childs ;uplifting a girl is uplifting a society .Some highlights of Eternal University !!!</p>
+                <p style={{fontFamily:"Poppins ,sans-serif",fontStyle:"oblique"}}>The Kalgidhar Trust established Eternal University for the upliftment of girl childs ;uplifting a girl is uplifting a society .Some highlights of Eternal University !!!</p>
               
                  
                       <Row>
