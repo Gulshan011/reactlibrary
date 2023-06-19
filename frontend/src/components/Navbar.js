@@ -41,31 +41,41 @@ const Navbar = () => {
 
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-light"
+  className="navbar navbar-expand-lg navbar-light"
+  style={{
+    fontFamily: "Poppins, sans-serif",
+    fontWeight: "300",
+    fontSize: "20px",
+  }}
+>
+  <Link className="navbar-brand" to="/Home">
+    <img
+      src={logo}
       style={{
+        display: "inline-block",
+        height: "50px",
+        width: "50px",
+        borderRadius: "50px",
+        marginRight: "5px", 
+        marginLeft:"20px"// Add margin-right to create space between logo and text
+      }}
+      alt="Logo"
+    />
+
+    <span
+      style={{
+        display: "inline-block",
         fontFamily: "Poppins, sans-serif",
+        color: "white",
         fontWeight: "300",
         fontSize: "20px",
       }}
     >
-      <Link className="navbar-brand" to="/Home">
-        <img
-          src={logo}
-          style={{ display: "inline-block", height:"50px", width:"50px" ,borderRadius:"50px" }}
-          alt="Logo"
-        />
-        <span
-          style={{
-            display: "inline-block",
-            fontFamily: "Poppins, sans-serif",
-            color: "white",
-           fontWeight: "300",
-        fontSize: "20px",
-          }}
-        >
-          ELibrary
-        </span>
-      </Link>
+      ELibrary📚
+    </span>
+  </Link>
+
+
 
       <button
         className="navbar-toggler"
@@ -103,7 +113,7 @@ const Navbar = () => {
                   color: "white",
                 }}
               >
-                Chat
+                Chat👧
               </Link>
             </li>
           )}

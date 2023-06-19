@@ -5,7 +5,7 @@ import Table from "react-bootstrap/Table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
 import { useContext, AuthContext } from "../../context/auth";
-import Work from './Work';
+
 import Swal from "sweetalert2";
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -204,12 +204,7 @@ const History = () => {
         </tbody>
       </Table>
         </div>
-        <div className="pdf-icon">
-          <button onClick={handleIconClick}>
-            <FontAwesomeIcon icon={faFilePdf} size="3x" color="white"/>
-          </button>
-        </div>
-        {showWork && <Work />}
+       
       </div>
       </AdminContent>
       </IconContext.Provider>
