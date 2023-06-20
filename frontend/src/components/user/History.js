@@ -189,6 +189,7 @@ const History = () => {
             <th>Owned By</th>
             <th>Issued Date</th>
             <th>Return Date</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -199,6 +200,7 @@ const History = () => {
               <td>{book.fname}</td>
               <td>{book.issuedDate && book.issuedDate.split("T")[0]}</td>
               <td>{book.returnDate && book.returnDate.split("T")[0]}</td>
+              <td>{book.status}</td>
             </tr>
           ))}
         </tbody>

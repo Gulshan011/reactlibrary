@@ -103,7 +103,7 @@ export const Banner = () => {
                     <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                       <span className="tagline" style={{color:"white"}}>Welcome</span>
                       <h1>{`Hi! , ${auth.user && auth.user.fname}`} <span className="txt-rotate" dataPeriod="1000"><span className="wrap"></span></span></h1>
-                      <p style={{ fontSize: "25px" }}>Eternal University is launching a free internship to imrove communications ; Don't miss the opportunity 🤝..🤝</p>
+                      <p style={{ fontSize: "25px" }}>Eternal University is launching a free internship to improve communications ; Don't miss the opportunity 🤝..🤝</p>
                       <button onClick={() => navigate("/Login")}>Let’s Connect <ArrowRightCircle size={25} /></button>
                     </div>
                   )}

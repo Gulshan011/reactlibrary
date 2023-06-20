@@ -87,6 +87,7 @@ console.log(res,"rr")
               <div>
                 <a href={item.volumeInfo.previewLink}><button>More</button></a>
                 <button onClick={issueBook}>Issue</button>
+                <p style={{Color:"blue"}}>{item.status}</p>
               </div> 
              
               {item.status !== "Returned" && qrValue && (

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { Container, Card, Row, Col, Form } from "react-bootstrap";
-
+import signup from "../../images/signup.jpeg"
 import axios from "axios";
 import { useNavigate, NavLink } from "react-router-dom";
 import "./forms.css";
@@ -67,7 +67,7 @@ const Signup = () => {
                 <Row className="g-3">
                   <Col md="6" className="d-none d-md-block">
                     <Card.Img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqsibS6krrFtrIbJSzFblxDZD3Fla_c9-GlQ&usqp=CAU"
+                      src={signup}
                       className="rounded-start"
                       fluid
                     />

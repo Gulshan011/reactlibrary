@@ -64,7 +64,7 @@ export const SidebarData = [
   },
   {
     title:'Logout',
-    path:'/home',
+    path:'/login',
     icon: <AiIcons.AiFillUnlock/>,
   }
   

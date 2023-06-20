@@ -68,7 +68,7 @@ export const AdminSidebarData = [
   {
     title: 'Logout',
     path:'/login',
-    icon: <LogoutButton/>,
+    icon: <AiIcons.AiFillUnlock/>,
   }
 ];
 

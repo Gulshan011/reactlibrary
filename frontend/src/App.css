@@ -771,3 +771,16 @@ filter: brightness(100%) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-r
 }
 
 
+/* Light theme */
+.light {
+  /* Define your light theme styles here */
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* Dark theme */
+.dark {
+  /* Define your dark theme styles here */
+  background-color: #222;
+  color: #fff;
+}

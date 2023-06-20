@@ -3,7 +3,7 @@ import JWT from "jsonwebtoken";
 import userModel from "../models/userModel.js";
 import bookModel from "../models/bookModel.js";
 //Protected Routes token base
-export const requireSignIn = async (req, res, next) => {
+export const requireSignIn = (req, res, next) => {
   try {
     const decode = JWT.verify(
       req.headers.authorization,
@@ -13,6 +13,11 @@ export const requireSignIn = async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
+    res.status(401).send({
+      success: false,
+      error,
+      message: "Unauthorized Access",
+    });
   }
 };
 
