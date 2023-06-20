@@ -7,9 +7,8 @@
 //         token:" "
 //     })
  
-//     useEffect(() => {
-//         axios.defaults.headers.common["Authorization"] = auth?.token;
-//       }, [auth]);
+//     //default axios
+//     axios.defaults.headers.common["Authorization"] = auth?.token;
 //     useEffect(() =>{
 //         const data = localStorage.getItem("auth");
 //         if(data){
