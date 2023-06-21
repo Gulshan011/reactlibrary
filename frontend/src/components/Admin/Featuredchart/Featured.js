@@ -1,5 +1,9 @@
 import React from "react";
 import "./featured.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faGooglePlus } from '@fortawesome/free-brands-svg-icons';
+ import '@fortawesome/fontawesome-free/css/all.min.css';
+
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import imagepic from "../../../images/girl.jpg";
@@ -48,17 +52,18 @@ const Featured = () => {
         </div>
       </CardBody>
       <CardFooter>
-        <div className="button-container">
-          <Button className="btn-icon btn-round" color="facebook">
-            <i className="fab fa-facebook" />
-          </Button>
-          <Button className="btn-icon btn-round" color="twitter">
-            <i className="fab fa-twitter" />
-          </Button>
-          <Button className="btn-icon btn-round" color="google">
-            <i className="fab fa-google-plus" />
-          </Button>
-        </div>
+      <div className="button-container">
+      <button className="btn-icon btn-round" style={{ color: 'white' ,backgroundColor: '#dd4b39',width:"40px",height:"40px",marginRight:"4px",borderRadius:"6px"}}>
+        <FontAwesomeIcon icon={faFacebook} />
+      </button>
+      <button className="btn-icon btn-round" style={{ color: 'white',backgroundColor: '#1da1f2',width:"40px",height:"40px" ,marginRight:"4px",borderRadius:"6px"}}>
+        <FontAwesomeIcon icon={faTwitter} />
+      </button>
+      <button className="btn-icon btn-round" style={{ color: 'white',backgroundColor: '#dd4b39',width:"40px",height:"40px" ,marginRight:"4px",borderRadius:"6px"}}>
+        <FontAwesomeIcon icon={faGooglePlus} />
+      </button>
+    </div>
+  
       </CardFooter>
     </div>
   </Col>

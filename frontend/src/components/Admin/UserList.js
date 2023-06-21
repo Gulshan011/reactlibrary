@@ -4,12 +4,15 @@ import { useState, useEffect } from "react";
 import AdminSidebar from "../Admin/AdminSidebar";
 import Table from "react-bootstrap/Table";
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import Swal from "sweetalert2";
 import * as FaIcons from 'react-icons/fa';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { AdminSidebarData } from './AdminSidebarData.js';
 import * as AiIcons from 'react-icons/ai';
 import AdminSubMenu from './AdminSubMenu';
+import Button from "react-bootstrap/Button"
 import { IconContext } from 'react-icons/lib';
 const Nav = styled.div`
   background-color: #1e1e2f;
@@ -102,7 +105,34 @@ function UserList() {
       .then(data => setUserList(data.data))
       .catch(error => console.log(error));
   }, []);
-
+  const handleChange = async (id) => {
+    
+     
+        // Make an API call to delete the book if status is "Returned"
+        await axios.delete(`http://localhost:8081/api/v1/auth/deleteuser/${id}`);
+        // Filter out the book from the bookList state
+        setUserList((prevUserList) =>
+          prevUserList.filter((user) => user._id !== id)
+        );
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "You won't be able to revert this! ⚠️",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: 'LightSeaGreen',
+          cancelButtonColor: 'Crimson',
+          confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            );
+          }
+        });
+        return;
+      }
   return (
     <div>
     <>
@@ -154,7 +184,7 @@ function UserList() {
                 <th>Reg.number</th>
                 <th>Role</th>
                 <th>Department</th>
-                
+                <th>Actions </th>
                 
               </tr>
             </thead>
@@ -167,6 +197,7 @@ function UserList() {
                   <td>{user.regnumber}</td>
                   <td>{user.role}</td>
                   <td>{user.dept}</td>
+                  <td> <Button variant="danger"onClick={() => handleChange(user._id)} >Delete</Button></td>
                 </tr>
               ))}
             </tbody>

@@ -5,6 +5,10 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
  import imagepic from "../../../images/girl.jpg";
 import imagenew from "../../../images/boy.jpg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faGooglePlus } from '@fortawesome/free-brands-svg-icons';
+ import '@fortawesome/fontawesome-free/css/all.min.css';
+
 import './Widgets.css';
 import {
   Button,
@@ -100,17 +104,17 @@ const Featured = () => {
           
         </CardBody>
         <CardFooter>
-          <div className="button-container">
-            <Button className="btn-icon btn-round" color="facebook">
-              <i className="fab fa-facebook" />
-            </Button>
-            <Button className="btn-icon btn-round" color="twitter">
-              <i className="fab fa-twitter" />
-            </Button>
-            <Button className="btn-icon btn-round" color="google">
-              <i className="fab fa-google-plus" />
-            </Button>
-          </div>
+        <div className="button-container">
+        <button className="btn-icon btn-round" style={{backgroundColor: '#dd4b39',Color: 'white' ,width:"40px",height:"40px",marginRight:"5px",borderRadius:"6px"}}>
+          <FontAwesomeIcon icon={faFacebook} />
+        </button>
+        <button className="btn-icon btn-round" style={{ backgroundColor: '#1da1f2', Color: 'white' ,width:"40px",height:"40px",marginRight:"5px",borderRadius:"6px"}}>
+          <FontAwesomeIcon icon={faTwitter} />
+        </button>
+        <button className="btn-icon btn-round" style={{ backgroundColor: '#dd4b39',Color: 'white' ,width:"40px",height:"40px" ,marginRight:"5px",borderRadius:"6px"}}>
+          <FontAwesomeIcon icon={faGooglePlus} />
+        </button>
+      </div>
         </CardFooter>
       </div>
     </div>

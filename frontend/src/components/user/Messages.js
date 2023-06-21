@@ -48,6 +48,7 @@ const tableHTML = `
       <tr>
         <th style="border: 1px solid #dddddd; text-align: left; padding: 8px; width:100px; height: 100px;">Sent By</th>
         <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Message</th>
+        
       </tr>
     </thead>
     <tbody>
