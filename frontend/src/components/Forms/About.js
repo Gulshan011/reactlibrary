@@ -113,7 +113,7 @@ const SidebarWrap = styled(motion.div)`
 function About() {
   const { auth, setAuth } = useContext(AuthContext);
   const [sidebarOpen, setSidebarOpen] = useState(true);
-
+const [userList, setUserList] = useState([]);
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -200,7 +200,14 @@ function About() {
       [name]: value,
     }));
   };
-
+ 
+useEffect(() => {
+    fetch('http://localhost:8081/api/v1/auth/userdata')
+      .then(res => res.json())
+      .then(data => setUserList(data.data))
+      .catch(error => console.log(error));
+  }, []);
+  
   return (
     <>
       {auth.user && auth.user.role === "1" ? <AdminSidebar /> : <Sidebar />}
@@ -351,12 +358,11 @@ function About() {
                       {auth.user && auth.user.dept}
                     </p>
                   </div>
-                  <div
-                    className="card-description"
-                    style={{ color: "white" }}
-                  >
-                    {auth.user && auth.user.bio}
-                  </div>
+                  <div className="card-description" style={{ color: "white" }}>
+  {auth.user&auth.user.bio}
+ </div>
+                   
+           
                 </CardBody>
                 <CardFooter>
                   <div className="button-container">
@@ -381,3 +387,19 @@ function About() {
 }
 
 export default About;
+
+
+// After successful bio update
+// setAuth((prevAuth) => ({
+//   ...prevAuth,
+//   user: {
+//     ...prevAuth.user,
+//     bio: formValues.bio, // Update the user's bio
+//   },
+// }));
+
+// // Save the updated bio to local storage
+// localStorage.setItem('userBio', formValues.bio);
+// <div className="card-description" style={{ color: "white" }}>
+//   {auth.user && (auth.user.bio || localStorage.getItem('userBio'))}
+// </div>

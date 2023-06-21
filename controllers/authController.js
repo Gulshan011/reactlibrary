@@ -1005,3 +1005,25 @@ export const getReplyController = async (req, res) => {
     });
   }
 };
+
+
+//---------------------------------------------
+export const deleteUserController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await userModel.findByIdAndDelete(id);
+
+    res.status(200).send({
+      success: true,
+      message: " Deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while deleting ",
+      error,
+    });
+  }
+};
+//--------------------------------------------------

@@ -101,7 +101,7 @@ console.log(res,"rr")
             </div>
           </div>
           
-          <h4 className="description qr-description">{item.volumeInfo.description}</h4>
+         
         </div>
       </div>
     </>
